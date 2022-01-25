@@ -25,6 +25,9 @@ public static class DriveConstants {
     public static final int ENCODER_PULSES_PER_REVOLUTION = 2048;
     public static final int VELOCITY_CALCULATION_PER_SECOND = 10;
     public static final double distancePerPulse = wheelCircumference/(double) ENCODER_PULSES_PER_REVOLUTION;
+
+    double low = 21.67;
+    double high = 8.41;
 }
 
     public static class motorports {
