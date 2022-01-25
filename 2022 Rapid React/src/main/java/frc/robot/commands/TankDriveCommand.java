@@ -1,6 +1,5 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
@@ -18,6 +17,7 @@ public class TankDriveCommand extends CommandBase {
 
   @Override
   public void initialize() {
+    Robot.m_driveSubsystem.shift(false);
     Robot.m_driveSubsystem.setBothMotors(0);
   }
 
@@ -25,6 +25,7 @@ public class TankDriveCommand extends CommandBase {
   @Override
   public void execute() {
     Robot.m_driveSubsystem.setBothMotors(Robot.m_oi.getleftYAxis(), Robot.m_oi.getrightYAxis());
+    
   }
 
   // Called once the command ends or is interrupted.

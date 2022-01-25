@@ -42,4 +42,10 @@ public static class DriveConstants {
     public static final double JOYSTICK_LEFT_DEADZONE_Y = 0.02;
     public static final double JOYSTICK_RIGHT_DEADZONE_Y = 0.02;
 
+    public static class Pistons{
+
+        public static final int[] shiftPistonPorts = {0, 1};
+
+    }
+
 }
