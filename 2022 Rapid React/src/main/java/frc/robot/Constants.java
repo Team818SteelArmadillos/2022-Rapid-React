@@ -2,7 +2,31 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
+<<<<<<< Updated upstream
 package frc.robot;
+=======
+    double low = 21.67;
+    double high = 8.41;
+}
+
+    public static class motorports {
+
+    public static final int intakeMotorPort = 5;
+    public static final int indexMotorPort = 6;
+
+    }
+
+    public static class Pistons {
+
+    public static final int[] shiftPistonPorts = {0, 1};
+
+    }
+
+    public static final int JOYSTICK_PORT_LEFT = 0;
+    public static final int JOYSTICK_PORT_RIGHT = 1;
+    public static final double JOYSTICK_LEFT_DEADZONE_Y = 0.02;
+    public static final double JOYSTICK_RIGHT_DEADZONE_Y = 0.02;
+>>>>>>> Stashed changes
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
