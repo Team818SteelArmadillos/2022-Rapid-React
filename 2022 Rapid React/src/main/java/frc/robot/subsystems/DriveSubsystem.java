@@ -16,6 +16,10 @@ public class DriveSubsystem extends SubsystemBase {
   private int leftOffset = 0;
   private int rightOffset = 0;
 
+  boolean brake = false;
+  boolean highGear = false;
+  boolean isHighGear = false;
+
   public DriveSubsystem() {
     talonLeft1 = new TalonFX(MOTOR_PORTS_LEFT[0]);
     talonRight1 = new TalonFX(MOTOR_PORTS_RIGHT[0]);
@@ -50,34 +54,45 @@ public class DriveSubsystem extends SubsystemBase {
     setRightMotors(speedRight);
 }
 
-public void setLeftMotors(double speed) {
-  talonLeft1.set(ControlMode.PercentOutput, speed);
-}
-
-public void setRightMotors(double speed) {
-  talonRight1.set(ControlMode.PercentOutput, speed);
-}
-
-public void setBothMotors(double speed) {
-  setLeftMotors(speed);
-  setRightMotors(speed);
+  public void setLeftMotors(double speed) {
+    talonLeft1.set(ControlMode.PercentOutput, speed);
   }
 
-  public double getLeftVelocity() {
-    if(isHighGear){
-    return talonLeft1.getSelectedSensorVelocity() * distancePerPulse * VELOCITY_CALCULATION_PER_SECOND * Math.PI / (12 * high);
+  public void setRightMotors(double speed) {
+    talonRight1.set(ControlMode.PercentOutput, speed);
+  }
+
+  public void setBothMotors(double speed) {
+    setLeftMotors(speed);
+    setRightMotors(speed);
+  }
+
+  public void resetEncoders() {
+    talonLeft1.setSelectedSensorPosition(0);
+    talonRight1.setSelectedSensorPosition(0);
+  }
+
+  public double getLeftPosition() {
+    if (isHighGear){
+      return (talonLeft1.getSelectedSensorPosition() - leftOffset) * distancePerPulse / high;
     } else {
-      return talonLeft1.getSelectedSensorVelocity() * distancePerPulse * VELOCITY_CALCULATION_PER_SECOND * Math.PI / (12 * low);
+      return (talonLeft1.getSelectedSensorPosition() - leftOffset) * distancePerPulse / low;
     }
+
   }
 
-  public double getRightVelocity() {
-    if(isHighGear){
-    return talonRight1.getSelectedSensorVelocity() * distancePerPulse * VELOCITY_CALCULATION_PER_SECOND * Math.PI / (12 * high);
+  public double getRightPosition() {
+    if (isHighGear){
+      return (talonRight1.getSelectedSensorPosition() - rightOffset) * distancePerPulse / high;
     } else {
-    return talonRight1.getSelectedSensorVelocity() * distancePerPulse * VELOCITY_CALCULATION_PER_SECOND * Math.PI / (12 * low);
+      return (talonRight1.getSelectedSensorPosition() - rightOffset) * distancePerPulse / low;
+    }
+  
   }
-}
+
+  public double getPosition() {
+    return (getRightPosition() + getLeftPosition()) * 0.5;
+  }
 
 
   public double getVelocity() {
