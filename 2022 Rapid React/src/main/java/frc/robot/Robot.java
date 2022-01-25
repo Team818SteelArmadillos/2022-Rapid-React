@@ -5,9 +5,15 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 public class Robot extends TimedRobot {
 
+  static public OI m_oi;
+
+
+
   @Override
   public void robotInit() {
     
+    m_oi = new OI();
+
   }
 
   @Override
