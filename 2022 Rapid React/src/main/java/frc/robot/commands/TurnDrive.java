@@ -1,43 +1,48 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.Robot;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-/** An example command that uses an example subsystem. */
-public class ExampleCommand extends CommandBase {
-  @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final ExampleSubsystem m_subsystem;
-
-  /**
-   * Creates a new ExampleCommand.
-   *
-   * @param subsystem The subsystem used by this command.
-   */
-  public ExampleCommand(ExampleSubsystem subsystem) {
-    m_subsystem = subsystem;
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(subsystem);
+public class TurnDrive extends CommandBase {
+  
+  double turnAngle;
+  public TurnDrive(double angle){
+    turnAngle = angle;
   }
+
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    Robot.m_driveSubsystem.setBothMotors(0);
+    Robot.m_driveSubsystem.resetGyro();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    if(turnAngle > 0){
+      Robot.m_driveSubsystem.shift(false);
+      Robot.m_driveSubsystem.setRightMotors(0.25);
+      Robot.m_driveSubsystem.setLeftMotors(-0.25);
+    }
+    else if(turnAngle < 0){
+      Robot.m_driveSubsystem.setLeftMotors(0.25);
+      Robot.m_driveSubsystem.setRightMotors(-0.25);
+    }
+  }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    Robot.m_driveSubsystem.setBothMotors(0);
+    Robot.m_driveSubsystem.resetGyro();
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return Math.abs(turnAngle) - 15 < Math.abs(Robot.m_driveSubsystem.getAngle());
   }
 }
