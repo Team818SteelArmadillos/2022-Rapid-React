@@ -2,7 +2,7 @@ package frc.robot;
 
 public class Constants {
 
-public class oi {
+public static class oi {
     //Joysticks/Gamepad
     public static final int leftJoystickPort = 0;
     public static final int rightJoystickPort = 1;
