@@ -1,7 +1,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants.LEDNumbers.*;
+import static frc.robot.Constants.LEDNumbers.*;
 import com.ctre.phoenix.led.CANdle;
 import com.ctre.phoenix.led.CANdleConfiguration;
 import com.ctre.phoenix.led.CANdle.LEDStripType;
@@ -33,7 +33,7 @@ public class LEDS extends SubsystemBase {
         candle.configAllSettings(config);
 
         //sets the leds on the canfle itself to white
-        candle.setLEDs(0, 0, 0, 255, 0, 200);
+      //  candle.setLEDs(0, 0, 0, 255, 0, LEDs_Full);
 
 }
 }
