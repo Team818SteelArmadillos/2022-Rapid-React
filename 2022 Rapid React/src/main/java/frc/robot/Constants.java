@@ -44,7 +44,13 @@ public static class DriveConstants {
 
     public static class Pistons{
 
-        public static final int[] shiftPistonPorts = {0, 1};
+    public static final int[] shiftPistonPorts = {0, 1};
+
+    }
+
+    public static class LED {
+
+    public static final int LEDLight = 6;
 
     }
 
