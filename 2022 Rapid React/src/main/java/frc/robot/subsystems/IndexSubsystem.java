@@ -1,17 +1,43 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import static frc.robot.Constants.motorports.*;
+import static frc.robot.Constants.sensorPorts.*;
 
 public class IndexSubsystem extends SubsystemBase {
-  /** Creates a new IndexSubsystem. */
-  public IndexSubsystem() {}
+
+  private DigitalInput SensorFront, SensorBack;
+  private TalonFX indexMotor;
+  private VictorSPX conveyorMotor;
+
+  public IndexSubsystem() {
+
+    indexMotor = new TalonFX(indexMotorPortUpper);
+    indexMotor.configFactoryDefault();
+    conveyorMotor = new VictorSPX(indexMotorPortConveyor);
+    conveyorMotor.configFactoryDefault();
+    SensorFront = new DigitalInput(indexSensorFront);
+    SensorBack = new DigitalInput(indexSensorBack);
+
+  }
+
+  public void doIndex(double Speed) {
+    indexMotor.set(ControlMode.PercentOutput, -Speed);
+  }
+
+  public void logData(){
+    SmartDashboard.putBoolean("SensorFront", SensorFront.get());
+    SmartDashboard.putBoolean("SensorBack", SensorBack.get());
+
+  }
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
   }
 }

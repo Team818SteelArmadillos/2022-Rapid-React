@@ -41,7 +41,8 @@ public static class DriveConstants {
     public static class motorports {
 
     public static final int intakeMotorPort = 5;
-    public static final int indexMotorPort = 6;
+    public static final int indexMotorPortConveyor = 6;
+    public static final int indexMotorPortUpper = 7;
 
     }
 
@@ -54,6 +55,12 @@ public static class DriveConstants {
 
     public static final int[] shiftPistonPorts = {0, 1};
 
+    }
+
+    public static class sensorPorts {
+
+        public static final int indexSensorFront = 0;
+        public static final int indexSensorBack = 1;
     }
 
     public static class LED {
