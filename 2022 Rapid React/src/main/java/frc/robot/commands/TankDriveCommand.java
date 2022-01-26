@@ -4,16 +4,12 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
 public class TankDriveCommand extends CommandBase {
-  /**
-   * Creates a new TankDriveCommand.
-   */
+
   boolean prevGearButton;
 
   public TankDriveCommand() {
     addRequirements(Robot.m_driveSubsystem);
   }
-
-  // Called when the command is initially scheduled.
 
   @Override
   public void initialize() {

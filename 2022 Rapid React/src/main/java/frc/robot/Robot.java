@@ -13,25 +13,19 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
   public static DriveSubsystem m_driveSubsystem;
   public static ShooterVisionSubsystem m_shootervision;
+  public static ShooterSubsystem m_ShooterSubsytem;
 
   private Command m_TankDrive;
-
-  private RobotContainer m_robotContainer;
-  public static ShooterSubsystem m_ShooterSubsytem = new ShooterSubsystem();
 
   @Override
   public void robotInit() {
     
     m_oi = new OI();
     m_driveSubsystem = new DriveSubsystem();
-    m_TankDrive = new TankDriveCommand();
     m_shootervision = new ShooterVisionSubsystem();
-
-    // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
-    // autonomous chooser on the dashboard.
     m_ShooterSubsytem = new ShooterSubsystem();
-    
-    m_robotContainer = new RobotContainer();
+
+    m_TankDrive = new TankDriveCommand();
   }
 
   @Override
