@@ -37,6 +37,15 @@ public static class DriveConstants {
 
     }
 
+    public static class LEDNumbers {
+
+    public static final int LEDs_Full = 200;
+    public static final int LED_CANdle = 7;
+    public static final int half_LEDS = 100;
+
+
+    }
+
     public static final int JOYSTICK_PORT_LEFT = 0;
     public static final int JOYSTICK_PORT_RIGHT = 1;
     public static final double JOYSTICK_LEFT_DEADZONE_Y = 0.02;
