@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.TankDriveCommand;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ShooterVisionSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
 
 public class Robot extends TimedRobot {
 
@@ -15,6 +16,8 @@ public class Robot extends TimedRobot {
 
   private Command m_TankDrive;
 
+  private RobotContainer m_robotContainer;
+  public static ShooterSubsystem m_ShooterSubsytem = new ShooterSubsystem();
 
   @Override
   public void robotInit() {
@@ -24,6 +27,11 @@ public class Robot extends TimedRobot {
     m_TankDrive = new TankDriveCommand();
     m_shootervision = new ShooterVisionSubsystem();
 
+    // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
+    // autonomous chooser on the dashboard.
+    m_ShooterSubsytem = new ShooterSubsystem();
+    
+    m_robotContainer = new RobotContainer();
   }
 
   @Override

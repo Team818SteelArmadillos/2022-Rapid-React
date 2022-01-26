@@ -30,6 +30,14 @@ public static class DriveConstants {
     public static final double high = 8.41;
 }
 
+    public static class ShooterConstants{
+    //Shooter Constants
+    public static final int[] SHOOTER_PORTS = {5, 6};
+    public static final boolean SHOOTER_INVERTED = true;
+    public static final double velocityCalculationsPerSecond = 10;
+    public static final double encoderPulsesPerRevolution = 4096; 
+}
+
     public static class motorports {
 
     public static final int intakeMotorPort = 5;
