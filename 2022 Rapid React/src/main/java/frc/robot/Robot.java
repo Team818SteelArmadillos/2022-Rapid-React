@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.TankDriveCommand;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ShooterVisionSubsystem;
+import frc.robot.subsystems.TurretSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
 public class Robot extends TimedRobot {
@@ -14,12 +15,14 @@ public class Robot extends TimedRobot {
   public static DriveSubsystem m_driveSubsystem;
   public static ShooterVisionSubsystem m_shootervision;
   public static ShooterSubsystem m_ShooterSubsytem;
+  public static TurretSubsystem m_TurretSubsystem;
 
   private Command m_TankDrive;
 
   @Override
   public void robotInit() {
     
+    m_TurretSubsystem = new TurretSubsystem();
     m_oi = new OI();
     m_driveSubsystem = new DriveSubsystem();
     m_shootervision = new ShooterVisionSubsystem();

@@ -36,6 +36,10 @@ public static class DriveConstants {
     public static final boolean SHOOTER_INVERTED = true;
     public static final double velocityCalculationsPerSecond = 10;
     public static final double encoderPulsesPerRevolution = 4096; 
+
+}
+   public static class TurretConstants{
+    public static final int TURRET_MOTOR = 7;
 }
 
     public static class motorports {
