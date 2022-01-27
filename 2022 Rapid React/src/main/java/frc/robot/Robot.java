@@ -66,4 +66,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void testPeriodic() {}
+
+  public static void putMessage(String string) {
+  }
 }

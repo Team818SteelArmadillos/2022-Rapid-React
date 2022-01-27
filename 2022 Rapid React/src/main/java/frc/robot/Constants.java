@@ -16,7 +16,6 @@ public static class DriveConstants {
     public static final boolean LEFT_INVERTED = true;
     public static final double RAMP_RATE = 0.5;
     public static final double wheelCircumference = 6*Math.PI;
-    public static final int INTAKE_PORTS = 6;
 
     //Drive Constants
     public static final double WHEEL_DIAMETER = 6;
@@ -27,11 +26,15 @@ public static class DriveConstants {
 
     public static final double low = 21.67;
     public static final double high = 8.41;
+}   public static class ShooterConstants{
+
+    public static final int[] SHOOTER_PORTS = {5, 6};
+    public static final boolean SHOOTER_INVERTED = true; 
+    public static final double velocityCalculationsPerSecond = 10;
+    public static final double encoderPulsesPerRevolution = 4096;
 }
-
     public static class motorports {
-
-    public static final int intakeMotorPort = 5;
+    public static final int intakeMotorPort = 5; 
     public static final int indexMotorPort = 6;
 
     }
@@ -43,6 +46,7 @@ public static class DriveConstants {
 
     public static class Pistons{
     public static final int[] shiftPistonPorts = {0, 1};
+    public static final int[] intakePistonPortOne = {2, 3};
 
     }
 
@@ -51,5 +55,9 @@ public static class DriveConstants {
     public static final int LEDLight = 6;
 
     }
+
+    public static int intakeMotorPort;
+
+    
 
 }

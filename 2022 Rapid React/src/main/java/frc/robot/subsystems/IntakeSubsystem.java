@@ -4,17 +4,50 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
-
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants.motorports.*;
+import frc.robot.Constants;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard; 
+
+import static frc.robot.Constants.Pistons.*;
+
 
 public class IntakeSubsystem extends SubsystemBase {
   /** Creates a new IntakeSubsystem. */ 
   private TalonFX MotorIntake;
+  static DoubleSolenoid intakePiston;
+  double intakePistonVal;
+  public boolean isPistonOut = false;
+  
   public IntakeSubsystem() {
-    MotorIntake = new TalonFX(intakeMotorPort);
+    MotorIntake = new TalonFX(Constants.intakeMotorPort);
+    intakePiston = new DoubleSolenoid(13, null, intakePistonPortOne[2], intakePistonPortOne[3]);
+
+  }
+
+  public void setIntakeMotor(double Speed) {
+    MotorIntake.set(ControlMode.PercentOutput, -Speed);
+  }
+
+  public void setIntakePosition(double intakePistonVal) {
+    if(intakePistonVal == 0.5) {
+      intakePiston.set(DoubleSolenoid.Value.kReverse);
+      isPistonOut = false;
+    } else if (intakePistonVal == 1) {
+      intakePiston.set(DoubleSolenoid.Value.kForward);
+      isPistonOut = true;
+    }
+    }
+  
+  public void logDataElevator() {
+    SmartDashboard.putNumber("Intake Power:", MotorIntake.getMotorOutputPercent());
+    if (intakePistonVal == 0.5) {
+      SmartDashboard.putString("Intake Piston Position:", "In");
+    } else if (intakePistonVal == 1) {
+      SmartDashboard.putString("Intake Piston Position", "Out");
+    }
   }
   @Override
   public void periodic() {
