@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.TankDriveCommand;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.IndexSubsystem;
 import frc.robot.subsystems.ShooterVisionSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
@@ -16,6 +17,7 @@ public class Robot extends TimedRobot {
   public static ShooterVisionSubsystem m_shootervision;
   public static ShooterSubsystem m_ShooterSubsytem;
   public static IndexSubsystem m_IndexSubsystem;
+  public static ElevatorSubsystem m_ElevatorSubsystem;
 
   private Command m_TankDrive;
 
@@ -26,6 +28,7 @@ public class Robot extends TimedRobot {
     m_driveSubsystem = new DriveSubsystem();
     m_shootervision = new ShooterVisionSubsystem();
     m_ShooterSubsytem = new ShooterSubsystem();
+    m_ElevatorSubsystem = new ElevatorSubsystem();
 
     m_TankDrive = new TankDriveCommand();
   }

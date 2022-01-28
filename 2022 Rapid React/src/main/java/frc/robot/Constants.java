@@ -17,6 +17,7 @@ public static class DriveConstants {
     public static final boolean LEFT_INVERTED = true;
     public static final double RAMP_RATE = 0.5;
     public static final double wheelCircumference = 6*Math.PI;
+    public static final int[] shiftPistonPorts = {0, 1};
 
 
     //Drive Constants
@@ -46,16 +47,21 @@ public static class DriveConstants {
 
     }
 
+    public static class ElevatorConstants {
+
+    public static final int elevatorMotorPort = 5;    
+    public static final int[] ratchetPistonPort = {6, 7};
+    public static final int[] AnglePistonPort1 = {8, 9};
+    public static final int[] AnglePistonPort2 = {10, 11};
+    public static final int[] flipUpHookPort1 = {12, 13};
+    public static final int[] flipUpHookPort2 = {14, 15};
+
+    }
+
     public static final int JOYSTICK_PORT_LEFT = 0;
     public static final int JOYSTICK_PORT_RIGHT = 1;
     public static final double JOYSTICK_LEFT_DEADZONE_Y = 0.02;
     public static final double JOYSTICK_RIGHT_DEADZONE_Y = 0.02;
-
-    public static class Pistons{
-
-    public static final int[] shiftPistonPorts = {0, 1};
-
-    }
 
     public static class sensorPorts {
 
