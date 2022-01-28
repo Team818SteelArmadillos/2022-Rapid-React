@@ -10,11 +10,14 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.Constants.TurretConstants.*;
+import static frc.robot.Constants.ShooterConstants.*;
 
 public class TurretSubsystem extends SubsystemBase {
   public TalonFX talon1;
   public DigitalInput toplimitSwitch = new DigitalInput(0);
   public DigitalInput bottomlimitSwitch = new DigitalInput(1);
+
+  private double turretoffset = 0;
 
   /** Creates a new TurretSubsystem. */
   public TurretSubsystem() {
@@ -23,21 +26,24 @@ public class TurretSubsystem extends SubsystemBase {
     talon1.configFactoryDefault();
   }
 
-  public double getCurrentTurretPosition(){
-    return talon1.getSelectedSensorPosition();
+  public void setTurretSpeed(double speed) {
+    talon1.set(ControlMode.PercentOutput, speed);
+    
+    if ((speed > 0) && (getCurrentTurretPosition()) > encoderPulsesPerRevolution * 0.75 * 55){
+      talon1.set(ControlMode.PercentOutput, 0);
+    }
+    if ((-1 * (speed) > 0) && (getCurrentTurretPosition()) > encoderPulsesPerRevolution * 0.75 * 55){
+      talon1.set(ControlMode.PercentOutput, 0);
+      }
   }
 
-  
-  public void setTurretSpeed(double speed) {
-    talon1.set(ControlMode.PercentOutput, 0);
-    if (Math.abs(speed) > 0) {
-        if (toplimitSwitch.get() || bottomlimitSwitch.get()) {
-          talon1.set(ControlMode.PercentOutput, 0);
-        } else {
-          talon1.set(ControlMode.PercentOutput, speed);
-        }
-    }
+  public void resetEncoderPosition(){
+    turretoffset = talon1.getSelectedSensorPosition();
   }
+  public double getCurrentTurretPosition(){
+    return (talon1.getSelectedSensorPosition() - turretoffset) * encoderPulsesPerRevolution;
+  }
+
 
   @Override
   public void periodic() {

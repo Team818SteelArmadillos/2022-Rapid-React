@@ -22,7 +22,7 @@ public class OI {
         // return Math.pow(-leftJoyStick.getY(), 3.0);
         return leftJoyStick.getY();
         // // return Math.pow(-gamePadDriver.getLeftY(), 3.0);
-        // return gamePadDriver.getLeftY();
+        //return gamePadDriver.getLeftY();
       }
     
       public double getrightYAxis() {
