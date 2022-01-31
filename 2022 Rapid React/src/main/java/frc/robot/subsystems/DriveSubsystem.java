@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import static frc.robot.Constants.DriveConstants.*;
-import static frc.robot.Constants.Pistons.*;
 
 public class DriveSubsystem extends SubsystemBase {
 
@@ -71,6 +70,13 @@ public class DriveSubsystem extends SubsystemBase {
     setRightMotors(speedRight);
 }
 
+public void resetEncoders() {
+  talonLeft1.setSelectedSensorPosition(0);
+  talonLeft2.setSelectedSensorPosition(0);
+  talonRight1.setSelectedSensorPosition(0);
+  talonRight2.setSelectedSensorPosition(0);
+}
+
 public void setLeftMotors(double speed) {
   talonLeft1.set(ControlMode.PercentOutput, speed);
 }
@@ -82,11 +88,6 @@ public void setRightMotors(double speed) {
 public void setBothMotors(double speed) {
   setLeftMotors(speed);
   setRightMotors(speed);
-}
-
-public void resetEncoders() {
-  talonLeft1.setSelectedSensorPosition(0);
-  talonRight1.setSelectedSensorPosition(0);
 }
 
 public double getLeftPosition() {

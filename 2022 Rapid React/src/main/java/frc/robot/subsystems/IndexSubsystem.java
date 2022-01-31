@@ -43,6 +43,7 @@ public class IndexSubsystem extends SubsystemBase {
 
   public void doIndex(double Speed) {
     indexMotor.set(ControlMode.PercentOutput, -Speed);
+    conveyorMotor.set(ControlMode.PercentOutput, -Speed);
   }
 
   public void logData(){
