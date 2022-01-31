@@ -3,6 +3,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.TankDriveCommand;
 import frc.robot.commands.TurretCommand;
 import frc.robot.subsystems.DriveSubsystem;
@@ -24,6 +25,7 @@ public class Robot extends TimedRobot {
   public static TurretSubsystem m_TurretSubsystem;
   public static TurretCommand m_TurretCommand;
   public static IntakeSubsystem m_IntakeSubsystem;
+  public static IntakeCommand m_IntakeCommand;
 
   private Command m_TankDrive;
 
@@ -41,6 +43,7 @@ public class Robot extends TimedRobot {
     m_IntakeSubsystem = new IntakeSubsystem();
 
     m_TankDrive = new TankDriveCommand();
+    m_IntakeCommand = new IntakeCommand();
   }
 
   @Override

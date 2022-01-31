@@ -15,7 +15,7 @@ import static frc.robot.Constants.motorports.*;
 
 public class IndexSubsystem extends SubsystemBase {
 
-  private DigitalInput SensorFront, SensorBack;
+  private DigitalInput Sensor1, Sensor2;
   private TalonFX indexMotor;
   private VictorSPX conveyorMotor;
   ColorSensorV3 colorSensor1;
@@ -30,8 +30,8 @@ public class IndexSubsystem extends SubsystemBase {
     indexMotor.configFactoryDefault();
     conveyorMotor = new VictorSPX(indexMotorPortConveyor);
     conveyorMotor.configFactoryDefault();
-    SensorFront = new DigitalInput(indexSensorFront);
-    SensorBack = new DigitalInput(indexSensorBack);
+    Sensor1 = new DigitalInput(indexSensorFront);
+    Sensor2 = new DigitalInput(indexSensorBack);
 
   }
 
@@ -39,13 +39,24 @@ public class IndexSubsystem extends SubsystemBase {
     return colorSensor1.getColor();
   }
 
-  public void doIndex(double Speed) {
+  public void SetIndex(double Speed) {
     indexMotor.set(ControlMode.PercentOutput, -Speed);
   }
 
+  public void setConveyor(double Speed) {
+    conveyorMotor.set(ControlMode.PercentOutput, -Speed);
+  }
+
+  public boolean SensorFront() {
+    return !Sensor1.get();
+  }
+
+  public boolean SensorBack() {
+    return !Sensor2.get();
+  }
   public void logData(){
-    SmartDashboard.putBoolean("SensorFront", SensorFront.get());
-    SmartDashboard.putBoolean("SensorBack", SensorBack.get());
+    SmartDashboard.putBoolean("SensorFront", Sensor1.get());
+    SmartDashboard.putBoolean("SensorBack", Sensor2.get());
 
   }
 
