@@ -11,12 +11,12 @@ import frc.robot.Robot;
 
 import static frc.robot.Constants.ShooterConstants.*;
 
-public class ManualShootCommand extends CommandBase {
+public class LowShootManualCommand extends CommandBase {
   double rpm;
   PIDController ShootPID;
   double ShooterMotorspeed;
 
-  public ManualShootCommand() {
+  public LowShootManualCommand() {
     rpm = 0;
     ShootPID = new PIDController( p, i, d);
     ShootPID.setTolerance(10);
@@ -34,12 +34,16 @@ public class ManualShootCommand extends CommandBase {
   @Override
   public void execute() {
     rpm = SmartDashboard.getNumber("Set Shooter speed", 0);
-
+    if(Robot.m_oi.getBButton() == true){
+      Robot.m_ShooterSubsytem.setPower(1000);
+    }
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    Robot.m_ShooterSubsytem.setPower(0);
+  }
 
   // Returns true when the command should end.
   @Override

@@ -2,6 +2,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.PS4Controller.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 import static frc.robot.Constants.oi.*;
@@ -19,12 +20,20 @@ public class OI {
     rightJoyStick = new Joystick(rightJoystickPort);
     gamePad = new XboxController(gamePadPort);
     gamePadDriver = new XboxController(gamePadDriverPort);
+
     
 }
 
       public boolean getXButton() {
         return gamePad.getXButton();
       }    
+
+      public boolean getAButton() {
+        return gamePad.getAButton();
+      }
+      public boolean getBButton() {
+        return gamePad.getBButton();
+      }
 
       public double getleftYAxis() {
         // return Math.pow(-leftJoyStick.getY(), 3.0);
