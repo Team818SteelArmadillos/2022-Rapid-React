@@ -12,7 +12,7 @@ import frc.robot.Robot;
 import static frc.robot.Constants.ShooterConstants.*;
 
 public class ManualShootCommand extends CommandBase {
-  private double rpm;
+  double rpm;
   PIDController ShootPID;
   double ShooterMotorspeed;
 
