@@ -37,6 +37,10 @@ public static class DriveConstants {
     public static final boolean SHOOTER_INVERTED = true;
     public static final double velocityCalculationsPerSecond = 10;
     public static final double encoderPulsesPerRevolution = 4096; 
+
+    public static final double p = 0.0009;
+    public static final double i = 0.00537;
+    public static final double d = 0.00003657;
 }
 
     public static class motorports {
