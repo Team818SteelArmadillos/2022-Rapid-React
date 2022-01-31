@@ -2,8 +2,9 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
+ 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import static frc.robot.Constants.DriveConstants.*;
@@ -27,7 +28,7 @@ private TalonFX talonLeft2, talonRight2;
     talonRight1 = new TalonFX(MOTOR_PORTS_RIGHT[0]);
     talonLeft2 = new TalonFX(MOTOR_PORTS_LEFT[1]);
     talonRight2 = new TalonFX(MOTOR_PORTS_RIGHT[1]);
-
+    
     talonLeft1.configFactoryDefault();
     talonLeft1.setInverted(LEFT_INVERTED);
     talonLeft1.configOpenloopRamp(RAMP_RATE);
