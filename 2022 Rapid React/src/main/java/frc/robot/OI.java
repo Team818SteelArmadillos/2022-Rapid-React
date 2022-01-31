@@ -53,4 +53,8 @@ public class OI {
         // // return Math.pow(-gamePadDriver.getRightX(), 3.0);
         // return gamePadDriver.getRightX();
       }
+
+      public boolean shiftGears(){
+      return (rightJoyStick.getRawButton(2));
+      }
     }
