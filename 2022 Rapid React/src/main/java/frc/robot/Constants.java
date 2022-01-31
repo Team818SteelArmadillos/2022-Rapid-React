@@ -7,7 +7,7 @@ public static class oi {
     public static final int rightJoystickPort = 1;
     public static final int gamePadPort = 2;
     public static final int gamePadDriverPort = 3;
-}
+    }
 
 public static class DriveConstants {
     //Drive Motors
@@ -27,21 +27,23 @@ public static class DriveConstants {
 
     public static final double low = 21.67;
     public static final double high = 8.41;
-}   public static class ShooterConstants{
+
+    }   
+
+    public static class ShooterConstants {
 
     public static final int[] SHOOTER_PORTS = {5, 6};
     public static final boolean SHOOTER_INVERTED = true; 
     public static final double velocityCalculationsPerSecond = 10;
     public static final double encoderPulsesPerRevolution = 4096; 
+    public static final int TURRET_MOTOR = 7;
 
     public static final double p = 0.0009;
     public static final double i = 0.00537;
     public static final double d = 0.00003657;
-}
-   public static class TurretConstants{
-    public static final int TURRET_MOTOR = 7;
-    public static final double encoderPulsesPerRevolution = 4096;
-}
+
+    }
+
     public static class motorports {
 
     public static final int intakeMotorPort = 5;
@@ -67,7 +69,6 @@ public static class DriveConstants {
     public static final int LED_CANdle = 7;
     public static final int half_LEDS = 100;
 
-
     }
 
     public static final int JOYSTICK_PORT_LEFT = 0;
@@ -75,12 +76,18 @@ public static class DriveConstants {
     public static final double JOYSTICK_LEFT_DEADZONE_Y = 0.02;
     public static final double JOYSTICK_RIGHT_DEADZONE_Y = 0.02;
 
-    public static class Pistons{
+    public static class Pistons {
+
     public static final int[] shiftPistonPorts = {0, 1};
     public static final int[] intakePistonPortOne = {2, 3};
 
-        public static final int indexSensorFront = 0;
-        public static final int indexSensorBack = 1;
+    }
+
+    public static class SensorPorts {
+
+    public static final int indexSensorFront = 0;
+    public static final int indexSensorBack = 1;  
+
     }
 
     public static class LED {
