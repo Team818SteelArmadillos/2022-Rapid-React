@@ -1,5 +1,4 @@
 package frc.robot;
-
 public class Constants {
 
 public static class oi {
@@ -19,7 +18,6 @@ public static class DriveConstants {
     public static final double wheelCircumference = 6*Math.PI;
     public static final int[] shiftPistonPorts = {0, 1};
 
-
     //Drive Constants
     public static final double WHEEL_DIAMETER = 6;
     public static final double ENCODER_GEAR_RATIO = 1;
@@ -29,12 +27,10 @@ public static class DriveConstants {
 
     public static final double low = 21.67;
     public static final double high = 8.41;
-}
+}   public static class ShooterConstants{
 
-    public static class ShooterConstants{
-    //Shooter Constants
     public static final int[] SHOOTER_PORTS = {5, 6};
-    public static final boolean SHOOTER_INVERTED = true;
+    public static final boolean SHOOTER_INVERTED = true; 
     public static final double velocityCalculationsPerSecond = 10;
     public static final double encoderPulsesPerRevolution = 4096; 
 
@@ -44,8 +40,8 @@ public static class DriveConstants {
 }
    public static class TurretConstants{
     public static final int TURRET_MOTOR = 7;
+    public static final double encoderPulsesPerRevolution = 4096;
 }
-
     public static class motorports {
 
     public static final int intakeMotorPort = 5;
@@ -79,7 +75,9 @@ public static class DriveConstants {
     public static final double JOYSTICK_LEFT_DEADZONE_Y = 0.02;
     public static final double JOYSTICK_RIGHT_DEADZONE_Y = 0.02;
 
-    public static class sensorPorts {
+    public static class Pistons{
+    public static final int[] shiftPistonPorts = {0, 1};
+    public static final int[] intakePistonPortOne = {2, 3};
 
         public static final int indexSensorFront = 0;
         public static final int indexSensorBack = 1;
@@ -90,5 +88,9 @@ public static class DriveConstants {
     public static final int LEDLight = 6;
 
     }
+
+    public static int intakeMotorPort;
+
+    
 
 }

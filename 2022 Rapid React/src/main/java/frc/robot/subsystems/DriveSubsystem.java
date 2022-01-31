@@ -10,7 +10,8 @@ import static frc.robot.Constants.DriveConstants.*;
 
 public class DriveSubsystem extends SubsystemBase {
 
-  private TalonFX talonLeft2, talonRight2;
+  private static final int[] MOTOR_PORTS_RIGHT = null;
+private TalonFX talonLeft2, talonRight2;
   private TalonFX talonLeft1, talonRight1;
   private DoubleSolenoid shiftPistonLeft;
 
