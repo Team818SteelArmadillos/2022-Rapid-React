@@ -42,6 +42,9 @@ public static class DriveConstants {
     public static final double i = 0.00537;
     public static final double d = 0.00003657;
 }
+   public static class TurretConstants{
+    public static final int TURRET_MOTOR = 7;
+}
 
     public static class motorports {
 
