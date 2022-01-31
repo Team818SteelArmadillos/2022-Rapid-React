@@ -8,8 +8,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard; 
+import edu.wpi.first.wpilibj.DoubleSolenoid; 
 
 import static frc.robot.Constants.Pistons.*;
 
@@ -39,16 +38,9 @@ public class IntakeSubsystem extends SubsystemBase {
       intakePiston.set(DoubleSolenoid.Value.kForward);
       isPistonOut = true;
     }
+
     }
-  
-  public void logDataElevator() {
-    SmartDashboard.putNumber("Intake Power:", MotorIntake.getMotorOutputPercent());
-    if (intakePistonVal == 0.5) {
-      SmartDashboard.putString("Intake Piston Position:", "In");
-    } else if (intakePistonVal == 1) {
-      SmartDashboard.putString("Intake Piston Position", "Out");
-    }
-  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
