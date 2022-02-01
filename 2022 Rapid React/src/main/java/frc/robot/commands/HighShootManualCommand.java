@@ -14,6 +14,7 @@ import static frc.robot.Constants.ShooterConstants.*;
 public class HighShootManualCommand extends CommandBase {
   double rpm;
   PIDController ShootPID;
+
   double ShooterMotorspeed;
 
   public HighShootManualCommand() {
@@ -30,12 +31,16 @@ public class HighShootManualCommand extends CommandBase {
     Robot.m_ShooterSubsytem.setPower(0);
   }
 
+
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     rpm = SmartDashboard.getNumber("Set Shooter speed", 0);
     if(Robot.m_oi.getAButton() == true){
-      Robot.m_ShooterSubsytem.setPower(rpm);
+      double shooterPower = ShootPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeed());
+      SmartDashboard.putNumber("Shooter Power", shooterPower);
+      Robot.m_ShooterSubsystem.setPower(shooterPower);
+      Robot.m_IndexSubsystem.setConveyor(0.5);
     }
   }
 

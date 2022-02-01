@@ -36,6 +36,7 @@ public class LowShootManualCommand extends CommandBase {
     rpm = SmartDashboard.getNumber("Set Shooter speed", 0);
     if(Robot.m_oi.getBButton() == true){
       Robot.m_ShooterSubsytem.setPower(1000);
+      Robot.m_IndexSubsystem.setConveyor(0.5);
     }
   }
 
