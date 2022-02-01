@@ -11,12 +11,14 @@ import frc.robot.Robot;
 
 import static frc.robot.Constants.ShooterConstants.*;
 
-public class LowShootManualCommand extends CommandBase {
+public class SpoolShooterCommand extends CommandBase {
   double rpm;
   PIDController ShootPID;
+
   double ShooterMotorspeed;
 
-  public LowShootManualCommand() {
+  /** Creates a new SpoolShooterCommand. */
+  public SpoolShooterCommand() {
     rpm = 0;
     ShootPID = new PIDController( p, i, d);
     ShootPID.setTolerance(10);
@@ -33,10 +35,8 @@ public class LowShootManualCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    rpm = SmartDashboard.getNumber("Set Shooter speed", 0);
-    if(Robot.m_oi.getBButton() == true){
-      Robot.m_ShooterSubsystem.setPower(1000);
-      Robot.m_IndexSubsystem.setConveyor(0.5);
+    if(Robot.m_oi.getLeftBumper() || Robot.m_oi.getRightBumper()){
+      Robot.m_ShooterSubsystem.setPower(3000);
     }
   }
 

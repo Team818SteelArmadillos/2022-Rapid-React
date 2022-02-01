@@ -20,7 +20,7 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
   public static DriveSubsystem m_driveSubsystem;
   public static ShooterVisionSubsystem m_shootervision;
-  public static ShooterSubsystem m_ShooterSubsytem;
+  public static ShooterSubsystem m_ShooterSubsystem;
   public static HighShootManualCommand m_HighShootManualCommand;
   public static LowShootManualCommand m_LowShootManualCommand;
   public static IndexSubsystem m_IndexSubsystem;
@@ -40,7 +40,7 @@ public class Robot extends TimedRobot {
     m_oi = new OI();
     m_driveSubsystem = new DriveSubsystem();
     m_shootervision = new ShooterVisionSubsystem();
-    m_ShooterSubsytem = new ShooterSubsystem();
+    m_ShooterSubsystem = new ShooterSubsystem();
     m_ElevatorSubsystem = new ElevatorSubsystem();
     m_IntakeSubsystem = new IntakeSubsystem();
     m_HighShootManualCommand = new HighShootManualCommand();

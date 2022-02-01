@@ -34,6 +34,12 @@ public class OI {
       public boolean getBButton() {
         return gamePad.getBButton();
       }
+      public boolean getLeftBumper(){
+        return gamePad.getRawButtonPressed(5);
+      }
+      public boolean getRightBumper(){
+        return gamePad.getRawButtonPressed(6);
+      }
 
       public double getleftYAxis() {
         // return Math.pow(-leftJoyStick.getY(), 3.0);

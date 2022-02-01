@@ -39,8 +39,12 @@ public class IndexSubsystem extends SubsystemBase {
     return colorSensor1.getColor();
   }
 
-  public void doIndex(double Speed) {
+  public void setIndex(double Speed) {
     indexMotor.set(ControlMode.PercentOutput, -Speed);
+  }
+
+  public void setConveyor(double Speed){
+    conveyorMotor.set(ControlMode.PercentOutput, 0);
   }
 
   public void logData(){
