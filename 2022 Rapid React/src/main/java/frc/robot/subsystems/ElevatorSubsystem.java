@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.Constants.ElevatorConstants.*;
 
-import java.lang.annotation.Target;
 
 public class ElevatorSubsystem extends SubsystemBase {
   static TalonFX elevatorMotorOne;

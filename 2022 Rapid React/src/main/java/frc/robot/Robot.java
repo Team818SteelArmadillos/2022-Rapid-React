@@ -8,7 +8,9 @@ import frc.robot.commands.ElevatorCommandTesting;
 import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.HighShootManualCommand;
 import frc.robot.commands.LowShootManualCommand;
+import frc.robot.commands.SpoolShooterCommand;
 import frc.robot.commands.TankDriveCommand;
+import frc.robot.commands.TurretAutoTrackCommand;
 import frc.robot.commands.TurretCommand;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
@@ -26,6 +28,8 @@ public class Robot extends TimedRobot {
   public static ShooterSubsystem m_ShooterSubsystem;
   public static HighShootManualCommand m_HighShootManualCommand;
   public static LowShootManualCommand m_LowShootManualCommand;
+  public static SpoolShooterCommand m_SpoolShooterCommand;
+  public static TurretAutoTrackCommand m_TurretAutoTrackCommand;
   public static IndexSubsystem m_IndexSubsystem;
   public static ElevatorSubsystem m_ElevatorSubsystem;
   public static TurretSubsystem m_TurretSubsystem;
@@ -34,8 +38,7 @@ public class Robot extends TimedRobot {
   public static ElevatorCommandTesting m_ElevatorCommandTesting;
   public static IntakeSubsystem m_IntakeSubsystem;
   public static IntakeCommand m_IntakeCommand;
-
-  private Command m_TankDrive;
+  public static Command m_TankDrive;
 
   @Override
   public void robotInit() {
@@ -50,12 +53,13 @@ public class Robot extends TimedRobot {
     m_IntakeSubsystem = new IntakeSubsystem();
     m_HighShootManualCommand = new HighShootManualCommand();
     m_LowShootManualCommand = new LowShootManualCommand();
-
     m_TankDrive = new TankDriveCommand();
     m_IntakeCommand = new IntakeCommand();
     m_ElevatorCommand = new ElevatorCommand();
     m_ElevatorCommandTesting = new ElevatorCommandTesting();
     m_TurretCommand = new TurretCommand();
+    m_SpoolShooterCommand = new SpoolShooterCommand();
+    m_TurretAutoTrackCommand = new TurretAutoTrackCommand();
   }
 
   @Override
