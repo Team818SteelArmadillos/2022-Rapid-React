@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -21,6 +22,7 @@ private TalonFX talonLeft2, talonRight2;
   boolean brake = false;
   boolean highGear = false;
   boolean isHighGear = false;
+  private AnalogGyro gyro;
 
   public DriveSubsystem() {
     talonLeft1 = new TalonFX(MOTOR_PORTS_LEFT[0]);
@@ -47,6 +49,9 @@ private TalonFX talonLeft2, talonRight2;
     talonRight2.setInverted(!LEFT_INVERTED);
 
     shiftPistonLeft = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, shiftPistonPorts[0], shiftPistonPorts[1]);
+  }
+  public double getAngle(){
+    return gyro.getAngle();
   }
 
   @Override
