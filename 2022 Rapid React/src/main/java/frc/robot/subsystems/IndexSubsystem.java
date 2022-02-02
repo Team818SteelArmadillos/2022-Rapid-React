@@ -39,7 +39,6 @@ public class IndexSubsystem extends SubsystemBase {
     return colorSensor1.getColor();
   }
 
-<<<<<<< HEAD
   public void SetIndex(double Speed) {
     indexMotor.set(ControlMode.PercentOutput, -Speed);
   }
@@ -55,16 +54,11 @@ public class IndexSubsystem extends SubsystemBase {
   public boolean SensorBack() {
     return !Sensor2.get();
   }
-=======
+
   public void setIndex(double Speed) {
     indexMotor.set(ControlMode.PercentOutput, -Speed);
   }
 
-  public void setConveyor(double Speed){
-    conveyorMotor.set(ControlMode.PercentOutput, 0);
-  }
-
->>>>>>> feature-shooter
   public void logData(){
     SmartDashboard.putBoolean("SensorFront", Sensor1.get());
     SmartDashboard.putBoolean("SensorBack", Sensor2.get());

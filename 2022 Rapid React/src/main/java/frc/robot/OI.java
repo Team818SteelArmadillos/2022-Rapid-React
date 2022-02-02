@@ -2,7 +2,6 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.PS4Controller.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 import static frc.robot.Constants.oi.*;
@@ -21,13 +20,8 @@ public class OI {
     rightJoyStick = new Joystick(rightJoystickPort);
     gamePad = new XboxController(gamePadPort);
     gamePadDriver = new XboxController(gamePadDriverPort);
-<<<<<<< HEAD
     elevatorButton = new JoystickButton(gamePad, 7);
 
-=======
-
-    
->>>>>>> feature-shooter
 }
 
       public boolean getElevatorUp() {
@@ -50,22 +44,24 @@ public class OI {
         return gamePad.getXButton();
       }    
 
-<<<<<<< HEAD
       public boolean getYButton() {
         return gamePad.getYButton();
-=======
+      }
+
       public boolean getAButton() {
         return gamePad.getAButton();
       }
+
       public boolean getBButton() {
         return gamePad.getBButton();
       }
+
       public boolean getLeftBumper(){
         return gamePad.getRawButtonPressed(5);
       }
+
       public boolean getRightBumper(){
         return gamePad.getRawButtonPressed(6);
->>>>>>> feature-shooter
       }
 
       public double getleftYAxis() {
