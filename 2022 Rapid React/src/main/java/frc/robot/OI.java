@@ -12,6 +12,7 @@ public class OI {
     XboxController gamePad, gamePadDriver;
 
     JoystickButton intakeButton;
+    JoystickButton elevatorButton;
 
     public OI() {
 
@@ -19,12 +20,33 @@ public class OI {
     rightJoyStick = new Joystick(rightJoystickPort);
     gamePad = new XboxController(gamePadPort);
     gamePadDriver = new XboxController(gamePadDriverPort);
-    
+    elevatorButton = new JoystickButton(gamePad, 7);
+
 }
+
+      public boolean getElevatorUp() {
+        return (gamePad.getPOV() == 0);
+      }
+
+      public boolean getElevatorDown() {
+        return (gamePad.getPOV() == 180);
+      }
+
+      public boolean getElevatorOut(){
+        return (gamePad.getPOV() == 270);
+      }
+
+      public boolean getElevatorIn(){
+        return (gamePad.getPOV() == 90);
+      }
 
       public boolean getXButton() {
         return gamePad.getXButton();
       }    
+
+      public boolean getYButton() {
+        return gamePad.getYButton();
+      }
 
       public double getleftYAxis() {
         // return Math.pow(-leftJoyStick.getY(), 3.0);
