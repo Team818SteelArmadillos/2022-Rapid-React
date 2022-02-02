@@ -1,21 +1,20 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import static frc.robot.Constants.ElevatorConstants.*;
 
-public class ElevatorCommand extends CommandBase {
+public class ElevatorCommandTesting extends CommandBase {
 
-  int ElevatorHeightIndex;
   boolean PreviousUp;
   boolean PreviousDown;
   DriverStation driverStation;
 
-  public ElevatorCommand() {
+  public ElevatorCommandTesting() {
     addRequirements(Robot.m_ElevatorSubsystem);
     //says which one of these heights we want to go too
-    ElevatorHeightIndex = 0;
     
     PreviousDown = false;
     PreviousUp = false;
@@ -46,20 +45,15 @@ public class ElevatorCommand extends CommandBase {
       Robot.m_ElevatorSubsystem.setStaticPistons(1);
     } 
 
-    if (Robot.m_oi.getElevatorUp() && ElevatorHeightIndex < ElevatorHeights.length-1 && !PreviousUp){
-      ElevatorHeightIndex += 1;
+    if (Robot.m_oi.getElevatorUp()){
+      Robot.m_ElevatorSubsystem.setElevatorMotor(0.5);
     } 
 
-    if (Robot.m_oi.getElevatorDown() && ElevatorHeightIndex > 0 && !PreviousDown){
-      ElevatorHeightIndex -= 1;
+    if (Robot.m_oi.getElevatorDown()){
+      Robot.m_ElevatorSubsystem.setElevatorMotor(-0.5);
     }
 
-    PreviousUp = Robot.m_oi.getElevatorUp();
-    PreviousDown = Robot.m_oi.getElevatorDown();
-
-    Robot.m_ElevatorSubsystem.setElevatorMotorPostion(ElevatorHeightIndex);
-
-    
+    SmartDashboard.putNumber("Elevator Position", Robot.m_ElevatorSubsystem.getEncoderPosition());
   }
   // Called once the command ends or is interrupted.
   @Override

@@ -55,7 +55,10 @@ public static class DriveConstants {
     public static final int[] AnglePistonPort2 = {10, 11};
     public static final int[] flipUpHookPort1 = {12, 13};
     public static final int[] flipUpHookPort2 = {14, 15};
-
+    public static final double P = 0.01;
+    public static final double I = 0;
+    public static final double D = 0;
+    public static final double[] ElevatorHeights = {0, 100, 200, 300};
     }
 
     public static final int JOYSTICK_PORT_LEFT = 0;

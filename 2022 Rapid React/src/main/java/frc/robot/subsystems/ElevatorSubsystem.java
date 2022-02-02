@@ -4,16 +4,20 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.Constants.ElevatorConstants.*;
 
+import java.lang.annotation.Target;
+
 public class ElevatorSubsystem extends SubsystemBase {
   static TalonFX elevatorMotorOne;
   // static TalonFX elevatorMotorTwo;
   static DoubleSolenoid ratchetPiston, anglePiston1, anglePiston2, hookPiston1, hookPiston2;
-
+  PIDController ElevatorPID;
+  
   public ElevatorSubsystem() {
     elevatorMotorOne = new TalonFX(elevatorMotorPort);
     // elevatorMotorTwo = new TalonFX(elevatorMotorPortTwo);
@@ -23,21 +27,39 @@ public class ElevatorSubsystem extends SubsystemBase {
     hookPiston1 = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, flipUpHookPort1[0], flipUpHookPort1[1]);
     hookPiston2 = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, flipUpHookPort2[0], flipUpHookPort2[1]);
 
-
+    ElevatorPID = new PIDController(P, I, D);
     elevatorMotorOne.configFactoryDefault();
     elevatorMotorOne.setNeutralMode(NeutralMode.Brake);
     elevatorMotorOne.configOpenloopRamp(0.2, 30);
 
+    resetEncoders();
   }
+
+  public void setElevatorMotorPostion(int index){
+    setElevatorMotor(ElevatorPID.calculate(ElevatorHeights[index] - getEncoderPosition()));
+   
+  }
+
 
   public void resetEncoders() {
     elevatorMotorOne.setSelectedSensorPosition(0);
-
   }
+
+  public double getEncoderPosition(){
+    return elevatorMotorOne.getSelectedSensorPosition();
+  }
+
 
   public void setElevatorMotor(double Speed) {
     elevatorMotorOne.set(ControlMode.PercentOutput, Speed);
     // elevatorMotorTwo.set(ControlMode.PercentOutput, -Speed);
+    
+    if (Speed > 0){
+      setRatchetPiston(1);
+    } else{
+      setRatchetPiston(-1);
+    }
+  
   }
 
   public void setRatchetPiston(int pistonVal) {
@@ -50,7 +72,7 @@ public class ElevatorSubsystem extends SubsystemBase {
     }
   }
 
-    public void setAnglePistons(int pistonVal) {
+    public void setDynamicPistons(int pistonVal) {
       if (pistonVal == 0) {
         anglePiston1.set(DoubleSolenoid.Value.kOff);
         anglePiston2.set(DoubleSolenoid.Value.kOff);
@@ -63,7 +85,7 @@ public class ElevatorSubsystem extends SubsystemBase {
       }
     }
 
-      public void setHookPistons(int pistonVal) {
+      public void setStaticPistons(int pistonVal) {
         if (pistonVal == 0) {
           hookPiston1.set(DoubleSolenoid.Value.kOff);
           hookPiston2.set(DoubleSolenoid.Value.kOff);
