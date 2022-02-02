@@ -11,12 +11,14 @@ import frc.robot.Robot;
 
 import static frc.robot.Constants.ShooterConstants.*;
 
-public class ManualShootCommand extends CommandBase {
+public class SpoolShooterCommand extends CommandBase {
   double rpm;
   PIDController ShootPID;
+
   double ShooterMotorspeed;
 
-  public ManualShootCommand() {
+  /** Creates a new SpoolShooterCommand. */
+  public SpoolShooterCommand() {
     rpm = 0;
     ShootPID = new PIDController( p, i, d);
     ShootPID.setTolerance(10);
@@ -27,19 +29,22 @@ public class ManualShootCommand extends CommandBase {
   @Override
   public void initialize() {
     SmartDashboard.putNumber("Set Shooter speed", 0);
-    Robot.m_ShooterSubsytem.setPower(0);
+    Robot.m_ShooterSubsystem.setPower(0);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    rpm = SmartDashboard.getNumber("Set Shooter speed", 0);
-
+    if(Robot.m_oi.getLeftBumper() || Robot.m_oi.getRightBumper()){
+      Robot.m_ShooterSubsystem.setPower(3000);
+    }
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    Robot.m_ShooterSubsystem.setPower(0);
+  }
 
   // Returns true when the command should end.
   @Override
