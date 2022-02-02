@@ -53,12 +53,10 @@ public class IntakeCommand extends CommandBase {
 
   @Override
   public void end(boolean interrupted) {
-<<<<<<< Updated upstream
-    Robot.m_IntakeSubsystem.setIntakePosition(0.5);
-=======
->>>>>>> Stashed changes
+
     Robot.m_IntakeSubsystem.setIntakeMotor(0);
     Robot.m_IndexSubsystem.setConveyor(0);
+    
   }
 
   @Override
