@@ -7,11 +7,9 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
 import edu.wpi.first.wpilibj.DoubleSolenoid; 
-
+import static frc.robot.Constants.motorports.*;
 import static frc.robot.Constants.Pistons.*;
-
 
 public class IntakeSubsystem extends SubsystemBase {
   /** Creates a new IntakeSubsystem. */ 
@@ -21,7 +19,7 @@ public class IntakeSubsystem extends SubsystemBase {
   public boolean isPistonOut = false;
   
   public IntakeSubsystem() {
-    MotorIntake = new TalonFX(Constants.intakeMotorPort);
+    MotorIntake = new TalonFX(intakeMotorPort);
     intakePiston = new DoubleSolenoid(13, null, intakePistonPortOne[2], intakePistonPortOne[3]);
 
   }

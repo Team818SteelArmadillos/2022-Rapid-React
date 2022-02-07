@@ -46,15 +46,15 @@ public static class DriveConstants {
 
     public static class motorports {
 
-    public static final int intakeMotorPort = 5;
-    public static final int indexMotorPortConveyor = 6;
-    public static final int indexMotorPortUpper = 7;
+    public static final int intakeMotorPort = 8;
+    public static final int indexMotorPortConveyor = 9;
+    public static final int indexMotorPortUpper = 10;
 
     }
 
     public static class ElevatorConstants {
 
-    public static final int elevatorMotorPort = 5;    
+    public static final int elevatorMotorPort = 11;    
     public static final int[] ratchetPistonPort = {6, 7};
     public static final int[] AnglePistonPort1 = {8, 9};
     public static final int[] AnglePistonPort2 = {10, 11};
@@ -97,10 +97,6 @@ public static class DriveConstants {
 
     public static final int LEDLight = 6;
 
-    }
-
-    public static int intakeMotorPort;
-
-    
+    }  
 
 }

@@ -38,7 +38,7 @@ public class Robot extends TimedRobot {
   public static ElevatorCommandTesting m_ElevatorCommandTesting;
   public static IntakeSubsystem m_IntakeSubsystem;
   public static IntakeCommand m_IntakeCommand;
-  public static Command m_TankDrive;
+  public static Command m_TankDriveCommand;
 
   @Override
   public void robotInit() {
@@ -53,7 +53,7 @@ public class Robot extends TimedRobot {
     m_IntakeSubsystem = new IntakeSubsystem();
     m_HighShootManualCommand = new HighShootManualCommand();
     m_LowShootManualCommand = new LowShootManualCommand();
-    m_TankDrive = new TankDriveCommand();
+    m_TankDriveCommand = new TankDriveCommand();
     m_IntakeCommand = new IntakeCommand();
     m_ElevatorCommand = new ElevatorCommand();
     m_ElevatorCommandTesting = new ElevatorCommandTesting();
@@ -84,6 +84,9 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    
+    m_TankDriveCommand.schedule();
+
   }
 
   @Override
