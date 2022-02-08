@@ -10,8 +10,10 @@ import frc.robot.commands.HighShootManualCommand;
 import frc.robot.commands.LowShootManualCommand;
 import frc.robot.commands.SpoolShooterCommand;
 import frc.robot.commands.TankDriveCommand;
+import frc.robot.commands.TurnDrive;
 import frc.robot.commands.TurretAutoTrackCommand;
 import frc.robot.commands.TurretCommand;
+import frc.robot.commands.driveDistance;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.IndexSubsystem;
@@ -39,6 +41,8 @@ public class Robot extends TimedRobot {
   public static IntakeSubsystem m_IntakeSubsystem;
   public static IntakeCommand m_IntakeCommand;
   public static Command m_TankDriveCommand;
+  public static Command m_TurnDrive;
+  public static Command m_driveDistance;
 
   @Override
   public void robotInit() {

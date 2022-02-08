@@ -54,6 +54,10 @@ private TalonFX talonLeft2, talonRight2;
     return gyro.getAngle();
   }
 
+  public void resetGyro() {
+    gyro.reset();
+  }
+
   @Override
   public void periodic() {
 
