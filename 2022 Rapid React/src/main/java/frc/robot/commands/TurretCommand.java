@@ -19,18 +19,24 @@ public class TurretCommand extends CommandBase {
   public void initialize() {
     Robot.m_TurretSubsystem.setTurretSpeed(0);
     Robot.m_TurretSubsystem.resetEncoderPosition();
+    Robot.m_IndexSubsystem.setConveyor(0);
+    Robot.m_IndexSubsystem.setIndex(0);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     Robot.m_TurretSubsystem.setTurretSpeed(Robot.m_oi.getleftXAxis());
+    Robot.m_IndexSubsystem.setConveyor(0.5);
+    Robot.m_IndexSubsystem.setIndex(0.5);
   } 
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     Robot.m_TurretSubsystem.setTurretSpeed(0);
+    Robot.m_IndexSubsystem.setConveyor(0);
+    Robot.m_IndexSubsystem.setIndex(0);
   }
 
   // Returns true when the command should end.

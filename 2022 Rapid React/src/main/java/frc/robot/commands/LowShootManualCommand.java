@@ -28,6 +28,8 @@ public class LowShootManualCommand extends CommandBase {
   public void initialize() {
     SmartDashboard.putNumber("Set Shooter speed", 0);
     Robot.m_ShooterSubsystem.setPower(0);
+    Robot.m_IndexSubsystem.setConveyor(0);
+    Robot.m_IndexSubsystem.setIndex(0);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -37,6 +39,8 @@ public class LowShootManualCommand extends CommandBase {
     if(Robot.m_oi.getBButton() == true){
       Robot.m_ShooterSubsystem.setPower(1000);
       Robot.m_IndexSubsystem.setConveyor(0.5);
+      Robot.m_IndexSubsystem.setIndex(0.5);
+
     }
   }
 
@@ -44,6 +48,8 @@ public class LowShootManualCommand extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     Robot.m_ShooterSubsystem.setPower(0);
+    Robot.m_IndexSubsystem.setConveyor(0);
+    Robot.m_IndexSubsystem.setIndex(0);
   }
 
   // Returns true when the command should end.

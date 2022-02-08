@@ -29,6 +29,8 @@ public class HighShootManualCommand extends CommandBase {
   public void initialize() {
     SmartDashboard.putNumber("Set Shooter speed", 0);
     Robot.m_ShooterSubsystem.setPower(0);
+    Robot.m_IndexSubsystem.setConveyor(0);
+    Robot.m_IndexSubsystem.setIndex(0);
   }
 
 
@@ -41,6 +43,7 @@ public class HighShootManualCommand extends CommandBase {
       SmartDashboard.putNumber("Shooter Power", shooterPower);
       Robot.m_ShooterSubsystem.setPower(shooterPower);
       Robot.m_IndexSubsystem.setConveyor(0.5);
+      Robot.m_IndexSubsystem.setIndex(0.5);
     }
   }
 
@@ -48,6 +51,8 @@ public class HighShootManualCommand extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     Robot.m_ShooterSubsystem.setPower(0);
+    Robot.m_IndexSubsystem.setConveyor(0);
+    Robot.m_IndexSubsystem.setIndex(0);
   }
 
   // Returns true when the command should end.
