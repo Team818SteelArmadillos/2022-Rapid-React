@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.RobotState;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.AutoShootCommand;
 import frc.robot.commands.ElevatorCommand;
 import frc.robot.commands.ElevatorCommandTesting;
 import frc.robot.commands.IntakeCommand;
@@ -12,7 +13,6 @@ import frc.robot.commands.LowShootManualCommand;
 import frc.robot.commands.SpoolShooterCommand;
 import frc.robot.commands.TankDriveCommand;
 import frc.robot.commands.TurnDrive;
-import frc.robot.commands.TurretAutoTrackCommand;
 import frc.robot.commands.TurretCommand;
 import frc.robot.commands.driveDistance;
 import frc.robot.subsystems.DriveSubsystem;
@@ -27,7 +27,7 @@ public class Robot extends TimedRobot {
 
 
   enum RobotState {
-    DEFAULT, HIGHMANUALSHOOT, LOWMANUALSHOOT, AUTOSHOOT, ELEVATOR;
+    DEFAULT, HIGHMANUALSHOOT, LOWMANUALSHOOT, AUTOSHOOT;
   }
 
   public static OI m_oi;
@@ -37,7 +37,7 @@ public class Robot extends TimedRobot {
   public static HighShootManualCommand m_HighShootManualCommand;
   public static LowShootManualCommand m_LowShootManualCommand;
   public static SpoolShooterCommand m_SpoolShooterCommand;
-  public static TurretAutoTrackCommand m_TurretAutoTrackCommand;
+  public static AutoShootCommand m_AutoShootCommand;
   public static IndexSubsystem m_IndexSubsystem;
   public static ElevatorSubsystem m_ElevatorSubsystem;
   public static TurretSubsystem m_TurretSubsystem;
@@ -72,7 +72,7 @@ public class Robot extends TimedRobot {
     m_ElevatorCommandTesting = new ElevatorCommandTesting();
     m_TurretCommand = new TurretCommand();
     m_SpoolShooterCommand = new SpoolShooterCommand();
-    m_TurretAutoTrackCommand = new TurretAutoTrackCommand();
+    m_AutoShootCommand = new AutoShootCommand();
   }
 
   @Override
@@ -126,11 +126,6 @@ public class Robot extends TimedRobot {
           Rstate = RobotState.AUTOSHOOT;
         }
 
-        if(m_oi.getElevatorOut() || m_oi.getElevatorIn()) {
-          endDefault();
-          startElevator();
-          Rstate = RobotState.ELEVATOR;
-        }
         break;
 
       case HIGHMANUALSHOOT:
@@ -157,14 +152,8 @@ public class Robot extends TimedRobot {
         }
         break;
 
-      case ELEVATOR:
-        if(!m_oi.getElevatorOut() || !m_oi.getElevatorIn()) {
-          endElevator();
-          startDefault();
-          Rstate = RobotState.DEFAULT;
-        }
-        break;
-    }
+      }
+
   }
 
 private void startDefault() {
@@ -173,6 +162,7 @@ private void startDefault() {
   m_TankDriveCommand.schedule();
   m_IntakeCommand.schedule();
   m_TurretCommand.schedule();
+  m_ElevatorCommand.schedule();
 
 }
 
@@ -182,6 +172,7 @@ private void endDefault() {
   m_TankDriveCommand.cancel();
   m_IntakeCommand.cancel();
   m_TurretCommand.cancel();
+  m_ElevatorCommand.cancel();
 
 }
 
@@ -221,17 +212,6 @@ private void endAutoShoot() {
 
 }
 
-private void startElevator() {
-
-m_ElevatorCommand.schedule();
-
-}
-
-private void endElevator() {
-
-m_ElevatorCommand.cancel();
-
-}
 
 
   @Override
