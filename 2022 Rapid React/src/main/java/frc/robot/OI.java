@@ -9,7 +9,7 @@ import static frc.robot.Constants.oi.*;
 public class OI {
 
     Joystick leftJoyStick, rightJoyStick;
-    XboxController gamePad, gamePadDriver;
+    XboxController  gamePad, gamePadDriver;
 
     JoystickButton intakeButton;
     JoystickButton elevatorButton;
@@ -56,12 +56,20 @@ public class OI {
         return gamePad.getBButton();
       }
 
-      public boolean getLeftBumper(){
+      public boolean getLeftBumper() {
         return gamePad.getRawButtonPressed(5);
       }
 
-      public boolean getRightBumper(){
+      public boolean getRightBumper() {
         return gamePad.getRawButtonPressed(6);
+      }
+
+      public boolean getRightTrigger() {
+        return gamePad.getRawButtonPressed(3);
+      }
+
+      public boolean getLeftTrigger() {
+        return gamePad.getRawButtonPressed(2);
       }
 
       public double getleftYAxis() {

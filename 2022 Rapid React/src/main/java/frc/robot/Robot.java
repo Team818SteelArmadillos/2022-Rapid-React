@@ -1,5 +1,6 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj.RobotState;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -24,6 +25,11 @@ import frc.robot.subsystems.ShooterSubsystem;
 
 public class Robot extends TimedRobot {
 
+
+  enum RobotState {
+    DEFAULT, HIGHMANUALSHOOT, LOWMANUALSHOOT, AUTOSHOOT, ELEVATOR;
+  }
+
   public static OI m_oi;
   public static DriveSubsystem m_driveSubsystem;
   public static ShooterVisionSubsystem m_shootervision;
@@ -43,6 +49,9 @@ public class Robot extends TimedRobot {
   public static Command m_TankDriveCommand;
   public static Command m_TurnDrive;
   public static Command m_driveDistance;
+
+
+  static RobotState Rstate = RobotState.DEFAULT;
 
   @Override
   public void robotInit() {
@@ -89,12 +98,141 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     
-    m_TankDriveCommand.schedule();
+    Rstate = RobotState.DEFAULT;
+    startDefault();
 
   }
 
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+
+    switch (Rstate) {
+      case DEFAULT:
+        if(m_oi.getAButton()) {
+          endDefault();
+          startHighManualShoot();
+          Rstate = RobotState.HIGHMANUALSHOOT;
+        }
+
+        if(m_oi.getBButton()) {
+          endDefault();
+          startLowManualShoot();
+          Rstate = RobotState.LOWMANUALSHOOT;
+        }
+
+        if(m_oi.getRightTrigger() || m_oi.getLeftTrigger()) {
+          endDefault();
+          startAutoShoot();
+          Rstate = RobotState.AUTOSHOOT;
+        }
+
+        if(m_oi.getElevatorOut() || m_oi.getElevatorIn()) {
+          endDefault();
+          startElevator();
+          Rstate = RobotState.ELEVATOR;
+        }
+        break;
+
+      case HIGHMANUALSHOOT:
+        if(!m_oi.getAButton()) {
+          endHighManualShoot();
+          startDefault();
+          Rstate = RobotState.DEFAULT;
+       }
+        break;
+
+      case LOWMANUALSHOOT:
+        if(!m_oi.getBButton()) {
+          endLowManualShoot();
+          startDefault();
+          Rstate = RobotState.DEFAULT;
+        }
+        break;
+
+      case AUTOSHOOT:
+        if(!m_oi.getRightTrigger() || !m_oi.getLeftTrigger()) {
+          endAutoShoot();
+          startDefault();
+          Rstate = RobotState.DEFAULT;
+        }
+        break;
+
+      case ELEVATOR:
+        if(!m_oi.getElevatorOut() || !m_oi.getElevatorIn()) {
+          endElevator();
+          startDefault();
+          Rstate = RobotState.DEFAULT;
+        }
+        break;
+    }
+  }
+
+private void startDefault() {
+  
+  m_SpoolShooterCommand.schedule();
+  m_TankDriveCommand.schedule();
+  m_IntakeCommand.schedule();
+  m_TurretCommand.schedule();
+
+}
+
+private void endDefault() {
+
+  m_SpoolShooterCommand.cancel();
+  m_TankDriveCommand.cancel();
+  m_IntakeCommand.cancel();
+  m_TurretCommand.cancel();
+
+}
+
+private void startHighManualShoot() {
+
+  m_HighShootManualCommand.schedule();
+
+}
+
+private void endHighManualShoot() {
+
+  m_HighShootManualCommand.cancel();
+
+}
+
+private void startLowManualShoot() {
+
+  m_LowShootManualCommand.schedule();
+
+}
+
+private void endLowManualShoot() {
+
+  m_LowShootManualCommand.cancel();
+
+}
+
+private void startAutoShoot() {
+
+//autoshootcommand
+
+}
+
+private void endAutoShoot() {
+
+
+
+}
+
+private void startElevator() {
+
+m_ElevatorCommand.schedule();
+
+}
+
+private void endElevator() {
+
+m_ElevatorCommand.cancel();
+
+}
+
 
   @Override
   public void testInit() {

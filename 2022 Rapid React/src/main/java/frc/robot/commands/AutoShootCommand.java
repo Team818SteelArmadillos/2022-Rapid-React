@@ -28,7 +28,6 @@ public class TurretAutoTrackCommand extends CommandBase {
   @Override
   public void execute() {
     if(Robot.m_shootervision.getTarget()){
-      hasTarget = true;
       if(Robot.m_shootervision.getX() - Robot.m_driveSubsystem.getAngle() > 0){
         Robot.m_TurretSubsystem.setTurretSpeed(-0.4);
       } else if(Robot.m_shootervision.getX() - Robot.m_driveSubsystem.getAngle() < 0){
@@ -36,7 +35,7 @@ public class TurretAutoTrackCommand extends CommandBase {
       } else
         reachedTarget = true; 
     }
-    else hasTarget = false;
+    else  Robot.m_TurretSubsystem.setTurretSpeed(Robot.m_oi.getleftXAxis());
 }
 
   // Called once the command ends or is interrupted.
