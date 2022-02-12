@@ -31,6 +31,7 @@ public class Robot extends TimedRobot {
   }
 
   public static OI m_oi;
+  public static IndexSubsystem m_IndexSubsystem;
   public static DriveSubsystem m_driveSubsystem;
   public static ShooterVisionSubsystem m_shootervision;
   public static ShooterSubsystem m_ShooterSubsystem;
@@ -38,7 +39,6 @@ public class Robot extends TimedRobot {
   public static LowShootManualCommand m_LowShootManualCommand;
   public static SpoolShooterCommand m_SpoolShooterCommand;
   public static AutoShootCommand m_AutoShootCommand;
-  public static IndexSubsystem m_IndexSubsystem;
   public static ElevatorSubsystem m_ElevatorSubsystem;
   public static TurretSubsystem m_TurretSubsystem;
   public static TurretCommand m_TurretCommand;
@@ -59,6 +59,7 @@ public class Robot extends TimedRobot {
 
     m_TurretSubsystem = new TurretSubsystem();
     m_oi = new OI();
+    m_IndexSubsystem = new IndexSubsystem();
     m_driveSubsystem = new DriveSubsystem();
     m_shootervision = new ShooterVisionSubsystem();
     m_ShooterSubsystem = new ShooterSubsystem();

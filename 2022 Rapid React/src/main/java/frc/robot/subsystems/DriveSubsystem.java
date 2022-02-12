@@ -2,14 +2,16 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
  
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.sensors.PigeonIMU;
+
 import static frc.robot.Constants.DriveConstants.*;
+import static frc.robot.Constants.motorports.*;
 
 public class DriveSubsystem extends SubsystemBase {
 
@@ -24,7 +26,7 @@ public class DriveSubsystem extends SubsystemBase {
   boolean brake = false;
   boolean highGear = false;
   boolean isHighGear = false;
-  private AnalogGyro gyro;
+  private PigeonIMU pigeon;
   PIDController DrivePIDLeft, DrivePIDRight;
 
   public DriveSubsystem() {
@@ -55,13 +57,15 @@ public class DriveSubsystem extends SubsystemBase {
     DrivePIDRight = new PIDController(P, I, D);
 
     shiftPistonLeft = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, shiftPistonPorts[0], shiftPistonPorts[1]);
+
+    pigeon = new PigeonIMU(indexMotorPortConveyor);
   }
   public double getAngle(){
-    return gyro.getAngle();
+    return pigeon.getYaw();
   }
 
   public void resetGyro() {
-    gyro.reset();
+    pigeon.setYaw(0);
   }
 
   @Override
