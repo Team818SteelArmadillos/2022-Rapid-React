@@ -1,5 +1,7 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
@@ -12,7 +14,7 @@ import static frc.robot.Constants.DriveConstants.*;
 public class DriveSubsystem extends SubsystemBase {
 
   private static final int[] MOTOR_PORTS_RIGHT = null;
-private TalonFX talonLeft2, talonRight2;
+  private TalonFX talonLeft2, talonRight2;
   private TalonFX talonLeft1, talonRight1;
   private DoubleSolenoid shiftPistonLeft;
 
@@ -23,6 +25,7 @@ private TalonFX talonLeft2, talonRight2;
   boolean highGear = false;
   boolean isHighGear = false;
   private AnalogGyro gyro;
+  PIDController DrivePIDLeft, DrivePIDRight;
 
   public DriveSubsystem() {
     talonLeft1 = new TalonFX(MOTOR_PORTS_LEFT[0]);
@@ -47,6 +50,9 @@ private TalonFX talonLeft2, talonRight2;
     talonRight2.setInverted(!LEFT_INVERTED);
     talonRight2.follow(talonRight1);
     talonRight2.setInverted(!LEFT_INVERTED);
+
+    DrivePIDLeft = new PIDController(P, I, D);
+    DrivePIDRight = new PIDController(P, I, D);
 
     shiftPistonLeft = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, shiftPistonPorts[0], shiftPistonPorts[1]);
   }
@@ -98,6 +104,13 @@ public void setRightMotors(double speed) {
 public void setBothMotors(double speed) {
   setLeftMotors(speed);
   setRightMotors(speed);
+}
+
+public void setDriveMotorPostion(double distance){
+
+  setLeftMotors(MathUtil.clamp(DrivePIDLeft.calculate(distance - getLeftPosition()), -0.5, 0.5));
+  setRightMotors(MathUtil.clamp(DrivePIDRight.calculate(distance - getLeftPosition()), -0.5, 0.5));
+ 
 }
 
 public double getLeftPosition() {
