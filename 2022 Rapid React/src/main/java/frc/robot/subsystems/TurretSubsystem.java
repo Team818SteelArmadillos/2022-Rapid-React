@@ -24,10 +24,10 @@ public class TurretSubsystem extends SubsystemBase {
   public void setTurretSpeed(double speed) {
     talon1.set(ControlMode.PercentOutput, speed);
     
-    if ((speed > 0) && (getCurrentTurretPosition()) > encoderPulsesPerRevolution * 0.75 * turretGearRatio){
+    if ((speed > 0) && (getCurrentTurretPosition()) > encoderPulsesPerRevolution * 0.25 * turretGearRatio){
       talon1.set(ControlMode.PercentOutput, 0);
     }
-    if ((-1 * (speed) > 0) && (getCurrentTurretPosition()) > encoderPulsesPerRevolution * 0.75 * turretGearRatio){
+    if ((-1 * (speed) > 0) && (getCurrentTurretPosition()) > encoderPulsesPerRevolution * 0.25 * turretGearRatio){
       talon1.set(ControlMode.PercentOutput, 0);
       }
   }
