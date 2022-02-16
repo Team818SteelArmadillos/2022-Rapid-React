@@ -2,7 +2,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.revrobotics.ColorSensorV3;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -17,7 +17,7 @@ public class IndexSubsystem extends SubsystemBase {
 
   private DigitalInput Sensor1, Sensor2;
   private TalonFX indexMotor;
-  private VictorSPX conveyorMotor;
+  private TalonSRX conveyorMotor;
   ColorSensorV3 colorSensor1;
   I2C.Port i2cPort;
 
@@ -28,7 +28,7 @@ public class IndexSubsystem extends SubsystemBase {
 
     indexMotor = new TalonFX(indexMotorPortUpper);
     indexMotor.configFactoryDefault();
-    conveyorMotor = new VictorSPX(indexMotorPortConveyor);
+    conveyorMotor = new TalonSRX(indexMotorPortConveyor);
     conveyorMotor.configFactoryDefault();
     Sensor1 = new DigitalInput(indexSensorFront);
     Sensor2 = new DigitalInput(indexSensorBack);
