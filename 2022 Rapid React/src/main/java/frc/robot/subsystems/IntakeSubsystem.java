@@ -23,7 +23,7 @@ public class IntakeSubsystem extends SubsystemBase {
   public IntakeSubsystem() {
     MotorIntake = new TalonFX(intakeMotorPort);
     intakePiston = new DoubleSolenoid(intakePistonPortOne[2], PneumaticsModuleType.CTREPCM, intakePistonPortOne[0], intakePistonPortOne[1]);
-
+    MotorIntake.setInverted(true);
   }
 
   public void setIntakeMotor(double Speed) {

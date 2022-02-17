@@ -23,8 +23,8 @@ public class ShooterVisionSubsystem extends SubsystemBase {
   }
 
   public Boolean getTarget() {
-    return table.getEntry("Has Target").getDouble(0.0) > 0.0;
-
+    // return table.getEntry("Has Target").getDouble(0.0) > 0.0;
+    return false;
   }
 
   public void logData() {

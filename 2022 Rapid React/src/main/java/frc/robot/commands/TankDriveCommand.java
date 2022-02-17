@@ -7,9 +7,9 @@ public class TankDriveCommand extends CommandBase {
 
   boolean prevGearButton;
 
-  public TankDriveCommand() {
+ public TankDriveCommand() {
     addRequirements(Robot.m_driveSubsystem);
-  }
+  } 
 
   @Override
   public void initialize() {

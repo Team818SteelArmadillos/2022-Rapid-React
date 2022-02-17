@@ -18,33 +18,32 @@ public class IndexSubsystem extends SubsystemBase {
   private DigitalInput Sensor1, Sensor2;
   private TalonFX indexMotor;
   private TalonSRX conveyorMotor;
-  ColorSensorV3 colorSensor1;
+  //ColorSensorV3 colorSensor1;
   I2C.Port i2cPort;
 
   public IndexSubsystem() {
 
     i2cPort  = I2C.Port.kOnboard;
-    colorSensor1 = new ColorSensorV3(i2cPort);
+    //colorSensor1 = new ColorSensorV3(i2cPort);
 
     indexMotor = new TalonFX(indexMotorPortUpper);
     indexMotor.configFactoryDefault();
     conveyorMotor = new TalonSRX(indexMotorPortConveyor);
     conveyorMotor.configFactoryDefault();
+    conveyorMotor.setInverted(!INDEX_INVERTED);
+    indexMotor.setInverted(INDEX_INVERTED);
     Sensor1 = new DigitalInput(indexSensorFront);
     Sensor2 = new DigitalInput(indexSensorBack);
 
   }
-
+/*
   public Color getBallColor() {
     return colorSensor1.getColor();
-  }
+  } */
 
-  public void SetIndex(double Speed) {
-    indexMotor.set(ControlMode.PercentOutput, -Speed);
-  }
 
   public void setConveyor(double Speed) {
-    conveyorMotor.set(ControlMode.PercentOutput, -Speed);
+    conveyorMotor.set(ControlMode.PercentOutput, Speed);
   }
 
   public boolean SensorFront() {
@@ -56,7 +55,7 @@ public class IndexSubsystem extends SubsystemBase {
   }
 
   public void setIndex(double Speed) {
-    indexMotor.set(ControlMode.PercentOutput, -Speed);
+    indexMotor.set(ControlMode.PercentOutput, Speed);
   }
 
   public void logData(){

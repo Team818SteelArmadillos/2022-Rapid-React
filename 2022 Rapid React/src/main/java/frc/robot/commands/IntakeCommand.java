@@ -16,7 +16,6 @@ public class IntakeCommand extends CommandBase {
 
   @Override
   public void initialize() {
-    Robot.m_IndexSubsystem.SetIndex(0);
     Robot.m_IndexSubsystem.setConveyor(0);
     Robot.m_IntakeSubsystem.setIntakePosition(0.5);
     Robot.m_IntakeSubsystem.setIntakeMotor(0);

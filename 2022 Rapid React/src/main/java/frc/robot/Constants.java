@@ -57,7 +57,7 @@ public static class DriveConstants {
     public static final int intakeMotorPort = 8;
     public static final int indexMotorPortConveyor = 9;
     public static final int indexMotorPortUpper = 10;
-
+    public static final boolean INDEX_INVERTED = true;
     }
 
     public static class ElevatorConstants {

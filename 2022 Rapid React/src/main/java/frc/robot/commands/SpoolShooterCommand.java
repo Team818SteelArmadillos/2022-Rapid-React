@@ -37,7 +37,11 @@ public class SpoolShooterCommand extends CommandBase {
   public void execute() {
     if(Robot.m_oi.getLeftBumper() || Robot.m_oi.getRightBumper()){
       Robot.m_ShooterSubsystem.setPower(3000);
+    }else{
+      Robot.m_ShooterSubsystem.setPower(0);
     }
+    
+    SmartDashboard.putNumber("Set Shooter speed", Robot.m_ShooterSubsystem.getCurrentShooterSpeed());
   }
 
   // Called once the command ends or is interrupted.

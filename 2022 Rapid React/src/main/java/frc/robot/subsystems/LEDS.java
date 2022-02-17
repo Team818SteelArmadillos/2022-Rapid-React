@@ -1,4 +1,4 @@
-package frc.robot.subsystems;
+/*package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.Constants.LEDNumbers.*;
@@ -17,8 +17,7 @@ public class LEDS extends SubsystemBase {
     CANdle candle;
     Color ballColor1;
     Color ballColor2;
-    ColorSensorV3 colorSensor1;
-    ColorSensorV3 colorSensor2;
+    ColorSensorV3 colorSensor;
     I2C.Port i2cPort;
     ColorMatch m_colorMatcher = new ColorMatch();
 
@@ -43,4 +42,4 @@ public class LEDS extends SubsystemBase {
        candle.setLEDs(50, 205, 50, 255, 0, LED_CANdle);
 
 }
-}
+}*/

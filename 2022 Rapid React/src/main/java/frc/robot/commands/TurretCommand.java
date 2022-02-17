@@ -24,7 +24,7 @@ public class TurretCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.m_TurretSubsystem.setTurretSpeed(Robot.m_oi.getleftXAxis());
+    Robot.m_TurretSubsystem.setTurretSpeed(-Robot.m_oi.getgamepadleftXAxis());
 
   } 
 

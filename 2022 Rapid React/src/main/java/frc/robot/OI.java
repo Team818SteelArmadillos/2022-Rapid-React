@@ -57,19 +57,19 @@ public class OI {
       }
 
       public boolean getLeftBumper() {
-        return gamePad.getRawButtonPressed(5);
+        return gamePad.getRawButton(5);
       }
 
       public boolean getRightBumper() {
-        return gamePad.getRawButtonPressed(6);
+        return gamePad.getRawButton(6);
       }
 
       public boolean getRightTrigger() {
-        return gamePad.getRawButtonPressed(3);
+        return gamePad.getRawButton(3);
       }
 
       public boolean getLeftTrigger() {
-        return gamePad.getRawButtonPressed(2);
+        return gamePad.getRawButton(2);
       }
 
       public double getleftYAxis() {
@@ -98,6 +98,21 @@ public class OI {
         return rightJoyStick.getX();
         // // return Math.pow(-gamePadDriver.getRightX(), 3.0);
         // return gamePadDriver.getRightX();
+      }
+
+      public double getgamepadleftXAxis() {
+        if (Math.abs(gamePad.getLeftX()) > 0.05){
+          return 0.25 * gamePad.getLeftX();
+        } else {
+          return 0;
+        }
+      }
+      public double getgamepadrightXAxis() {
+        if (Math.abs(gamePad.getRightX()) > 0.05){
+          return  gamePad.getRightX();
+        } else {
+          return 0;
+        }
       }
 
       public boolean shiftGears(){

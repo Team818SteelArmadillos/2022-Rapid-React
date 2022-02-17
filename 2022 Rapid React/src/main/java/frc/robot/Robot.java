@@ -1,5 +1,6 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.RobotState;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -63,22 +64,21 @@ public class Robot extends TimedRobot {
     m_driveSubsystem = new DriveSubsystem();
     m_shootervision = new ShooterVisionSubsystem();
     m_ShooterSubsystem = new ShooterSubsystem();
-    m_ElevatorSubsystem = new ElevatorSubsystem();
-    m_IntakeSubsystem = new IntakeSubsystem();
-    m_HighShootManualCommand = new HighShootManualCommand();
-    m_LowShootManualCommand = new LowShootManualCommand();
+    // m_ElevatorSubsystem = new ElevatorSubsystem();
+     m_IntakeSubsystem = new IntakeSubsystem();
+    // m_HighShootManualCommand = new HighShootManualCommand();
+    // m_LowShootManualCommand = new LowShootManualCommand();
     m_TankDriveCommand = new TankDriveCommand();
-    m_IntakeCommand = new IntakeCommand();
-    m_ElevatorCommand = new ElevatorCommand();
-    m_ElevatorCommandTesting = new ElevatorCommandTesting();
+     m_IntakeCommand = new IntakeCommand();
+    // m_ElevatorCommand = new ElevatorCommand();
+    // m_ElevatorCommandTesting = new ElevatorCommandTesting();
     m_TurretCommand = new TurretCommand();
     m_SpoolShooterCommand = new SpoolShooterCommand();
-    m_AutoShootCommand = new AutoShootCommand();
+    // m_AutoShootCommand = new AutoShootCommand();
   }
 
   @Override
   public void robotPeriodic() {
-
     CommandScheduler.getInstance().run();
   }
 
@@ -106,7 +106,9 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-
+    //m_IndexSubsystem.setConveyor(m_oi.getgamepadrightXAxis());
+    m_IndexSubsystem.setIndex(m_oi.getgamepadrightXAxis());
+/*
     switch (Rstate) {
       case DEFAULT:
         if(m_oi.getAButton()) {
@@ -154,19 +156,19 @@ public class Robot extends TimedRobot {
         break;
 
       }
-
+*/
   }
 
 private void startDefault() {
   
   m_SpoolShooterCommand.schedule();
-  m_TankDriveCommand.schedule();
-  m_IntakeCommand.schedule();
-  m_TurretCommand.schedule();
-  m_ElevatorCommand.schedule();
+  // m_TankDriveCommand.schedule();
+  //m_IntakeCommand.schedule();
+  // m_TurretCommand.schedule();
+  // m_ElevatorCommand.schedule();
 
 }
-
+/*
 private void endDefault() {
 
   m_SpoolShooterCommand.cancel();
@@ -213,7 +215,7 @@ private void endAutoShoot() {
 
 }
 
-
+*/
 
   @Override
   public void testInit() {
