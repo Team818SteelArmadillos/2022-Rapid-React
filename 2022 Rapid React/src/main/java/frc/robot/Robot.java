@@ -113,12 +113,15 @@ public class Robot extends TimedRobot {
     //m_IndexSubsystem.setConveyor(m_oi.getgamepadrightXAxis());
     m_IndexSubsystem.setIndex(m_oi.getgamepadrightXAxis());
     if (m_oi.getXButton()) {
-      m_IntakeSubsystem.setIntake(-1);
-      m_IndexSubsystem.setConveyor(1);
+      // m_IntakeSubsystem.setIntake(-1);
+      // m_IndexSubsystem.setConveyor(1);
+      m_IntakeSubsystem.setIntakePosition(1);
     } else {
-      m_IntakeSubsystem.setIntake(0);
-      m_IndexSubsystem.setConveyor(0);
+      // m_IntakeSubsystem.setIntake(0);
+      // m_IndexSubsystem.setConveyor(0);
+      m_IntakeSubsystem.setIntakePosition(0.5);
     }
+
 /*
     switch (Rstate) {
       case DEFAULT:
