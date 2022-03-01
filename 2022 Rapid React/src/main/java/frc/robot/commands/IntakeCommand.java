@@ -26,14 +26,14 @@ public class IntakeCommand extends CommandBase {
   public void execute() {
     if (Robot.m_oi.getXButton() && !Robot.m_IndexSubsystem.SensorFront() && !Robot.m_IndexSubsystem.SensorBack()); {
     Robot.m_IntakeSubsystem.setIntakePosition(1);
-    Robot.m_IntakeSubsystem.setIntakeMotor(0.5);
+    Robot.m_IntakeSubsystem.setIntakeMotor(1);
     Robot.m_IndexSubsystem.setConveyor(0);
 
     }
 
     if (Robot.m_oi.getXButton() && Robot.m_IndexSubsystem.SensorFront() && !Robot.m_IndexSubsystem.SensorBack()) {
     Robot.m_IntakeSubsystem.setIntakePosition(1);
-    Robot.m_IntakeSubsystem.setIntakeMotor(0.5);
+    Robot.m_IntakeSubsystem.setIntakeMotor(1);
     Robot.m_IndexSubsystem.setConveyor(0.5);
 
     }

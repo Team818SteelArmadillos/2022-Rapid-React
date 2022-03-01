@@ -11,12 +11,12 @@ public static class oi {
 
 public static class DriveConstants {
     //Drive Motors
-    public static final int[] MOTOR_PORTS_LEFT = {1, 2};
+    public static final int[] MOTOR_PORTS_LEFT = {14, 2};
     public static final int[] MOTOR_PORTS_RIGHT = {3, 4};
     public static final boolean LEFT_INVERTED = true;
     public static final double RAMP_RATE = 0.5;
     public static final double wheelCircumference = 6 * Math.PI;
-    public static final int[] shiftPistonPorts = {2, 3, 0};
+    public static final int[] shiftPistonPorts = {2, 3, 1};
     public static final double P = 0.01;
     public static final double I = 0;
     public static final double D = 0;
@@ -42,7 +42,7 @@ public static class DriveConstants {
     public static final double encoderPulsesPerRevolution = 2048; 
     public static final int TURRET_MOTOR = 7;
 
-    public static final int[] hoodPistonPort = {4, 5, 1};
+    public static final int[] hoodPistonPort = {4, 5, 0};
 
     public static final double p = 0.0009;
     public static final double i = 0.00537;
@@ -63,9 +63,9 @@ public static class DriveConstants {
     public static class ElevatorConstants {
 
     public static final int elevatorMotorPort = 11;    
-    public static final int[] ratchetPistonPort = {2, 3, 1};
-    public static final int[] AnglePistonPort1 = {0, 1, 1};
-    public static final int[] flipUpHookPort1 = {4, 5, 0};
+    public static final int[] ratchetPistonPort = {2, 3, 0};
+    public static final int[] AnglePistonPort1 = {0, 1, 0};
+    public static final int[] flipUpHookPort1 = {4, 5, 1};
     public static final double P = 0.01;
     public static final double I = 0;
     public static final double D = 0;
@@ -87,7 +87,7 @@ public static class DriveConstants {
 
     public static class Pistons {
 
-    public static final int[] intakePistonPortOne = {0, 1, 0};
+    public static final int[] intakePistonPortOne = {0, 1, 1};
 
 
     }

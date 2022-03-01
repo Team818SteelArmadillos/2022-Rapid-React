@@ -1,5 +1,6 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.RobotState;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -15,6 +16,7 @@ import frc.robot.commands.SpoolShooterCommand;
 import frc.robot.commands.TankDriveCommand;
 import frc.robot.commands.TurnDrive;
 import frc.robot.commands.TurretCommand;
+import frc.robot.commands.autonTestCommandGroup;
 import frc.robot.commands.driveDistance;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
@@ -50,13 +52,13 @@ public class Robot extends TimedRobot {
   public static Command m_TankDriveCommand;
   public static Command m_TurnDrive;
   public static Command m_driveDistance;
+  public static autonTestCommandGroup m_AutonTestCommandGroup;
 
 
   static RobotState Rstate = RobotState.DEFAULT;
 
   @Override
   public void robotInit() {
-
 
     m_TurretSubsystem = new TurretSubsystem();
     m_oi = new OI();
@@ -75,6 +77,7 @@ public class Robot extends TimedRobot {
     m_TurretCommand = new TurretCommand();
     m_SpoolShooterCommand = new SpoolShooterCommand();
     // m_AutoShootCommand = new AutoShootCommand();
+    m_AutonTestCommandGroup = new autonTestCommandGroup();
   }
 
   @Override
@@ -90,6 +93,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
+    m_AutonTestCommandGroup.schedule();
 
   }
 
@@ -108,6 +112,13 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     //m_IndexSubsystem.setConveyor(m_oi.getgamepadrightXAxis());
     m_IndexSubsystem.setIndex(m_oi.getgamepadrightXAxis());
+    if (m_oi.getXButton()) {
+      m_IntakeSubsystem.setIntake(-1);
+      m_IndexSubsystem.setConveyor(1);
+    } else {
+      m_IntakeSubsystem.setIntake(0);
+      m_IndexSubsystem.setConveyor(0);
+    }
 /*
     switch (Rstate) {
       case DEFAULT:
@@ -164,7 +175,7 @@ private void startDefault() {
   m_SpoolShooterCommand.schedule();
   // m_TankDriveCommand.schedule();
   //m_IntakeCommand.schedule();
-  // m_TurretCommand.schedule();
+  m_TurretCommand.schedule();
   // m_ElevatorCommand.schedule();
 
 }
