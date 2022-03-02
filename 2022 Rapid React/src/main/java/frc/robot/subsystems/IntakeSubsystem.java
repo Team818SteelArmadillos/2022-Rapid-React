@@ -32,10 +32,10 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   public void setIntakePosition(double intakePistonVal) {
-    if(intakePistonVal == 0.5) {
+    if(intakePistonVal == 1) {
       intakePiston.set(DoubleSolenoid.Value.kReverse);
       isPistonOut = false;
-    } else if (intakePistonVal == 1) {
+    } else if (intakePistonVal == 0.5) {
       intakePiston.set(DoubleSolenoid.Value.kForward);
       isPistonOut = true;
     }

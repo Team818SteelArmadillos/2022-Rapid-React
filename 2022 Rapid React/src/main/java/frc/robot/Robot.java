@@ -111,16 +111,17 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     //m_IndexSubsystem.setConveyor(m_oi.getgamepadrightXAxis());
-    m_IndexSubsystem.setIndex(m_oi.getgamepadrightXAxis());
-    if (m_oi.getXButton()) {
+    //m_IndexSubsystem.setIndex(m_oi.getgamepadrightXAxis());
+    //m_IntakeSubsystem.setIntakePosition(0.5);
+    //if (m_oi.getXButton()) {
       // m_IntakeSubsystem.setIntake(-1);
       // m_IndexSubsystem.setConveyor(1);
-      m_IntakeSubsystem.setIntakePosition(1);
-    } else {
-      // m_IntakeSubsystem.setIntake(0);
-      // m_IndexSubsystem.setConveyor(0);
-      m_IntakeSubsystem.setIntakePosition(0.5);
-    }
+      //m_IntakeSubsystem.setIntakePosition(1);
+    //} else {
+     //  m_IntakeSubsystem.setIntake(0);
+     //  m_IndexSubsystem.setConveyor(0);
+     // m_IntakeSubsystem.setIntakePosition(0.5);
+    //}
 
 /*
     switch (Rstate) {
@@ -176,13 +177,13 @@ public class Robot extends TimedRobot {
 private void startDefault() {
   
   m_SpoolShooterCommand.schedule();
-  // m_TankDriveCommand.schedule();
+   m_TankDriveCommand.schedule();
   //m_IntakeCommand.schedule();
   m_TurretCommand.schedule();
-  // m_ElevatorCommand.schedule();
+//   m_ElevatorCommand.schedule();
 
 }
-/*
+
 private void endDefault() {
 
   m_SpoolShooterCommand.cancel();
@@ -229,7 +230,7 @@ private void endAutoShoot() {
 
 }
 
-*/
+
 
   @Override
   public void testInit() {

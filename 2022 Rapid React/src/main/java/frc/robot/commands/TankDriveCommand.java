@@ -25,6 +25,7 @@ public class TankDriveCommand extends CommandBase {
     if(Robot.m_oi.shiftGears() && !prevGearButton){
       Robot.m_driveSubsystem.shift(!Robot.m_driveSubsystem.currentGear());
     }
+    prevGearButton = Robot.m_oi.shiftGears();
   }
 
   // Called once the command ends or is interrupted.

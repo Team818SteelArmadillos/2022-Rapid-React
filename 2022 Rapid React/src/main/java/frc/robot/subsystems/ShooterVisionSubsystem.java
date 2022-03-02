@@ -10,21 +10,20 @@ public class ShooterVisionSubsystem extends SubsystemBase {
   
   public ShooterVisionSubsystem() {
 
-  table = NetworkTableInstance.getDefault().getTable("Vision");
+  table = NetworkTableInstance.getDefault().getTable("limelight");
 
   }
 
   public double getX() {
-    return table.getEntry("Horizontal Angle").getDouble(0.0);
+    return -table.getEntry("ty").getDouble(0.0);
   }
 
   public double getY() {
-    return table.getEntry("Vertical Angle").getDouble(0.0);
+    return table.getEntry("tx").getDouble(0.0);
   }
 
   public Boolean getTarget() {
-    // return table.getEntry("Has Target").getDouble(0.0) > 0.0;
-    return false;
+    return table.getEntry("tv").getDouble(0.0) > 0.0;
   }
 
   public void logData() {
