@@ -4,9 +4,13 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.RobotState;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.AutoShootCommand;
+import frc.robot.commands.AutonAutoShootCommand;
+import frc.robot.commands.DynamicBraking;
 import frc.robot.commands.ElevatorCommand;
 import frc.robot.commands.ElevatorCommandTesting;
 import frc.robot.commands.IntakeCommand;
@@ -16,7 +20,7 @@ import frc.robot.commands.SpoolShooterCommand;
 import frc.robot.commands.TankDriveCommand;
 import frc.robot.commands.TurnDrive;
 import frc.robot.commands.TurretCommand;
-import frc.robot.commands.autonTestCommandGroup;
+import frc.robot.commands.TwoBallAutonCommandSequence;
 import frc.robot.commands.driveDistance;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
@@ -50,9 +54,10 @@ public class Robot extends TimedRobot {
   public static IntakeSubsystem m_IntakeSubsystem;
   public static IntakeCommand m_IntakeCommand;
   public static Command m_TankDriveCommand;
-  public static Command m_TurnDrive;
-  public static Command m_driveDistance;
-  public static autonTestCommandGroup m_AutonTestCommandGroup;
+  public static Command m_DynamicBraking;
+  public static Command m_TwoBallAuton;
+  SendableChooser<Command> m_chooser;
+
 
 
   static RobotState Rstate = RobotState.DEFAULT;
@@ -66,18 +71,21 @@ public class Robot extends TimedRobot {
     m_driveSubsystem = new DriveSubsystem();
     m_shootervision = new ShooterVisionSubsystem();
     m_ShooterSubsystem = new ShooterSubsystem();
-    // m_ElevatorSubsystem = new ElevatorSubsystem();
+     m_ElevatorSubsystem = new ElevatorSubsystem();
      m_IntakeSubsystem = new IntakeSubsystem();
     // m_HighShootManualCommand = new HighShootManualCommand();
     // m_LowShootManualCommand = new LowShootManualCommand();
     m_TankDriveCommand = new TankDriveCommand();
      m_IntakeCommand = new IntakeCommand();
-    // m_ElevatorCommand = new ElevatorCommand();
-    // m_ElevatorCommandTesting = new ElevatorCommandTesting();
+   // m_ElevatorCommand = new ElevatorCommand();
+    m_ElevatorCommandTesting = new ElevatorCommandTesting();
     m_TurretCommand = new TurretCommand();
     m_SpoolShooterCommand = new SpoolShooterCommand();
-    // m_AutoShootCommand = new AutoShootCommand();
-    m_AutonTestCommandGroup = new autonTestCommandGroup();
+     m_AutoShootCommand = new AutoShootCommand();
+    m_DynamicBraking = new DynamicBraking();
+    m_TwoBallAuton = new TwoBallAutonCommandSequence();
+    m_chooser.addOption("TwoBallAuton", m_TwoBallAuton);
+    SmartDashboard.putData(m_chooser);
   }
 
   @Override
@@ -93,7 +101,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    m_AutonTestCommandGroup.schedule();
+    m_chooser.getSelected().schedule();
 
   }
 
@@ -110,6 +118,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
+    
     //m_IndexSubsystem.setConveyor(m_oi.getgamepadrightXAxis());
     //m_IndexSubsystem.setIndex(m_oi.getgamepadrightXAxis());
     //m_IntakeSubsystem.setIntakePosition(0.5);
@@ -123,7 +132,7 @@ public class Robot extends TimedRobot {
      // m_IntakeSubsystem.setIntakePosition(0.5);
     //}
 
-/*
+
     switch (Rstate) {
       case DEFAULT:
         if(m_oi.getAButton()) {
@@ -163,7 +172,7 @@ public class Robot extends TimedRobot {
         break;
 
       case AUTOSHOOT:
-        if(!m_oi.getRightTrigger() || !m_oi.getLeftTrigger()) {
+        if(!m_oi.getRightTrigger() && !m_oi.getLeftTrigger()) {
           endAutoShoot();
           startDefault();
           Rstate = RobotState.DEFAULT;
@@ -171,17 +180,17 @@ public class Robot extends TimedRobot {
         break;
 
       }
-*/
+
   }
 
 private void startDefault() {
   
   m_SpoolShooterCommand.schedule();
    m_TankDriveCommand.schedule();
-  //m_IntakeCommand.schedule();
+  m_IntakeCommand.schedule();
   m_TurretCommand.schedule();
-//   m_ElevatorCommand.schedule();
-
+  // m_ElevatorCommand.schedule();
+  m_ElevatorCommandTesting.schedule();
 }
 
 private void endDefault() {
@@ -190,7 +199,8 @@ private void endDefault() {
   m_TankDriveCommand.cancel();
   m_IntakeCommand.cancel();
   m_TurretCommand.cancel();
-  m_ElevatorCommand.cancel();
+  m_ElevatorCommandTesting.cancel();
+  //m_ElevatorCommand.cancel();
 
 }
 
@@ -220,13 +230,15 @@ private void endLowManualShoot() {
 
 private void startAutoShoot() {
 
-//autoshootcommand
+m_AutoShootCommand.schedule();
+m_DynamicBraking.schedule();
 
 }
 
 private void endAutoShoot() {
 
-
+  m_AutoShootCommand.cancel();
+  m_DynamicBraking.cancel();
 
 }
 

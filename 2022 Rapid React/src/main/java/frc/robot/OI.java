@@ -57,19 +57,23 @@ public class OI {
       }
 
       public boolean getLeftBumper() {
-        return gamePad.getRawButton(5);
+        return gamePad.getLeftBumper();
       }
 
       public boolean getRightBumper() {
-        return gamePad.getRawButton(6);
+        return gamePad.getRightBumper();
       }
 
       public boolean getRightTrigger() {
-        return gamePad.getRawButton(3);
+        return gamePad.getRightTriggerAxis() > 0.5;
       }
 
       public boolean getLeftTrigger() {
-        return gamePad.getRawButton(2);
+        return gamePad.getLeftTriggerAxis() > 0.5;
+      }
+
+      public boolean getBackButton() {
+        return gamePad.getBackButton();
       }
 
       public double getleftYAxis() {

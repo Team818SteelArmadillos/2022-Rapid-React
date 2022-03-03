@@ -18,14 +18,16 @@ public class TurretCommand extends CommandBase {
   @Override
   public void initialize() {
     Robot.m_TurretSubsystem.setTurretSpeed(0);
-    Robot.m_TurretSubsystem.resetEncoderPosition();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.m_TurretSubsystem.setTurretSpeed(-Robot.m_oi.getgamepadleftXAxis());
-
+    if (Robot.m_shootervision.getTarget())  {
+      Robot.m_TurretSubsystem.setTurretSpeed(Robot.m_shootervision.getX() / 40);
+    } else {
+      Robot.m_TurretSubsystem.setTurretSpeed(-Robot.m_oi.getgamepadleftXAxis());
+    }
   } 
 
   // Called once the command ends or is interrupted.

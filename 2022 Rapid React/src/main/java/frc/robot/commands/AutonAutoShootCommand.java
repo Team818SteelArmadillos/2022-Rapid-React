@@ -7,18 +7,21 @@ import frc.robot.Robot;
 import static frc.robot.Constants.ShooterConstants.*;
 
 
-public class AutoShootCommand extends CommandBase {
+public class AutonAutoShootCommand extends CommandBase {
   boolean reachedTarget;
 
   PIDController ShootPID;
 
   private double dist[][];
 
+  private double speed;
+
   private double rpm;
 
-  public AutoShootCommand() {
+  public AutonAutoShootCommand(double speed) {
     addRequirements(Robot.m_ShooterSubsystem, Robot.m_shootervision, Robot.m_TurretSubsystem, Robot.m_IntakeSubsystem, Robot.m_IndexSubsystem);
 
+    this.speed = speed;
     rpm = 3000;
     dist = new double[8][2];
 //distance to rmp pairs lookup table
@@ -84,9 +87,8 @@ public class AutoShootCommand extends CommandBase {
           Robot.m_IndexSubsystem.setConveyor(0.5);
           Robot.m_IndexSubsystem.setIndex(0.5);
         }
-    } else Robot.m_TurretSubsystem.setTurretSpeed(-Robot.m_oi.getgamepadleftXAxis());
+    } else Robot.m_TurretSubsystem.setTurretSpeed(speed);
 
-    Robot.m_ShooterSubsystem.setPower(0);
   }
 
   @Override

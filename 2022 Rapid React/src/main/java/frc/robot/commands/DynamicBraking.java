@@ -6,19 +6,17 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class driveDistance extends CommandBase {
+public class DynamicBraking extends CommandBase {
 
   PIDController PIDLeft;
   PIDController PIDRight;
   double PIDLeftOutput;
-  double distance;
 
-  public driveDistance(double dist){
+  public DynamicBraking(){
     PIDLeft = new PIDController(0.05, 0, 0);
     PIDRight = new PIDController(0.05, 0, 0);
     PIDLeft.setTolerance(2);
     addRequirements(Robot.m_driveSubsystem);
-    distance = dist;
   }
 
 
@@ -33,13 +31,14 @@ public class driveDistance extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-   Robot.m_driveSubsystem.setDriveMotorPostion(distance);
+   Robot.m_driveSubsystem.setDriveMotorPostion(0);
    SmartDashboard.putNumber("Right Distance Travled (in)", Robot.m_driveSubsystem.getRightPosition());
    SmartDashboard.putNumber("Left Distance Travled (in)", Robot.m_driveSubsystem.getLeftPosition());
   }
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    Robot.m_driveSubsystem.shift(true);
     Robot.m_driveSubsystem.setBothMotors(0);
   }
 

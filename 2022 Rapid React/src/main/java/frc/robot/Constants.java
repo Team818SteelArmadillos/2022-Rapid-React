@@ -94,8 +94,8 @@ public static class DriveConstants {
 
     public static class SensorPorts {
 
-    public static final int indexSensorFront = 0;
-    public static final int indexSensorBack = 1;  
+    public static final int indexSensorFront = 9;
+    public static final int indexSensorBack = 8;  
 
     }
 

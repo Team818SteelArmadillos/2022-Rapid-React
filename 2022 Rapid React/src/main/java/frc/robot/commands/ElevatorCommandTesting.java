@@ -21,9 +21,9 @@ public class ElevatorCommandTesting extends CommandBase {
 
   @Override
   public void initialize() {
-    Robot.m_ElevatorSubsystem.setDynamicPistons(-1);
-    Robot.m_ElevatorSubsystem.setRatchetPiston(-1);
-    Robot.m_ElevatorSubsystem.setStaticPistons(-1);
+    // Robot.m_ElevatorSubsystem.setDynamicPistons(-1);
+    // Robot.m_ElevatorSubsystem.setRatchetPiston(-1);
+    // Robot.m_ElevatorSubsystem.setStaticPistons(-1);
     Robot.m_ElevatorSubsystem.setElevatorMotor(0);
     Robot.m_ElevatorSubsystem.resetEncoders();
 
@@ -34,15 +34,15 @@ public class ElevatorCommandTesting extends CommandBase {
   @Override
   public void execute() {
   
-    if (Robot.m_oi.getElevatorOut()){
-      Robot.m_ElevatorSubsystem.setDynamicPistons(1);
-    } else if (Robot.m_oi.getElevatorIn()){
-      Robot.m_ElevatorSubsystem.setDynamicPistons(-1);
-    }
+    // if (Robot.m_oi.getElevatorOut()){
+    //   Robot.m_ElevatorSubsystem.setDynamicPistons(1);
+    // } else if (Robot.m_oi.getElevatorIn()){
+    //   Robot.m_ElevatorSubsystem.setDynamicPistons(-1);
+    // }
     
-    if (Robot.m_oi.getYButton()){
-      Robot.m_ElevatorSubsystem.setStaticPistons(1);
-    } 
+    // if (Robot.m_oi.getYButton()){
+    //   Robot.m_ElevatorSubsystem.setStaticPistons(1);
+    // } 
 
     if (Robot.m_oi.getElevatorUp()){
       Robot.m_ElevatorSubsystem.setElevatorMotor(0.5);

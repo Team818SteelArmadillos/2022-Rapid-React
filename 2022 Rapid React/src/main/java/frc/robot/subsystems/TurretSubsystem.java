@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
+import edu.wpi.first.math.MathUtil;
 //import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.Constants.ShooterConstants.*;
@@ -23,7 +24,7 @@ public class TurretSubsystem extends SubsystemBase {
   }
 
   public void setTurretSpeed(double speed) {
-    talon1.set(ControlMode.PercentOutput, speed);
+    talon1.set(ControlMode.PercentOutput, MathUtil.clamp(speed, -0.25, 0.25));
     if ((speed > 0) && (getCurrentTurretPosition()) > encoderPulsesPerRevolution * 0.25 * turretGearRatio){
       talon1.set(ControlMode.PercentOutput, 0);
     }
@@ -32,7 +33,7 @@ public class TurretSubsystem extends SubsystemBase {
       }
   }
 
-  public void resetEncoderPosition(){
+  private void resetEncoderPosition(){
     talon1.setSelectedSensorPosition(0);
   }
   public double getCurrentTurretPosition(){

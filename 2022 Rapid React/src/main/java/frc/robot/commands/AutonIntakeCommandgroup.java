@@ -11,12 +11,12 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class AutonIntakeCommandgroup extends ParallelCommandGroup {
   /** Creates a new AutonIntakeCommandgroup. */
-  public AutonIntakeCommandgroup() {
+  public AutonIntakeCommandgroup(double dist) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
       new AutoIntakeCommand(),
-      new driveDistance(41)
+      new driveDistance(dist)
     );
   }
 }

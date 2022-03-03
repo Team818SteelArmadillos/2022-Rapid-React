@@ -48,11 +48,11 @@ public class IndexSubsystem extends SubsystemBase {
   }
 
   public boolean SensorFront() {
-    return !Sensor1.get();
+    return Sensor1.get();
   }
 
   public boolean SensorBack() {
-    return !Sensor2.get();
+    return Sensor2.get();
   }
 
   public void setIndex(double Speed) {
