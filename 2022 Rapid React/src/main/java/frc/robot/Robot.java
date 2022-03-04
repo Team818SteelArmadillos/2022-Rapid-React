@@ -13,11 +13,13 @@ import frc.robot.commands.AutonAutoShootCommand;
 import frc.robot.commands.DynamicBraking;
 import frc.robot.commands.ElevatorCommand;
 import frc.robot.commands.ElevatorCommandTesting;
+import frc.robot.commands.FiveBallAutonCommand;
 import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.HighShootManualCommand;
 import frc.robot.commands.LowShootManualCommand;
 import frc.robot.commands.SpoolShooterCommand;
 import frc.robot.commands.TankDriveCommand;
+import frc.robot.commands.ThreeBallAutonCommand;
 import frc.robot.commands.TurnDrive;
 import frc.robot.commands.TurretCommand;
 import frc.robot.commands.TwoBallAutonCommandSequence;
@@ -56,6 +58,8 @@ public class Robot extends TimedRobot {
   public static Command m_TankDriveCommand;
   public static Command m_DynamicBraking;
   public static Command m_TwoBallAuton;
+  public static Command m_ThreeBallAuton;
+  public static Command m_FiveBallAuton;
   SendableChooser<Command> m_chooser;
 
 
@@ -84,7 +88,11 @@ public class Robot extends TimedRobot {
      m_AutoShootCommand = new AutoShootCommand();
     m_DynamicBraking = new DynamicBraking();
     m_TwoBallAuton = new TwoBallAutonCommandSequence();
+    m_ThreeBallAuton = new ThreeBallAutonCommand();
+    m_FiveBallAuton = new FiveBallAutonCommand();
     m_chooser.addOption("TwoBallAuton", m_TwoBallAuton);
+    m_chooser.addOption("ThreeBallAuton", m_ThreeBallAuton);
+    m_chooser.addOption("FiveBallAuton", m_FiveBallAuton);
     SmartDashboard.putData(m_chooser);
   }
 
