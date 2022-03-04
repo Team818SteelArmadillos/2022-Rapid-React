@@ -6,7 +6,7 @@ public class TwoBallAutonCommandSequence extends SequentialCommandGroup {
   public TwoBallAutonCommandSequence() {
 
     addCommands(
-      new AutonIntakeCommandgroup(35),
+      new AutonAutoIntakeCommand(35),
       new TurnDrive(180),
       new AutonAutoShootCommand(0.5)
     );
