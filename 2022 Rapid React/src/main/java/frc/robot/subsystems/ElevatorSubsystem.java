@@ -20,9 +20,9 @@ public class ElevatorSubsystem extends SubsystemBase {
   public ElevatorSubsystem() {
     elevatorMotorOne = new TalonFX(elevatorMotorPort);
     // elevatorMotorTwo = new TalonFX(elevatorMotorPortTwo);
-    // ratchetPiston = new DoubleSolenoid(ratchetPistonPort[2], PneumaticsModuleType.CTREPCM, ratchetPistonPort[0], ratchetPistonPort[1]);
-    // anglePiston1 = new DoubleSolenoid(AnglePistonPort1[2], PneumaticsModuleType.CTREPCM, AnglePistonPort1[0], AnglePistonPort1[1]);
-    // hookPiston1 = new DoubleSolenoid(flipUpHookPort1[2] ,PneumaticsModuleType.CTREPCM, flipUpHookPort1[0], flipUpHookPort1[1]);
+    ratchetPiston = new DoubleSolenoid(ratchetPistonPort[2], PneumaticsModuleType.CTREPCM, ratchetPistonPort[0], ratchetPistonPort[1]);
+    anglePiston1 = new DoubleSolenoid(AnglePistonPort1[2], PneumaticsModuleType.CTREPCM, AnglePistonPort1[0], AnglePistonPort1[1]);
+    hookPiston1 = new DoubleSolenoid(flipUpHookPort1[2] ,PneumaticsModuleType.CTREPCM, flipUpHookPort1[0], flipUpHookPort1[1]);
 
     ElevatorPID = new PIDController(P, I, D);
     elevatorMotorOne.configFactoryDefault();
@@ -61,33 +61,33 @@ public class ElevatorSubsystem extends SubsystemBase {
   }
 
   public void setRatchetPiston(int pistonVal) {
-    // if (pistonVal == 0) {
-    //   ratchetPiston.set(DoubleSolenoid.Value.kOff);
-    // } else if (pistonVal == -1) {
-    //   ratchetPiston.set(DoubleSolenoid.Value.kReverse);
-    // } else if (pistonVal == 1) {
-    //   ratchetPiston.set(DoubleSolenoid.Value.kForward);
-    // }
+    if (pistonVal == 0) {
+      ratchetPiston.set(DoubleSolenoid.Value.kOff);
+    } else if (pistonVal == 1) {
+      ratchetPiston.set(DoubleSolenoid.Value.kReverse);
+    } else if (pistonVal == -1) {
+      ratchetPiston.set(DoubleSolenoid.Value.kForward);
+    }
   }
 
     public void setDynamicPistons(int pistonVal) {
-      // if (pistonVal == 0) {
-      //   anglePiston1.set(DoubleSolenoid.Value.kOff);
-      // } else if (pistonVal == -1) {
-      //   anglePiston1.set(DoubleSolenoid.Value.kReverse);
-      // } else if (pistonVal == 1) {
-      //   anglePiston1.set(DoubleSolenoid.Value.kForward);
-      // }
+      if (pistonVal == 0) {
+        anglePiston1.set(DoubleSolenoid.Value.kOff);
+      } else if (pistonVal == 1) {
+        anglePiston1.set(DoubleSolenoid.Value.kReverse);
+      } else if (pistonVal == -1) {
+        anglePiston1.set(DoubleSolenoid.Value.kForward);
+      }
     }
 
       public void setStaticPistons(int pistonVal) {
-        // if (pistonVal == 0) {
-        //   hookPiston1.set(DoubleSolenoid.Value.kOff);
-        // } else if (pistonVal == -1) {
-        //   hookPiston1.set(DoubleSolenoid.Value.kReverse);
-        // } else if (pistonVal == 1) {
-        //   hookPiston1.set(DoubleSolenoid.Value.kForward);
-        // }
+        if (pistonVal == 0) {
+          hookPiston1.set(DoubleSolenoid.Value.kOff);
+        } else if (pistonVal == 1) {
+          hookPiston1.set(DoubleSolenoid.Value.kReverse);
+        } else if (pistonVal == -1) {
+          hookPiston1.set(DoubleSolenoid.Value.kForward);
+        }
       }
 
   @Override

@@ -42,6 +42,12 @@ public class SpoolShooterCommand extends CommandBase {
     }
     
     SmartDashboard.putNumber("Set Shooter speed", Robot.m_ShooterSubsystem.getCurrentShooterSpeed());
+
+    if(Robot.m_oi.getBackButton()){
+      Robot.m_IndexSubsystem.setIndex(0.5);
+    }else{
+      Robot.m_IndexSubsystem.setIndex(0);
+    }
   }
 
   // Called once the command ends or is interrupted.

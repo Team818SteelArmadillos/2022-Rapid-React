@@ -36,28 +36,27 @@ public class IntakeCommand extends CommandBase {
     Robot.m_IndexSubsystem.setIndex(0);
   
   }
-  else if (Robot.m_oi.getXButton() && !Robot.m_IndexSubsystem.SensorFront()) {
+  else if (Robot.m_oi.getXButton() && !Robot.m_IndexSubsystem.SensorFront() && !Robot.m_IndexSubsystem.SensorBack()) {
     Robot.m_IntakeSubsystem.setIntakePosition(0.5);
     Robot.m_IntakeSubsystem.setIntakeMotor(1);
-    Robot.m_IndexSubsystem.setConveyor(0);
-    Robot.m_IndexSubsystem.setIndex(0);
+    Robot.m_IndexSubsystem.setConveyor(1);
+    Robot.m_IndexSubsystem.setIndex(0.3);
 
-    }
+    }else if (Robot.m_oi.getXButton() && !Robot.m_IndexSubsystem.SensorFront()) {
+      Robot.m_IntakeSubsystem.setIntakePosition(0.5);
+      Robot.m_IntakeSubsystem.setIntakeMotor(1);
+      Robot.m_IndexSubsystem.setConveyor(1);
+      Robot.m_IndexSubsystem.setIndex(0);
+  
+      }
     
     else if (Robot.m_oi.getXButton() && Robot.m_IndexSubsystem.SensorFront() && !Robot.m_IndexSubsystem.SensorBack()) {
     Robot.m_IntakeSubsystem.setIntakePosition(0.5);
     Robot.m_IntakeSubsystem.setIntakeMotor(1);
     Robot.m_IndexSubsystem.setIndex(0.3);
-    Robot.m_IndexSubsystem.setConveyor(0.5);
+    Robot.m_IndexSubsystem.setConveyor(1);
     toggle = true;
 
-    } 
-
-    else if (Robot.m_IndexSubsystem.SensorFront() && Robot.m_IndexSubsystem.SensorBack()) { 
-    Robot.m_IntakeSubsystem.setIntakePosition(1);
-    Robot.m_IntakeSubsystem.setIntakeMotor(0);
-    Robot.m_IndexSubsystem.setConveyor(0);
-    Robot.m_IndexSubsystem.setIndex(0);
     } 
 
     if (!Robot.m_oi.getXButton()) {
@@ -65,6 +64,7 @@ public class IntakeCommand extends CommandBase {
     Robot.m_IntakeSubsystem.setIntakeMotor(0);
     Robot.m_IndexSubsystem.setConveyor(0);
     Robot.m_IndexSubsystem.setIndex(0);
+    toggle = false;
 
     }
 

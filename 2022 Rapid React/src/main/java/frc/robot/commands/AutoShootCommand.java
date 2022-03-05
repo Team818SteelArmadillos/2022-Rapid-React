@@ -14,7 +14,7 @@ public class AutoShootCommand extends CommandBase {
 
   private double dist[][];
 
-  private double rpm;
+  private double rpm, power;
 
   public AutoShootCommand() {
     addRequirements(Robot.m_ShooterSubsystem, Robot.m_shootervision, Robot.m_TurretSubsystem, Robot.m_IntakeSubsystem, Robot.m_IndexSubsystem);
@@ -59,7 +59,7 @@ public class AutoShootCommand extends CommandBase {
     // if(Robot.m_oi.getLeftTrigger()) {
     //   Robot.m_ElevatorSubsystem.setDynamicPistons(1);
     // } else Robot.m_ElevatorSubsystem.setDynamicPistons(-1);
-
+    // SmartDashboard.putNumber("Rpm", 0);
     Robot.m_IndexSubsystem.setConveyor(0);
     Robot.m_IndexSubsystem.setIndex(0);
     Robot.m_ShooterSubsystem.setPower(0);
@@ -69,15 +69,21 @@ public class AutoShootCommand extends CommandBase {
   @Override
   public void execute() {
 
-    rpm = shooterSpeed(47.25/Math.tan(Robot.m_shootervision.getY()+(2*Math.PI/18)));
+  SmartDashboard.putNumber("Distance", 47.25/Math.tan(Robot.m_shootervision.getY()+(2*Math.PI/18)));
+
+  //  rpm = shooterSpeed(47.25/Math.tan(Robot.m_shootervision.getY()+(2*Math.PI/18)));
+
+  rpm = SmartDashboard.getNumber("Rpm", 0);
 
     if(Robot.m_shootervision.getTarget()) {
       Robot.m_TurretSubsystem.setTurretSpeed(Robot.m_shootervision.getX() / 40);
-      if (Math.abs(Robot.m_shootervision.getX()) < 5) {
-        reachedTarget = true;
-      }
-
-        Robot.m_ShooterSubsystem.setPower(ShootPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeed()));
+    if (Math.abs(Robot.m_shootervision.getX()) < 5) {
+       reachedTarget = true;
+    }
+      power = ShootPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeed());
+        Robot.m_ShooterSubsystem.setPower(power);
+        
+        SmartDashboard.putNumber("power", power);
         SmartDashboard.putNumber("Shooter Speed", Robot.m_ShooterSubsystem.getCurrentShooterSpeed());
     
         if(ShootPID.atSetpoint()){

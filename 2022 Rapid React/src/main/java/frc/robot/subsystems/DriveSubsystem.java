@@ -55,7 +55,7 @@ public class DriveSubsystem extends SubsystemBase {
     DrivePIDLeft = new PIDController(P, I, D);
     DrivePIDRight = new PIDController(P, I, D);
 
-    shiftPistonLeft = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, shiftPistonPorts[0], shiftPistonPorts[1]);
+    shiftPistonLeft = new DoubleSolenoid(shiftPistonPorts[2], PneumaticsModuleType.CTREPCM, shiftPistonPorts[0], shiftPistonPorts[1]);
 
     pigeon = new PigeonIMU(indexMotorPortConveyor);
   }
