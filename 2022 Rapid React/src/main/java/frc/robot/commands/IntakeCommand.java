@@ -26,10 +26,10 @@ public class IntakeCommand extends CommandBase {
   @Override
   public void execute() {
     
-    if(toggle){
-      toggle = !Robot.m_IndexSubsystem.SensorBack();
+    // if(toggle){
+    //   toggle = !Robot.m_IndexSubsystem.SensorBack();
 
-  } else if (Robot.m_IndexSubsystem.SensorFront() && Robot.m_IndexSubsystem.SensorBack()) {
+   if (Robot.m_IndexSubsystem.SensorFront() && Robot.m_IndexSubsystem.SensorBack()) {
     Robot.m_IntakeSubsystem.setIntakePosition(1);
     Robot.m_IntakeSubsystem.setIntakeMotor(0);
     Robot.m_IndexSubsystem.setConveyor(0);
