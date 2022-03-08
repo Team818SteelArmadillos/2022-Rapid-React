@@ -17,7 +17,7 @@ public class LowShootManualCommand extends CommandBase {
   double ShooterMotorspeed;
 
   public LowShootManualCommand() {
-    rpm = 0;
+    rpm = 1000;
     ShootPID = new PIDController( p, i, d);
     ShootPID.setTolerance(10);
     // Use addRequirements() here to declare subsystem dependencies.
@@ -37,9 +37,11 @@ public class LowShootManualCommand extends CommandBase {
   public void execute() {
     rpm = SmartDashboard.getNumber("Set Shooter speed", 0);
     if(Robot.m_oi.getBButton() == true){
-      Robot.m_ShooterSubsystem.setPower(1000);
+      double shooterPower = ShootPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeed());
+      SmartDashboard.putNumber("Shooter Power", shooterPower);
+      Robot.m_ShooterSubsystem.setPower(shooterPower);
       Robot.m_IndexSubsystem.setConveyor(0.5);
-      Robot.m_IndexSubsystem.setIndex(0.5);
+      Robot.m_IndexSubsystem.setIndex(0.3);
 
     }
   }

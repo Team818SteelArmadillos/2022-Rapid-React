@@ -77,8 +77,8 @@ public class Robot extends TimedRobot {
     m_ShooterSubsystem = new ShooterSubsystem();
      m_ElevatorSubsystem = new ElevatorSubsystem();
      m_IntakeSubsystem = new IntakeSubsystem();
-    // m_HighShootManualCommand = new HighShootManualCommand();
-    // m_LowShootManualCommand = new LowShootManualCommand();
+    m_HighShootManualCommand = new HighShootManualCommand();
+    m_LowShootManualCommand = new LowShootManualCommand();
     m_TankDriveCommand = new TankDriveCommand();
      m_IntakeCommand = new IntakeCommand();
    // m_ElevatorCommand = new ElevatorCommand();
@@ -216,25 +216,25 @@ private void endDefault() {
 private void startHighManualShoot() {
 
   m_HighShootManualCommand.schedule();
-
+  m_DynamicBraking.schedule();
 }
 
 private void endHighManualShoot() {
 
   m_HighShootManualCommand.cancel();
-
+  m_DynamicBraking.cancel();
 }
 
 private void startLowManualShoot() {
 
   m_LowShootManualCommand.schedule();
-
+  m_DynamicBraking.schedule();
 }
 
 private void endLowManualShoot() {
 
   m_LowShootManualCommand.cancel();
-
+  m_DynamicBraking.cancel();
 }
 
 private void startAutoShoot() {

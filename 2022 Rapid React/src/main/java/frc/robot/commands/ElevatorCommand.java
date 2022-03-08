@@ -59,6 +59,7 @@ public class ElevatorCommand extends CommandBase {
 
     Robot.m_ElevatorSubsystem.setElevatorMotorPostion(ElevatorHeightIndex);
 
+    // from my understanidn in constants set values of encoders from testing 1. for height of bar 2 to climb 2. for height to have lifted and have static bars be above bar 3. to go all the wya up/secure static bars 4. to climb up all the way
     
   }
   // Called once the command ends or is interrupted.
