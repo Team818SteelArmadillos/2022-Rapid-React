@@ -15,16 +15,15 @@ public static class DriveConstants {
     public static final int[] MOTOR_PORTS_RIGHT = {3, 4};
     public static final boolean LEFT_INVERTED = true;
     public static final double RAMP_RATE = 0.5;
-    public static final double wheelCircumference = 6 * Math.PI;
+    public static final double wheelCircumference = 4 * Math.PI;
     public static final int[] shiftPistonPorts = {2, 3, 1};
-    public static final double P = 0.01;
+    public static final double P = 0.05;
     public static final double I = 0;
     public static final double D = 0;
 
 
 
     //Drive Constants
-    public static final double WHEEL_DIAMETER = 4;
     public static final int ENCODER_PULSES_PER_REVOLUTION = 2048;
     public static final int VELOCITY_CALCULATION_PER_SECOND = 10;
     public static final double distancePerPulse = wheelCircumference/(double) ENCODER_PULSES_PER_REVOLUTION;
@@ -44,9 +43,9 @@ public static class DriveConstants {
 
     public static final int[] hoodPistonPort = {4, 5, 0};
 
-    public static final double p = 0.0009;
-    public static final double i = 0.00537;
-    public static final double d = 0.00003657;
+    public static final double p = 0.00042;
+    public static final double i = 0.00323077;
+    public static final double d = 0.00001365;
 
     public static final double turretGearRatio = 55;
 

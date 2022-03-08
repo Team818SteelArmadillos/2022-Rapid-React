@@ -112,24 +112,24 @@ public void setBothMotors(double speed) {
 public void setDriveMotorPostion(double distance){
 
   setLeftMotors(MathUtil.clamp(DrivePIDLeft.calculate(distance - getLeftPosition()), -0.5, 0.5));
-  setRightMotors(MathUtil.clamp(DrivePIDRight.calculate(distance - getLeftPosition()), -0.5, 0.5));
+  setRightMotors(MathUtil.clamp(DrivePIDRight.calculate(distance - getRightPosition()), -0.5, 0.5));
  
 }
 
 public double getLeftPosition() {
   if (isHighGear){
-    return (talonLeft1.getSelectedSensorPosition() - leftOffset) * distancePerPulse / high;
+    return -(talonLeft1.getSelectedSensorPosition() - leftOffset) * distancePerPulse / high;
   } else {
-    return (talonLeft1.getSelectedSensorPosition() - leftOffset) * distancePerPulse / low;
+    return -(talonLeft1.getSelectedSensorPosition() - leftOffset) * distancePerPulse / low;
   }
 
 }
 
 public double getRightPosition() {
   if (isHighGear){
-    return (talonRight1.getSelectedSensorPosition() - rightOffset) * distancePerPulse / high;
+    return -(talonRight1.getSelectedSensorPosition() - rightOffset) * distancePerPulse / high;
   } else {
-    return (talonRight1.getSelectedSensorPosition() - rightOffset) * distancePerPulse / low;
+    return -(talonRight1.getSelectedSensorPosition() - rightOffset) * distancePerPulse / low;
   }
 
 }

@@ -7,7 +7,7 @@ public class TurnDrive extends CommandBase {
   
   double turnAngle;
   public TurnDrive(double angle){
-    turnAngle = angle;
+    turnAngle = -angle;
   }
 
 

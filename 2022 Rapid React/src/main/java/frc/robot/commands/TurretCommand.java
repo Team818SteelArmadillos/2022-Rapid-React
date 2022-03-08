@@ -24,7 +24,7 @@ public class TurretCommand extends CommandBase {
   @Override
   public void execute() {
     if (Robot.m_shootervision.getTarget())  {
-      Robot.m_TurretSubsystem.setTurretSpeed(Robot.m_shootervision.getX() / 40);
+      Robot.m_TurretSubsystem.setTurretSpeed(-Robot.m_shootervision.getX() / 40);
     } else {
       Robot.m_TurretSubsystem.setTurretSpeed(-Robot.m_oi.getgamepadleftXAxis());
     }

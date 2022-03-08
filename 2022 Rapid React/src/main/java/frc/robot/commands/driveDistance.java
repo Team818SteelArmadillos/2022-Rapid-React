@@ -14,9 +14,6 @@ public class driveDistance extends CommandBase {
   double distance;
 
   public driveDistance(double dist){
-    PIDLeft = new PIDController(0.05, 0, 0);
-    PIDRight = new PIDController(0.05, 0, 0);
-    PIDLeft.setTolerance(2);
     addRequirements(Robot.m_driveSubsystem);
     distance = dist;
   }
@@ -46,6 +43,6 @@ public class driveDistance extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return PIDLeft.atSetpoint() && PIDRight.atSetpoint();
+    return false;
   }
 }

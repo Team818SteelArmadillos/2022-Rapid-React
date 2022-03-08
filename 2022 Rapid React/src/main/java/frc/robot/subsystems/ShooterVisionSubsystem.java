@@ -15,11 +15,11 @@ public class ShooterVisionSubsystem extends SubsystemBase {
   }
 
   public double getX() {
-    return -table.getEntry("ty").getDouble(0.0);
+    return table.getEntry("ty").getDouble(0.0);
   }
 
   public double getY() {
-    return table.getEntry("tx").getDouble(0.0);
+    return -table.getEntry("tx").getDouble(0.0);
   }
 
   public Boolean getTarget() {

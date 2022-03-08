@@ -94,7 +94,7 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("TwoBallAuton", m_TwoBallAuton);
     // m_chooser.addOption("ThreeBallAuton", m_ThreeBallAuton);
     // m_chooser.addOption("FiveBallAuton", m_FiveBallAuton);
-    // SmartDashboard.putData(m_chooser);
+    SmartDashboard.putData(m_chooser);
   }
 
   @Override
@@ -197,7 +197,7 @@ private void startDefault() {
   m_SpoolShooterCommand.schedule();
    m_TankDriveCommand.schedule();
   m_IntakeCommand.schedule();
-  // m_TurretCommand.schedule();
+   m_TurretCommand.schedule();
   // m_ElevatorCommand.schedule();
   m_ElevatorCommandTesting.schedule();
 }
@@ -207,7 +207,7 @@ private void endDefault() {
   m_SpoolShooterCommand.cancel();
   m_TankDriveCommand.cancel();
   m_IntakeCommand.cancel();
-  // m_TurretCommand.cancel();
+   m_TurretCommand.cancel();
   m_ElevatorCommandTesting.cancel();
   //m_ElevatorCommand.cancel();
 

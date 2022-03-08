@@ -73,9 +73,9 @@ public class ElevatorSubsystem extends SubsystemBase {
     public void setDynamicPistons(int pistonVal) {
       if (pistonVal == 0) {
         anglePiston1.set(DoubleSolenoid.Value.kOff);
-      } else if (pistonVal == 1) {
-        anglePiston1.set(DoubleSolenoid.Value.kReverse);
       } else if (pistonVal == -1) {
+        anglePiston1.set(DoubleSolenoid.Value.kReverse);
+      } else if (pistonVal == 1) {
         anglePiston1.set(DoubleSolenoid.Value.kForward);
       }
     }
