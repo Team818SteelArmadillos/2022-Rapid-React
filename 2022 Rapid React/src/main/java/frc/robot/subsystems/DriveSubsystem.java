@@ -2,8 +2,11 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
  
@@ -27,6 +30,7 @@ public class DriveSubsystem extends SubsystemBase {
   boolean highGear = false;
   boolean isHighGear = false;
   private PigeonIMU pigeon;
+  private AnalogGyro gyro;
   PIDController DrivePIDLeft, DrivePIDRight;
 
   public DriveSubsystem() {
@@ -59,18 +63,23 @@ public class DriveSubsystem extends SubsystemBase {
     shiftPistonLeft = new DoubleSolenoid(shiftPistonPorts[2], PneumaticsModuleType.CTREPCM, shiftPistonPorts[0], shiftPistonPorts[1]);
 
     pigeon = new PigeonIMU(indexMotorPortConveyor);
+
+    gyro = new AnalogGyro(new AnalogInput(GYRO_PORTS));
   }
   public double getAngle(){
-    double[] ypr = new double[3];
-    pigeon.getYawPitchRoll(ypr);
-    SmartDashboard.putNumber("yaw", ypr[0]);
-    SmartDashboard.putNumber("pitch", ypr[1]);
-    SmartDashboard.putNumber("roll", ypr[2]);
-    return ypr[0];
+    // double[] ypr = new double[3];
+    // pigeon.getYawPitchRoll(ypr);
+    // SmartDashboard.putNumber("yaw", ypr[0]);
+    // SmartDashboard.putNumber("pitch", ypr[1]);
+    // SmartDashboard.putNumber("roll", ypr[2]);
+    SmartDashboard.putNumber("Angle", gyro.getAngle());
+    // return ypr[0];
+    return gyro.getAngle();
   }
 
   public void resetGyro() {
-    pigeon.setYaw(0);
+    // pigeon.setYaw(0);
+    gyro.reset();
   }
 
   @Override

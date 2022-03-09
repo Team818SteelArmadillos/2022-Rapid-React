@@ -31,6 +31,8 @@ public static class DriveConstants {
     public static final double low = 14.44;
     public static final double high = 7.74;
 
+    public static final int GYRO_PORTS = 15;
+
     }   
 
     public static class ShooterConstants {
