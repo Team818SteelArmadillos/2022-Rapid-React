@@ -18,7 +18,6 @@ public class HighShootManualCommand extends CommandBase {
   double ShooterMotorspeed;
 
   public HighShootManualCommand() {
-    rpm = 2800;
     ShootPID = new PIDController( p, i, d);
     ShootPID.setTolerance(10);
     // Use addRequirements() here to declare subsystem dependencies.

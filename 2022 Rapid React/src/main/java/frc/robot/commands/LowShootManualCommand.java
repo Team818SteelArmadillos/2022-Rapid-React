@@ -17,7 +17,6 @@ public class LowShootManualCommand extends CommandBase {
   double ShooterMotorspeed;
 
   public LowShootManualCommand() {
-    rpm = 1000;
     ShootPID = new PIDController(p, i, d);
     ShootPID.setTolerance(10);
     SmartDashboard.putNumber("low Shooter speed", 1000);
@@ -35,7 +34,7 @@ public class LowShootManualCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    rpm = 1200;
+    rpm = 1300;
       double shooterPower = ShootPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeed());
       SmartDashboard.putNumber("Shooter Power", shooterPower);
       Robot.m_ShooterSubsystem.setPower(-shooterPower);
