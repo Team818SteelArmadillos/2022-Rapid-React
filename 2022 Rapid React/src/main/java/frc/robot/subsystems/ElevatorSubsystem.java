@@ -30,7 +30,7 @@ public class ElevatorSubsystem extends SubsystemBase {
     elevatorMotorOne.setNeutralMode(NeutralMode.Brake);
     elevatorMotorOne.configOpenloopRamp(0.2, 30);
 
-    resetEncoders();
+    // resetEncoders();
   }
 
   public void setElevatorMotorPostion(int index){
@@ -39,9 +39,9 @@ public class ElevatorSubsystem extends SubsystemBase {
   }
 
 
-  public void resetEncoders() {
-    elevatorMotorOne.setSelectedSensorPosition(0);
-  }
+  // public void resetEncoders() {
+  //   elevatorMotorOne.setSelectedSensorPosition(0);
+  // }
 
   public double getEncoderPosition(){
     return elevatorMotorOne.getSelectedSensorPosition();

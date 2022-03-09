@@ -4,6 +4,7 @@ import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
  
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -60,7 +61,12 @@ public class DriveSubsystem extends SubsystemBase {
     pigeon = new PigeonIMU(indexMotorPortConveyor);
   }
   public double getAngle(){
-    return pigeon.getYaw();
+    double[] ypr = new double[3];
+    pigeon.getYawPitchRoll(ypr);
+    SmartDashboard.putNumber("yaw", ypr[0]);
+    SmartDashboard.putNumber("pitch", ypr[1]);
+    SmartDashboard.putNumber("roll", ypr[2]);
+    return ypr[0];
   }
 
   public void resetGyro() {

@@ -2,15 +2,11 @@
 package frc.robot.commands;
 
 import frc.robot.Robot;
-import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class driveDistance extends CommandBase {
 
-  PIDController PIDLeft;
-  PIDController PIDRight;
-  double PIDLeftOutput;
   double distance;
 
   public driveDistance(double dist){

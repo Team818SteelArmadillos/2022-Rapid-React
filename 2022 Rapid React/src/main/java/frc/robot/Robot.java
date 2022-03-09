@@ -36,7 +36,7 @@ public class Robot extends TimedRobot {
 
 
   enum RobotState {
-    DEFAULT, HIGHMANUALSHOOT, LOWMANUALSHOOT, AUTOSHOOT;
+    DEFAULT, HIGHMANUALSHOOT, LOWMANUALSHOOT, AUTOSHOOT, CLIMB;
   }
 
   public static OI m_oi;
@@ -156,11 +156,19 @@ public class Robot extends TimedRobot {
           Rstate = RobotState.LOWMANUALSHOOT;
         }
 
+        if(m_oi.getLeftBumper()){
+          endDefault();
+          startClimb();
+          Rstate = RobotState.CLIMB;
+        }
+
         if(m_oi.getRightTrigger() || m_oi.getLeftTrigger()) {
           endDefault();
           startAutoShoot();
           Rstate = RobotState.AUTOSHOOT;
         }
+
+        
 
         break;
 
@@ -188,7 +196,15 @@ public class Robot extends TimedRobot {
         }
         break;
 
+      case CLIMB:
+      if(!m_oi.getLeftBumper()) {
+        endClimb();
+        startDefault();
+        Rstate = RobotState.DEFAULT;
       }
+      break;
+      }
+    
 
   }
 
@@ -242,6 +258,14 @@ private void startAutoShoot() {
 m_AutoShootCommand.schedule();
 m_DynamicBraking.schedule();
 
+}
+
+private void startClimb() {
+
+}
+
+private void endClimb() {
+  
 }
 
 private void endAutoShoot() {

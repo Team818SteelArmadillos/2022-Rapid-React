@@ -75,6 +75,10 @@ public class OI {
       public boolean getBackButton() {
         return gamePad.getBackButton();
       }
+      
+      public boolean getStartButton(){
+        return gamePad.getStartButton();
+      }
 
       public double getleftYAxis() {
         // return Math.pow(-leftJoyStick.getY(), 3.0);

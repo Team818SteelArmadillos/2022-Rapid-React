@@ -18,15 +18,15 @@ public class LowShootManualCommand extends CommandBase {
 
   public LowShootManualCommand() {
     rpm = 1000;
-    ShootPID = new PIDController( p, i, d);
+    ShootPID = new PIDController(p, i, d);
     ShootPID.setTolerance(10);
+    SmartDashboard.putNumber("low Shooter speed", 1000);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    SmartDashboard.putNumber("Set Shooter speed", 0);
     Robot.m_ShooterSubsystem.setPower(0);
     Robot.m_IndexSubsystem.setConveyor(0);
     Robot.m_IndexSubsystem.setIndex(0);
@@ -35,15 +35,19 @@ public class LowShootManualCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    rpm = SmartDashboard.getNumber("Set Shooter speed", 0);
-    if(Robot.m_oi.getBButton() == true){
+    rpm = 1200;
       double shooterPower = ShootPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeed());
       SmartDashboard.putNumber("Shooter Power", shooterPower);
-      Robot.m_ShooterSubsystem.setPower(shooterPower);
-      Robot.m_IndexSubsystem.setConveyor(0.5);
-      Robot.m_IndexSubsystem.setIndex(0.3);
+      Robot.m_ShooterSubsystem.setPower(-shooterPower);
 
-    }
+      if(ShootPID.atSetpoint()){
+
+        Robot.m_IndexSubsystem.setConveyor(0.5);
+        Robot.m_IndexSubsystem.setIndex(0.3);
+  
+
+      }
+    
   }
 
   // Called once the command ends or is interrupted.

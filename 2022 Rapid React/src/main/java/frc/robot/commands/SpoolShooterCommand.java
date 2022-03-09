@@ -35,13 +35,13 @@ public class SpoolShooterCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(Robot.m_oi.getLeftBumper() || Robot.m_oi.getRightBumper()){
+    if( Robot.m_oi.getLeftBumper()  ||  Robot.m_oi.getRightBumper()){
       Robot.m_ShooterSubsystem.setPower(1);
     }else{
       Robot.m_ShooterSubsystem.setPower(0);
     }
     
-    SmartDashboard.putNumber("Set Shooter speed", Robot.m_ShooterSubsystem.getCurrentShooterSpeed());
+    //SmartDashboard.putNumber("Set Shooter speed", Robot.m_ShooterSubsystem.getCurrentShooterSpeed());
 
     if(Robot.m_oi.getBackButton()){
       Robot.m_IndexSubsystem.setIndex(0.5);

@@ -21,38 +21,40 @@ public class AutoShootCommand extends CommandBase {
     addRequirements(Robot.m_ShooterSubsystem, Robot.m_shootervision, Robot.m_TurretSubsystem, Robot.m_IntakeSubsystem, Robot.m_IndexSubsystem);
 
     rpm = 3000;
-    dist = new double[8][2];
+    dist = new double[6][2];
 //distance to rmp pairs lookup table
-    dist[0][0] = 83;
-    dist[0][1] = 3250;
+
+    dist[0][0] = 52;
+    dist[0][1] = 2650;
 
     dist[1][0] = 68;
     dist[1][1] = 2800;
 
-    dist[2][0] = 140;
-    dist[2][1] = 2200;
+    dist[2][0] = 83;
+    dist[2][1] = 3250;
 
-    dist[3][0] = 150;
-    dist[3][1] = 2400;
+    dist[3][0] = 97;
+    dist[3][1] = 3300;
 
-    dist[4][0] = 155;
-    dist[4][1] = 2550;
+    dist[4][0] = 105;
+    dist[4][1] = 3450;
 
-    dist[5][0] = 163;
-    dist[5][1] = 2800;
+    dist[5][0] = 110;
+    dist[5][1] = 3550;
 
-    dist[6][0] = 169;
-    dist[6][1] = 3000;
 
-    dist[7][0] = 175;
-    dist[7][1] = 5000;
+    // dist[6][0] = 169;
+    // dist[6][1] = 3000;
+
+    // dist[7][0] = 175;
+    // dist[7][1] = 5000;
 
     ShootPID = new PIDController(p, i, d);
 
     ShootPID.setTolerance(10);
 
     SmartDashboard.putNumber("speed", 3000);
-    SmartDashboard.putNumber("Rpm", 3000);
+    // SmartDashboard.putNumber("Rpm", 3000);
 
     // SmartDashboard.putNumber("P", 0);
     // SmartDashboard.putNumber("I", 0);
@@ -81,11 +83,11 @@ public class AutoShootCommand extends CommandBase {
   // ShootPID.setI(SmartDashboard.getNumber("I", 0));
   // ShootPID.setD(SmartDashboard.getNumber("D", 0));
 
-  SmartDashboard.putNumber("Distance", 69.3142/Math.tan((Robot.m_shootervision.getY()+39.78)*Math.PI/180));
+  // SmartDashboard.putNumber("Distance", 69.3142/Math.tan((Robot.m_shootervision.getY()+39.78)*Math.PI/180));
   
-  //  rpm = shooterSpeed(69.3142/Math.tan((Robot.m_shootervision.getY()+39.78)*Math.PI/180));
+ rpm = shooterSpeed(69.3142/Math.tan((Robot.m_shootervision.getY()+39.78)*Math.PI/180));
 
-  rpm = SmartDashboard.getNumber("Rpm", 0);
+  // rpm = SmartDashboard.getNumber("Rpm", 0);
 
     if(Robot.m_shootervision.getTarget()) {
       Robot.m_TurretSubsystem.setTurretSpeed(-Robot.m_shootervision.getX() / 40);
@@ -113,6 +115,7 @@ public class AutoShootCommand extends CommandBase {
     Robot.m_IndexSubsystem.setIndex(0);
     Robot.m_ShooterSubsystem.setPower(0);
     Robot.m_TurretSubsystem.setTurretSpeed(0);
+    Robot.m_driveSubsystem.shift(true);
     //Robot.m_ElevatorSubsystem.setDynamicPistons(-1);
 
   }
@@ -123,7 +126,7 @@ public class AutoShootCommand extends CommandBase {
   }
 
   private double shooterSpeed(double distance) {
-    if (distance <= dist[0][0] || distance > dist[7][0]) {
+    if (distance <= dist[0][0] || distance > dist[5][0]) {
       return 5000;
     }
     int i = 0;

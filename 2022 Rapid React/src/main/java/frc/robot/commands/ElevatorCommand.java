@@ -27,7 +27,7 @@ public class ElevatorCommand extends CommandBase {
     Robot.m_ElevatorSubsystem.setRatchetPiston(-1);
     Robot.m_ElevatorSubsystem.setStaticPistons(-1);
     Robot.m_ElevatorSubsystem.setElevatorMotor(0);
-    Robot.m_ElevatorSubsystem.resetEncoders();
+    // Robot.m_ElevatorSubsystem.resetEncoders();
 
 
   }

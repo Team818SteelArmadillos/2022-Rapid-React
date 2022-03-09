@@ -38,12 +38,18 @@ public class HighShootManualCommand extends CommandBase {
   @Override
   public void execute() {
    // rpm = SmartDashboard.getNumber("Set Shooter speed", 0);
-    if(Robot.m_oi.getAButton() == true){ // i dont think this needs the == true additionally iw ould just sau shooter power is rpm - yatta yatta but set rpm have it be a set value
-      double shooterPower = ShootPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeed());
-      SmartDashboard.putNumber("Shooter Power", shooterPower);
-      Robot.m_ShooterSubsystem.setPower(shooterPower);
+    
+    rpm = 2650;
+    double shooterPower = ShootPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeed());
+    SmartDashboard.putNumber("Shooter Power", shooterPower);
+    Robot.m_ShooterSubsystem.setPower(-shooterPower);
+
+    if(ShootPID.atSetpoint()){
+
       Robot.m_IndexSubsystem.setConveyor(0.5);
       Robot.m_IndexSubsystem.setIndex(0.3);
+
+
     }
   }
 
