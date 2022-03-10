@@ -1,5 +1,8 @@
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.MjpegServer;
+import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.RobotState;
@@ -61,13 +64,15 @@ public class Robot extends TimedRobot {
   public static Command m_ThreeBallAuton;
   public static Command m_FiveBallAuton;
   SendableChooser<Command> m_chooser;
-
-
+  
+  UsbCamera usbCamera = new UsbCamera("USB Camera 0", 0);
+  MjpegServer mjpegServer1 = new MjpegServer("serve_USB Camera 0", 1181);
 
   static RobotState Rstate = RobotState.DEFAULT;
 
   @Override
   public void robotInit() {
+
 
     m_TurretSubsystem = new TurretSubsystem();
     m_oi = new OI();

@@ -39,6 +39,14 @@ public class LowShootManualCommand extends CommandBase {
       SmartDashboard.putNumber("Shooter Power", shooterPower);
       Robot.m_ShooterSubsystem.setPower(-shooterPower);
 
+      // if (Robot.m_oi.getBButton() && Robot.m_TurretSubsystem.getCurrentTurretPosition() > 0) {
+      //   Robot.m_TurretSubsystem.setTurretSpeed(-0.3);
+      // } else if (Robot.m_oi.getBButton() && Robot.m_TurretSubsystem.getCurrentTurretPosition() < 0) {
+      //   Robot.m_TurretSubsystem.setTurretSpeed(0.3);
+      // } else {
+      //   Robot.m_TurretSubsystem.setTurretSpeed(0);
+      // }
+
       if(ShootPID.atSetpoint()){
 
         Robot.m_IndexSubsystem.setConveyor(0.5);

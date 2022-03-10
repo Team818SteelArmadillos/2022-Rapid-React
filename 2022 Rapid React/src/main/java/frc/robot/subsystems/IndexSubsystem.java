@@ -17,7 +17,7 @@ public class IndexSubsystem extends SubsystemBase {
 
   private DigitalInput Sensor1, Sensor2;
   private TalonFX indexMotor;
-  private TalonSRX conveyorMotor;
+  public TalonSRX conveyorMotor;
 
   //ColorSensorV3 colorSensor1;
   I2C.Port i2cPort;

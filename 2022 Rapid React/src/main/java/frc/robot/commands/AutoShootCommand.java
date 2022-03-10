@@ -127,7 +127,7 @@ public class AutoShootCommand extends CommandBase {
 
   private double shooterSpeed(double distance) {
     if (distance <= dist[0][0] || distance > dist[5][0]) {
-      return 5000;
+      return 2650;
     }
     int i = 0;
     while (dist[i][0] < distance) i++;
