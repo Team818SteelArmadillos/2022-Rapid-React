@@ -32,11 +32,11 @@ public class OI {
         return (gamePad.getPOV() == 180);
       }
 
-      public boolean getElevatorOut(){
+      public boolean getElevatorRight(){
         return (gamePad.getPOV() == 270);
       }
 
-      public boolean getElevatorIn(){
+      public boolean getElevatorLeft(){
         return (gamePad.getPOV() == 90);
       }
 
@@ -57,7 +57,7 @@ public class OI {
       }
 
       public boolean getLeftBumper() {
-        return gamePad.getLeftBumper();
+        return gamePad.getLeftBumperPressed();
       }
 
       public boolean getRightBumper() {

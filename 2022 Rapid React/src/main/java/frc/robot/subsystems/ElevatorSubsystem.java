@@ -33,12 +33,6 @@ public class ElevatorSubsystem extends SubsystemBase {
     // resetEncoders();
   }
 
-  public void setElevatorMotorPostion(int index){
-    setElevatorMotor(ElevatorPID.calculate(ElevatorHeights[index] - getEncoderPosition()));
-   
-  }
-
-
   // public void resetEncoders() {
   //   elevatorMotorOne.setSelectedSensorPosition(0);
   // }

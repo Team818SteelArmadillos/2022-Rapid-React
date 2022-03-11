@@ -16,6 +16,7 @@ import frc.robot.commands.AutonAutoShootCommand;
 import frc.robot.commands.DynamicBraking;
 import frc.robot.commands.ElevatorCommand;
 import frc.robot.commands.ElevatorCommandTesting;
+import frc.robot.commands.EnterClimb;
 import frc.robot.commands.FiveBallAutonCommand;
 import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.HighShootManualCommand;
@@ -63,6 +64,7 @@ public class Robot extends TimedRobot {
   public static Command m_TwoBallAuton;
   public static Command m_ThreeBallAuton;
   public static Command m_FiveBallAuton;
+  public static Command m_EnterClimb;
   SendableChooser<Command> m_chooser;
   
   UsbCamera usbCamera = new UsbCamera("USB Camera 0", 0);
@@ -95,6 +97,7 @@ public class Robot extends TimedRobot {
     m_TwoBallAuton = new TwoBallAutonCommandSequence();
     m_ThreeBallAuton = new ThreeBallAutonCommand();
     m_FiveBallAuton = new FiveBallAutonCommand();
+    m_EnterClimb = new EnterClimb();
     m_chooser = new SendableChooser<Command>();
     m_chooser.setDefaultOption("TwoBallAuton", m_TwoBallAuton);
     m_chooser.addOption("ThreeBallAuton", m_ThreeBallAuton);
@@ -202,7 +205,7 @@ public class Robot extends TimedRobot {
         break;
 
       case CLIMB:
-      if(!m_oi.getLeftBumper()) {
+      if(m_oi.getLeftBumper()) {
         endClimb();
         startDefault();
         Rstate = RobotState.DEFAULT;
@@ -216,11 +219,11 @@ public class Robot extends TimedRobot {
 private void startDefault() {
   
   m_SpoolShooterCommand.schedule();
-   m_TankDriveCommand.schedule();
+  m_TankDriveCommand.schedule();
   m_IntakeCommand.schedule();
-   m_TurretCommand.schedule();
+  m_TurretCommand.schedule();
   // m_ElevatorCommand.schedule();
-  m_ElevatorCommandTesting.schedule();
+  //m_ElevatorCommandTesting.schedule();
 }
 
 private void endDefault() {
@@ -229,7 +232,7 @@ private void endDefault() {
   m_TankDriveCommand.cancel();
   m_IntakeCommand.cancel();
    m_TurretCommand.cancel();
-  m_ElevatorCommandTesting.cancel();
+  //m_ElevatorCommandTesting.cancel();
   //m_ElevatorCommand.cancel();
 
 }
@@ -267,10 +270,14 @@ m_DynamicBraking.schedule();
 
 private void startClimb() {
 // m_ElevatorCommand.schedule();
+m_TankDriveCommand.schedule();
+m_EnterClimb.schedule();
 }
 
 private void endClimb() {
-// m_ElevatorCommand.cancel();
+ //m_ElevatorCommand.cancel();
+m_TankDriveCommand.cancel();
+m_EnterClimb.cancel();
 }
 
 private void endAutoShoot() {
