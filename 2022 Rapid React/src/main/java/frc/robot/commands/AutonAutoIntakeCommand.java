@@ -4,10 +4,10 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 
 public class AutonAutoIntakeCommand extends ParallelCommandGroup {
 
-  public AutonAutoIntakeCommand(double dist) {
+  public AutonAutoIntakeCommand(double dist, double time) {
 
     addCommands(
-      new AutoIntakeCommand(),
+     new IntakeForTimeCommand(time),
       new driveDistance(dist)
     );
   }

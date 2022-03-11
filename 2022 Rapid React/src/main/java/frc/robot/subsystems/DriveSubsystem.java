@@ -31,7 +31,7 @@ public class DriveSubsystem extends SubsystemBase {
   boolean isHighGear = false;
   private PigeonIMU pigeon;
   private AnalogGyro gyro;
-  PIDController DrivePIDLeft, DrivePIDRight;
+  public PIDController DrivePIDLeft, DrivePIDRight;
 
   public DriveSubsystem() {
     talonLeft1 = new TalonFX(MOTOR_PORTS_LEFT[0]);
@@ -58,7 +58,9 @@ public class DriveSubsystem extends SubsystemBase {
     talonRight2.setInverted(!LEFT_INVERTED);
 
     DrivePIDLeft = new PIDController(P, I, D);
+    DrivePIDLeft.setTolerance(2);
     DrivePIDRight = new PIDController(P, I, D);
+    DrivePIDRight.setTolerance(2);
 
     shiftPistonLeft = new DoubleSolenoid(shiftPistonPorts[2], PneumaticsModuleType.CTREPCM, shiftPistonPorts[0], shiftPistonPorts[1]);
 

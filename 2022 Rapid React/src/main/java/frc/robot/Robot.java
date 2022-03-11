@@ -97,8 +97,8 @@ public class Robot extends TimedRobot {
     m_FiveBallAuton = new FiveBallAutonCommand();
     m_chooser = new SendableChooser<Command>();
     m_chooser.setDefaultOption("TwoBallAuton", m_TwoBallAuton);
-    // m_chooser.addOption("ThreeBallAuton", m_ThreeBallAuton);
-    // m_chooser.addOption("FiveBallAuton", m_FiveBallAuton);
+    m_chooser.addOption("ThreeBallAuton", m_ThreeBallAuton);
+    m_chooser.addOption("FiveBallAuton", m_FiveBallAuton);
     SmartDashboard.putData(m_chooser);
   }
 
@@ -266,11 +266,11 @@ m_DynamicBraking.schedule();
 }
 
 private void startClimb() {
-
+// m_ElevatorCommand.schedule();
 }
 
 private void endClimb() {
-  
+// m_ElevatorCommand.cancel();
 }
 
 private void endAutoShoot() {

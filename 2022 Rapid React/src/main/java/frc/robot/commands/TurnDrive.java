@@ -8,8 +8,8 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class TurnDrive extends CommandBase {
   
-  double p = 0.01;
-  double i = 0;
+  double p = 0.02;
+  double i = 0.002;
   double d = 0;
   double power;
   PIDController anglePID;
@@ -18,14 +18,14 @@ public class TurnDrive extends CommandBase {
     turnAngle = angle;
   }
 
-
   @Override
   public void initialize() {
-   p = SmartDashboard.getNumber("p", 0);
+  //SmartDashboard.putNumber("p", 0.1);
+  //p = SmartDashboard.getNumber("p", 0);
     Robot.m_driveSubsystem.setBothMotors(0);
     Robot.m_driveSubsystem.resetGyro();
     anglePID = new PIDController(p, i, d);
-    anglePID.setTolerance(1.5);
+    anglePID.setTolerance(2);
   }
 
   @Override
@@ -47,7 +47,7 @@ public class TurnDrive extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    //return anglePID.atSetpoint();
-    return false;
+    return anglePID.atSetpoint();
+   // return false;
   }
 }
