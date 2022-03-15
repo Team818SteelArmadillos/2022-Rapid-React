@@ -65,7 +65,6 @@ public class AutoShootCommand extends CommandBase {
     rpm = shooterSpeed(47.25/Math.tan(Robot.m_shootervision.getY()+(2*Math.PI/18)));
 
     if(Robot.m_shootervision.getTarget()) {
-<<<<<<< Updated upstream
       if(Robot.m_shootervision.getX() - Robot.m_driveSubsystem.getAngle() > 0) {
         Robot.m_TurretSubsystem.setTurretSpeed(-0.4);
       } else if(Robot.m_shootervision.getX() - Robot.m_driveSubsystem.getAngle() < 0) {
@@ -74,16 +73,6 @@ public class AutoShootCommand extends CommandBase {
         reachedTarget = true; 
 
         Robot.m_ShooterSubsystem.setPower(ShootPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeed()));
-=======
-      Robot.m_TurretSubsystem.setTurretSpeed(-(Robot.m_shootervision.getX() + 5) / 40);
-    if (Math.abs(Robot.m_shootervision.getX()+ 5) < 3) {
-       reachedTarget = true;
-    }
-      power = -ShootPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeed());
-        Robot.m_ShooterSubsystem.setPower(power);
-        
-        SmartDashboard.putNumber("power", power);
->>>>>>> Stashed changes
         SmartDashboard.putNumber("Shooter Speed", Robot.m_ShooterSubsystem.getCurrentShooterSpeed());
     
         if(ShootPID.atSetpoint()){

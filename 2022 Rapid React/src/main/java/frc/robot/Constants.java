@@ -57,7 +57,6 @@ public static class DriveConstants {
     public static class ElevatorConstants {
 
     public static final int elevatorMotorPort = 11;    
-<<<<<<< Updated upstream
     public static final int[] ratchetPistonPort = {2, 3, 1};
     public static final int[] AnglePistonPort1 = {0, 1, 1};
     public static final int[] flipUpHookPort1 = {4, 5, 0};
@@ -65,11 +64,6 @@ public static class DriveConstants {
     public static final double I = 0;
     public static final double D = 0;
     public static final double[] ElevatorHeights = {0, 100, 200, 300};
-=======
-    public static final int[] ratchetPistonPort = {2, 3, 0};
-    public static final int[] AnglePistonPort1 = {0, 1, 0};
-    public static final int[] flipUpHookPort1 = {4, 5, 1};
->>>>>>> Stashed changes
     }
 
     public static class LEDNumbers {

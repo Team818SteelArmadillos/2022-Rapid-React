@@ -14,7 +14,7 @@ public class DriveSubsystem extends SubsystemBase {
   private static final int[] MOTOR_PORTS_RIGHT = null;
 private TalonFX talonLeft2, talonRight2;
   private TalonFX talonLeft1, talonRight1;
-  private DoubleSolenoid shiftPiston;
+  private DoubleSolenoid shiftPistonLeft;
 
   private int leftOffset = 0;
   private int rightOffset = 0;
@@ -48,22 +48,7 @@ private TalonFX talonLeft2, talonRight2;
     talonRight2.follow(talonRight1);
     talonRight2.setInverted(!LEFT_INVERTED);
 
-<<<<<<< Updated upstream
     shiftPistonLeft = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, shiftPistonPorts[0], shiftPistonPorts[1]);
-=======
-    DrivePIDLeft = new PIDController(P, I, D);
-    DrivePIDLeft.setTolerance(2);
-    DrivePIDRight = new PIDController(P, I, D);
-    DrivePIDRight.setTolerance(2);
-
-    shiftPiston = new DoubleSolenoid(shiftPistonPorts[2], PneumaticsModuleType.CTREPCM, shiftPistonPorts[0], shiftPistonPorts[1]);
-
-    pigeon = new PigeonIMU(Robot.m_IndexSubsystem.conveyorMotor);
-
-    gyro = new AnalogGyro(GYRO_PORTS);
-
-    gyro.calibrate();
->>>>>>> Stashed changes
   }
   public double getAngle(){
     return gyro.getAngle();
@@ -81,13 +66,9 @@ private TalonFX talonLeft2, talonRight2;
   public void shift(boolean highGear){
     isHighGear = highGear;
     if(highGear){
-<<<<<<< Updated upstream
       shiftPistonLeft.set(DoubleSolenoid.Value.kReverse);
-=======
-      shiftPiston.set(DoubleSolenoid.Value.kForward);
->>>>>>> Stashed changes
     }else{
-      shiftPiston.set(DoubleSolenoid.Value.kReverse);
+      shiftPistonLeft.set(DoubleSolenoid.Value.kForward);
     }
   }
 
@@ -119,21 +100,6 @@ public void setBothMotors(double speed) {
   setRightMotors(speed);
 }
 
-<<<<<<< Updated upstream
-=======
-public void setDriveMotorPostion(double distance){
-
-  setLeftMotors(MathUtil.clamp(DrivePIDLeft.calculate(distance - getLeftPosition()), -0.5, 0.5));
-  setRightMotors(MathUtil.clamp(DrivePIDRight.calculate(distance - getRightPosition()), -0.5, 0.5));
- 
-}
-public void setBreak(){
-
-  setLeftMotors(MathUtil.clamp(DrivePIDLeft.calculate(0 - getLeftPosition()), -1, 1));
-  setRightMotors(MathUtil.clamp(DrivePIDRight.calculate(0 - getRightPosition()), -1, 1));
- 
-}
->>>>>>> Stashed changes
 public double getLeftPosition() {
   if (isHighGear){
     return (talonLeft1.getSelectedSensorPosition() - leftOffset) * distancePerPulse / high;

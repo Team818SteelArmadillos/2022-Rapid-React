@@ -10,7 +10,6 @@ import frc.robot.commands.ElevatorCommandTesting;
 import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.HighShootManualCommand;
 import frc.robot.commands.LowShootManualCommand;
-import frc.robot.commands.OffCenterShoot;
 import frc.robot.commands.SpoolShooterCommand;
 import frc.robot.commands.TankDriveCommand;
 import frc.robot.commands.TurnDrive;
@@ -28,11 +27,7 @@ public class Robot extends TimedRobot {
 
 
   enum RobotState {
-<<<<<<< Updated upstream
     DEFAULT, HIGHMANUALSHOOT, LOWMANUALSHOOT, AUTOSHOOT;
-=======
-    DEFAULT, HIGHMANUALSHOOT, LOWMANUALSHOOT, AUTOSHOOT, CLIMB, OFFSHOOT;
->>>>>>> Stashed changes
   }
 
   public static OI m_oi;
@@ -52,22 +47,9 @@ public class Robot extends TimedRobot {
   public static IntakeSubsystem m_IntakeSubsystem;
   public static IntakeCommand m_IntakeCommand;
   public static Command m_TankDriveCommand;
-<<<<<<< Updated upstream
   public static Command m_TurnDrive;
   public static Command m_driveDistance;
 
-=======
-  public static Command m_DynamicBraking;
-  public static Command m_TwoBallAuton;
-  public static Command m_ThreeBallAuton;
-  public static Command m_FiveBallAuton;
-  public static Command m_EnterClimb;
-  public static Command m_offshoot;
-  SendableChooser<Command> m_chooser;
-  
-  UsbCamera usbCamera = new UsbCamera("USB Camera 0", 0);
-  MjpegServer mjpegServer1 = new MjpegServer("serve_USB Camera 0", 1181);
->>>>>>> Stashed changes
 
   static RobotState Rstate = RobotState.DEFAULT;
 
@@ -85,32 +67,12 @@ public class Robot extends TimedRobot {
     m_HighShootManualCommand = new HighShootManualCommand();
     m_LowShootManualCommand = new LowShootManualCommand();
     m_TankDriveCommand = new TankDriveCommand();
-<<<<<<< Updated upstream
     m_IntakeCommand = new IntakeCommand();
     m_ElevatorCommand = new ElevatorCommand();
     m_ElevatorCommandTesting = new ElevatorCommandTesting();
     m_TurretCommand = new TurretCommand();
     m_SpoolShooterCommand = new SpoolShooterCommand();
     m_AutoShootCommand = new AutoShootCommand();
-=======
-     m_IntakeCommand = new IntakeCommand();
-   m_ElevatorCommand = new ElevatorCommand();
-    m_ElevatorCommandTesting = new ElevatorCommandTesting();
-    m_TurretCommand = new TurretCommand();
-    m_SpoolShooterCommand = new SpoolShooterCommand();
-     m_AutoShootCommand = new AutoShootCommand();
-    m_DynamicBraking = new DynamicBraking();
-    m_TwoBallAuton = new TwoBallAutonCommandSequence();
-    m_ThreeBallAuton = new ThreeBallAutonCommand();
-    m_FiveBallAuton = new FiveBallAutonCommand();
-    m_EnterClimb = new EnterClimb();
-    m_offshoot = new OffCenterShoot();
-    m_chooser = new SendableChooser<Command>();
-    m_chooser.setDefaultOption("TwoBallAuton", m_TwoBallAuton);
-    m_chooser.addOption("ThreeBallAuton", m_ThreeBallAuton);
-    m_chooser.addOption("FiveBallAuton", m_FiveBallAuton);
-    SmartDashboard.putData(m_chooser);
->>>>>>> Stashed changes
   }
 
   @Override
@@ -163,11 +125,6 @@ public class Robot extends TimedRobot {
           startAutoShoot();
           Rstate = RobotState.AUTOSHOOT;
         }
-        if(m_oi.get11()){
-          endDefault();
-          startOffshoot();
-          Rstate = RobotState.OFFSHOOT;
-        }
 
         break;
 
@@ -195,24 +152,6 @@ public class Robot extends TimedRobot {
         }
         break;
 
-<<<<<<< Updated upstream
-=======
-      case CLIMB:
-      if(m_oi.getLeftBumper()) {
-        endClimb();
-        startDefault();
-        Rstate = RobotState.DEFAULT;
-      }
-      break;
-
-      case OFFSHOOT:
-      if(!m_oi.get11()) {
-        endOffshoot();
-        startDefault();
-        Rstate = RobotState.DEFAULT;
-      }
-      break;
->>>>>>> Stashed changes
       }
 
   }
@@ -223,13 +162,8 @@ private void startDefault() {
   m_TankDriveCommand.schedule();
   m_IntakeCommand.schedule();
   m_TurretCommand.schedule();
-<<<<<<< Updated upstream
   m_ElevatorCommand.schedule();
 
-=======
-  // m_ElevatorCommand.schedule();
-  // m_ElevatorCommandTesting.schedule();
->>>>>>> Stashed changes
 }
 
 private void endDefault() {
@@ -238,12 +172,7 @@ private void endDefault() {
   m_TankDriveCommand.cancel();
   m_IntakeCommand.cancel();
   m_TurretCommand.cancel();
-<<<<<<< Updated upstream
   m_ElevatorCommand.cancel();
-=======
-  // m_ElevatorCommandTesting.cancel();
-  //m_ElevatorCommand.cancel();
->>>>>>> Stashed changes
 
 }
 
@@ -276,42 +205,11 @@ private void startAutoShoot() {
 //autoshootcommand
 
 }
-private void endAutoShoot() {
 
-  m_AutoShootCommand.cancel();
-  m_DynamicBraking.cancel();
-
-}
-private void startOffshoot() {
-
-  m_offshoot.schedule();
-  m_DynamicBraking.schedule();
-  
-  }
-  private void endOffshoot() {
-  
-    m_offshoot.cancel();
-    m_DynamicBraking.cancel();
-  
-  }
-
-<<<<<<< Updated upstream
 private void endAutoShoot() {
 
 
 
-=======
-private void startClimb() {
-// m_ElevatorCommand.schedule();
-m_TankDriveCommand.schedule();
-m_EnterClimb.schedule();
-}
-
-private void endClimb() {
-//  m_ElevatorCommand.cancel();
-m_TankDriveCommand.cancel();
-m_EnterClimb.cancel();
->>>>>>> Stashed changes
 }
 
 

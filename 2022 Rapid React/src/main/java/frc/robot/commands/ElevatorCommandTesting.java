@@ -34,9 +34,9 @@ public class ElevatorCommandTesting extends CommandBase {
   @Override
   public void execute() {
   
-    if (Robot.m_oi.getElevatorRight()){
+    if (Robot.m_oi.getElevatorOut()){
       Robot.m_ElevatorSubsystem.setDynamicPistons(1);
-    } else if (Robot.m_oi.getElevatorLeft()){
+    } else if (Robot.m_oi.getElevatorIn()){
       Robot.m_ElevatorSubsystem.setDynamicPistons(-1);
     }
     
@@ -44,29 +44,11 @@ public class ElevatorCommandTesting extends CommandBase {
       Robot.m_ElevatorSubsystem.setStaticPistons(1);
     } 
 
-<<<<<<< Updated upstream
     if (Robot.m_oi.getElevatorUp()){
       Robot.m_ElevatorSubsystem.setElevatorMotor(0.5);
     } 
 
     if (Robot.m_oi.getElevatorDown()){
-=======
-    if (Robot.m_oi.getElevatorUp() && !PreviousUp){
-      Robot.m_ElevatorSubsystem.setRatchetPiston(1);
-      PreviousUp = true;
-      timer.start();
-    } else if (PreviousUp) {
-        if (timer.hasElapsed(0.1) && Robot.m_oi.getElevatorUp()) {
-          Robot.m_ElevatorSubsystem.setElevatorMotor(1);
-        } else if (!Robot.m_oi.getElevatorUp()) {
-          PreviousUp = false;
-          timer.stop();
-          timer.reset();
-        }
-    }
-    else if (Robot.m_oi.getElevatorDown()){
-      Robot.m_ElevatorSubsystem.setRatchetPiston(-1);
->>>>>>> Stashed changes
       Robot.m_ElevatorSubsystem.setElevatorMotor(-0.5);
     }
 
