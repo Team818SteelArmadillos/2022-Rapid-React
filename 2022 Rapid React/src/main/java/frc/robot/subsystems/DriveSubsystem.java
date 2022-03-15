@@ -93,11 +93,11 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void shift(boolean highGear){
-    isHighGear = !highGear;
-    if(!highGear){
-      shiftPistonLeft.set(DoubleSolenoid.Value.kReverse);
-    }else{
+    isHighGear = highGear;
+    if(highGear){
       shiftPistonLeft.set(DoubleSolenoid.Value.kForward);
+    }else{
+      shiftPistonLeft.set(DoubleSolenoid.Value.kReverse);
     }
   }
 
@@ -133,6 +133,13 @@ public void setDriveMotorPostion(double distance){
 
   setLeftMotors(MathUtil.clamp(DrivePIDLeft.calculate(distance - getLeftPosition()), -0.5, 0.5));
   setRightMotors(MathUtil.clamp(DrivePIDRight.calculate(distance - getRightPosition()), -0.5, 0.5));
+ 
+}
+
+public void setBreak(){
+
+  setLeftMotors(MathUtil.clamp(DrivePIDLeft.calculate(0 - getLeftPosition()), -1, 1));
+  setRightMotors(MathUtil.clamp(DrivePIDRight.calculate(0 - getRightPosition()), -1, 1));
  
 }
 

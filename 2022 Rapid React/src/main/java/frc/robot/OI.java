@@ -126,4 +126,19 @@ public class OI {
       public boolean shiftGears(){
       return (rightJoyStick.getRawButton(2));
       }
+      public boolean elevatorUp(){
+        return (rightJoyStick.getRawButton(8));
+      }
+      public boolean elevatorZero(){
+        return (rightJoyStick.getRawButton(7));
+      }
+
+      public boolean dynamicBreaking(){
+        return (rightJoyStick.getRawButton(5));
+      }
+
+      public boolean get11(){
+        return (rightJoyStick.getRawButton(11));
+      }
+
     }

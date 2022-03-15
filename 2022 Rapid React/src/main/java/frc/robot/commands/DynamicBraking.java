@@ -26,6 +26,8 @@ public class DynamicBraking extends CommandBase {
     Robot.m_driveSubsystem.shift(false);
     Robot.m_driveSubsystem.setBothMotors(0);
     Robot.m_driveSubsystem.resetEncoders();
+    Robot.m_driveSubsystem.DrivePIDLeft.setD(0.05);
+    Robot.m_driveSubsystem.DrivePIDRight.setD(0.05);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -40,6 +42,8 @@ public class DynamicBraking extends CommandBase {
   public void end(boolean interrupted) {
     Robot.m_driveSubsystem.shift(true);
     Robot.m_driveSubsystem.setBothMotors(0);
+    Robot.m_driveSubsystem.DrivePIDLeft.setD(0);
+    Robot.m_driveSubsystem.DrivePIDRight.setD(0);
   }
 
   // Returns true when the command should end.

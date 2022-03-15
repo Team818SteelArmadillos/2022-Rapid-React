@@ -20,9 +20,9 @@ public class ZeroTurretCommand extends CommandBase {
   @Override
   public void execute() {
     if (Robot.m_TurretSubsystem.getCurrentTurretPosition() > 1)
-      Robot.m_TurretSubsystem.setTurretSpeed(0.3);
-    else if (Robot.m_TurretSubsystem.getCurrentTurretPosition() < -1)
       Robot.m_TurretSubsystem.setTurretSpeed(-0.3);
+    else if (Robot.m_TurretSubsystem.getCurrentTurretPosition() < -1)
+      Robot.m_TurretSubsystem.setTurretSpeed(0.3);
     else 
       Robot.m_TurretSubsystem.setTurretSpeed(0);
   } 
@@ -36,6 +36,6 @@ public class ZeroTurretCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return Math.abs(Robot.m_TurretSubsystem.getCurrentTurretPosition()) < 1;
+    return Math.abs(Robot.m_TurretSubsystem.getCurrentTurretPosition()) < 500;
   }
 }

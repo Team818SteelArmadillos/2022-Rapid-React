@@ -7,6 +7,7 @@ import frc.robot.Robot;
 public class TankDriveCommand extends CommandBase {
 
   boolean prevGearButton;
+  boolean dynambreak;
 
  public TankDriveCommand() {
     addRequirements(Robot.m_driveSubsystem);
@@ -15,6 +16,7 @@ public class TankDriveCommand extends CommandBase {
   @Override
   public void initialize() {
     prevGearButton = false;
+    dynambreak=false;
     Robot.m_driveSubsystem.shift(false);
     Robot.m_driveSubsystem.setBothMotors(0);
   }
@@ -29,12 +31,32 @@ public class TankDriveCommand extends CommandBase {
     prevGearButton = Robot.m_oi.shiftGears();
     
     SmartDashboard.putNumber("Angle", Robot.m_driveSubsystem.getAngle());
+
+    if(Robot.m_oi.dynamicBreaking()){
+      if(!dynambreak){
+        dynambreak=true;
+        Robot.m_driveSubsystem.resetEncoders();
+        Robot.m_driveSubsystem.shift(true);
+        Robot.m_driveSubsystem.DrivePIDLeft.setD(0.05);
+        Robot.m_driveSubsystem.DrivePIDRight.setD(0.05);
+      }
+
+      SmartDashboard.putNumber("shift low", 2);
+      Robot.m_driveSubsystem.setBreak();
+    }else{
+      dynambreak=false;
+      Robot.m_driveSubsystem.DrivePIDLeft.setD(0);
+      Robot.m_driveSubsystem.DrivePIDRight.setD(0);
+      Robot.m_driveSubsystem.shift(false);
+    }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     Robot.m_driveSubsystem.setBothMotors(0);
+    Robot.m_driveSubsystem.DrivePIDLeft.setD(0);
+    Robot.m_driveSubsystem.DrivePIDRight.setD(0);
   }
 
   // Returns true when the command should end.

@@ -95,8 +95,8 @@ public class AutonAutoShootCommand extends CommandBase {
   // rpm = SmartDashboard.getNumber("Rpm", 0);
 
     if(Robot.m_shootervision.getTarget()) {
-      Robot.m_TurretSubsystem.setTurretSpeed(-Robot.m_shootervision.getX() / 40);
-    if (Math.abs(Robot.m_shootervision.getX()) < 5) {
+      Robot.m_TurretSubsystem.setTurretSpeed(-(Robot.m_shootervision.getX() + 5) / 40);
+    if (Math.abs(Robot.m_shootervision.getX()+ 5) < 3) {
        reachedTarget = true;
     }
       power = -ShootPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeed());
