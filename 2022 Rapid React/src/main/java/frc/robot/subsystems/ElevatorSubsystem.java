@@ -15,7 +15,6 @@ public class ElevatorSubsystem extends SubsystemBase {
   static TalonFX elevatorMotorOne;
   // static TalonFX elevatorMotorTwo;
   static DoubleSolenoid ratchetPiston, anglePiston1, hookPiston1;
-  PIDController ElevatorPID;
   
   public ElevatorSubsystem() {
     elevatorMotorOne = new TalonFX(elevatorMotorPort);
@@ -24,10 +23,14 @@ public class ElevatorSubsystem extends SubsystemBase {
     anglePiston1 = new DoubleSolenoid(AnglePistonPort1[2], PneumaticsModuleType.CTREPCM, AnglePistonPort1[0], AnglePistonPort1[1]);
     hookPiston1 = new DoubleSolenoid(flipUpHookPort1[2] ,PneumaticsModuleType.CTREPCM, flipUpHookPort1[0], flipUpHookPort1[1]);
 
-    ElevatorPID = new PIDController(P, I, D);
     elevatorMotorOne.configFactoryDefault();
+<<<<<<< Updated upstream
+=======
+    elevatorMotorOne.setSelectedSensorPosition(0);
+    elevatorMotorOne.setInverted(true);
+>>>>>>> Stashed changes
     elevatorMotorOne.setNeutralMode(NeutralMode.Brake);
-    elevatorMotorOne.configOpenloopRamp(0.2, 30);
+    elevatorMotorOne.configOpenloopRamp(0, 30);
 
     resetEncoders();
   }
@@ -49,14 +52,7 @@ public class ElevatorSubsystem extends SubsystemBase {
 
   public void setElevatorMotor(double Speed) {
     elevatorMotorOne.set(ControlMode.PercentOutput, Speed);
-    // elevatorMotorTwo.set(ControlMode.PercentOutput, -Speed);
-    
-    if (Speed > 0){
-      setRatchetPiston(1);
-    } else{
-      setRatchetPiston(-1);
-    }
-  
+
   }
 
   public void setRatchetPiston(int pistonVal) {

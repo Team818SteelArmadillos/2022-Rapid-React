@@ -10,7 +10,12 @@ public class IntakeCommand extends CommandBase {
   public IntakeCommand() {
     addRequirements(Robot.m_IntakeSubsystem);
     addRequirements(Robot.m_IndexSubsystem);
+<<<<<<< Updated upstream
 
+=======
+    addRequirements(Robot.m_ElevatorSubsystem);
+    toggle = false;
+>>>>>>> Stashed changes
 
   }
 
@@ -20,6 +25,7 @@ public class IntakeCommand extends CommandBase {
     Robot.m_IndexSubsystem.setConveyor(0);
     Robot.m_IntakeSubsystem.setIntakePosition(0.5);
     Robot.m_IntakeSubsystem.setIntakeMotor(0);
+    Robot.m_ElevatorSubsystem.setDynamicPistons(-1);
     
   }
 
