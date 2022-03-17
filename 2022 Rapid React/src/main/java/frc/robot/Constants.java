@@ -17,9 +17,9 @@ public static class DriveConstants {
     public static final double RAMP_RATE = 0.5;
     public static final double wheelCircumference = 4 * Math.PI;
     public static final int[] shiftPistonPorts = {2, 3, 1};
-    public static final double P = 0.05;
-    public static final double I = 0.0004;
-    public static final double D = 0.006;
+    public static final double driveP = 0.05;
+    public static final double driveI = 0.0004;
+    public static final double driveD = 0.006;
 
 
 
@@ -45,9 +45,9 @@ public static class DriveConstants {
 
     public static final int[] hoodPistonPort = {4, 5, 0};
 
-    public static final double p = 0.00042;
-    public static final double i = 0.00323077;
-    public static final double d = 0.00001365;
+    public static final double shooterP = 0.00042;
+    public static final double shooterI = 0.00323077;
+    public static final double shooterD = 0.00001365;
 
     public static final double turretGearRatio = 55;
 
@@ -67,9 +67,6 @@ public static class DriveConstants {
     public static final int[] ratchetPistonPort = {2, 3, 0};
     public static final int[] AnglePistonPort1 = {0, 1, 0};
     public static final int[] flipUpHookPort1 = {4, 5, 1};
-    public static final double P = 0.01;
-    public static final double I = 0;
-    public static final double D = 0;
     }
 
     public static class LEDNumbers {

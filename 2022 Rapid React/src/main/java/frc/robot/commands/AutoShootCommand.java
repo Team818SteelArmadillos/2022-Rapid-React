@@ -43,7 +43,7 @@ public class AutoShootCommand extends CommandBase {
 
     // 2500, 2700, 2900, 3100, 3300, 3500, 3700, 3900, 4100
 
-    ShootPID = new PIDController(p, i, d);
+    ShootPID = new PIDController(shooterP, shooterI, shooterD);
 
     ShootPID.setTolerance(10);
 

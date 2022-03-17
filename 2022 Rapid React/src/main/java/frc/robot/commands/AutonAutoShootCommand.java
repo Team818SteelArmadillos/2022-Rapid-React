@@ -48,7 +48,7 @@ public class AutonAutoShootCommand extends CommandBase {
     dist[5][1] = 3550;
 
 
-    ShootPID = new PIDController(p, i, d);
+    ShootPID = new PIDController(shooterP, shooterI, shooterD);
 
     ShootPID.setTolerance(10);
 

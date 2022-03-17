@@ -21,7 +21,6 @@ public class TankDriveCommand extends CommandBase {
     Robot.m_driveSubsystem.setBothMotors(0);
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     Robot.m_driveSubsystem.setBothMotors(Robot.m_oi.getleftYAxis(), Robot.m_oi.getrightYAxis());
@@ -51,7 +50,6 @@ public class TankDriveCommand extends CommandBase {
     }
   }
 
-  // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     Robot.m_driveSubsystem.setBothMotors(0);
@@ -59,7 +57,6 @@ public class TankDriveCommand extends CommandBase {
     Robot.m_driveSubsystem.DrivePIDRight.setD(0);
   }
 
-  // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     return false;

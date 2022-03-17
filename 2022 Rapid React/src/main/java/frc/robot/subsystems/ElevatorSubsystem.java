@@ -4,7 +4,6 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
-import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -14,7 +13,6 @@ import static frc.robot.Constants.ElevatorConstants.*;
 public class ElevatorSubsystem extends SubsystemBase {
   static TalonFX elevatorMotorOne;
   static DoubleSolenoid ratchetPiston, anglePiston1, hookPiston1;
-  PIDController ElevatorPID;
   
   public ElevatorSubsystem() {
     elevatorMotorOne = new TalonFX(elevatorMotorPort);
@@ -22,7 +20,6 @@ public class ElevatorSubsystem extends SubsystemBase {
     anglePiston1 = new DoubleSolenoid(AnglePistonPort1[2], PneumaticsModuleType.CTREPCM, AnglePistonPort1[0], AnglePistonPort1[1]);
     hookPiston1 = new DoubleSolenoid(flipUpHookPort1[2] ,PneumaticsModuleType.CTREPCM, flipUpHookPort1[0], flipUpHookPort1[1]);
 
-    ElevatorPID = new PIDController(P, I, D);
     elevatorMotorOne.configFactoryDefault();
     elevatorMotorOne.setInverted(true);
     elevatorMotorOne.setNeutralMode(NeutralMode.Brake);

@@ -17,22 +17,19 @@ public class SpoolShooterCommand extends CommandBase {
 
   double ShooterMotorspeed;
 
-  /** Creates a new SpoolShooterCommand. */
   public SpoolShooterCommand() {
     rpm = 0;
-    ShootPID = new PIDController( p, i, d);
+    ShootPID = new PIDController( shooterP, shooterI, shooterD);
     ShootPID.setTolerance(10);
-    // Use addRequirements() here to declare subsystem dependencies.
+    
   }
 
-  // Called when the command is initially scheduled.
   @Override
   public void initialize() {
     SmartDashboard.putNumber("Set Shooter speed", 0);
     Robot.m_ShooterSubsystem.setPower(0);
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     if( Robot.m_oi.getLeftBumper()  ||  Robot.m_oi.getRightBumper()){
@@ -41,8 +38,6 @@ public class SpoolShooterCommand extends CommandBase {
       Robot.m_ShooterSubsystem.setPower(0);
     }
     
-    //SmartDashboard.putNumber("Set Shooter speed", Robot.m_ShooterSubsystem.getCurrentShooterSpeed());
-
     if(Robot.m_oi.getBackButton()){
       Robot.m_IndexSubsystem.setIndex(0.5);
     }else{
@@ -50,13 +45,11 @@ public class SpoolShooterCommand extends CommandBase {
     }
   }
 
-  // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     Robot.m_ShooterSubsystem.setPower(0);
   }
 
-  // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     return false;

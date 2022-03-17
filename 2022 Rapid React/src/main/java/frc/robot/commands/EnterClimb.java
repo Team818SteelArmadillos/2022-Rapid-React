@@ -6,7 +6,8 @@ public class EnterClimb extends SequentialCommandGroup {
 
   public EnterClimb() {
 
-    addCommands(new ZeroTurretCommand(), 
+    addCommands(
+      new ZeroTurretCommand(), 
       new ElevatorCommand()
 
     );

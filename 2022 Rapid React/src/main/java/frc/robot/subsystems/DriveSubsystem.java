@@ -52,9 +52,9 @@ public class DriveSubsystem extends SubsystemBase {
     talonRight2.setInverted(!LEFT_INVERTED);
     talonRight2.follow(talonRight1);
 
-    DrivePIDLeft = new PIDController(P, I, D);
+    DrivePIDLeft = new PIDController(driveP, driveI, driveD);
     DrivePIDLeft.setTolerance(2);
-    DrivePIDRight = new PIDController(P, I, D);
+    DrivePIDRight = new PIDController(driveP, driveI, driveD);
     DrivePIDRight.setTolerance(2);
 
     shiftPistonLeft = new DoubleSolenoid(shiftPistonPorts[2], PneumaticsModuleType.CTREPCM, shiftPistonPorts[0], shiftPistonPorts[1]);

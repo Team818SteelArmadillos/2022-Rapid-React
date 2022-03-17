@@ -18,9 +18,8 @@ public class HighShootManualCommand extends CommandBase {
   double ShooterMotorspeed;
 
   public HighShootManualCommand() {
-    ShootPID = new PIDController( p, i, d);
+    ShootPID = new PIDController( shooterP, shooterI, shooterD);
     ShootPID.setTolerance(10);
-    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
@@ -36,8 +35,7 @@ public class HighShootManualCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-   // rpm = SmartDashboard.getNumber("Set Shooter speed", 0);
-    
+    //change value once redetemined
     rpm = 2650;
     double shooterPower = ShootPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeed());
     SmartDashboard.putNumber("Shooter Power", shooterPower);

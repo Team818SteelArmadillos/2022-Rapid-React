@@ -30,8 +30,6 @@ public class ElevatorCommand extends CommandBase {
     Robot.m_ElevatorSubsystem.setStaticPistons(-1);
     Robot.m_ElevatorSubsystem.setElevatorMotor(0);
     timer.reset();
-    // Robot.m_ElevatorSubsystem.resetEncoders();
-
 
   }
 
