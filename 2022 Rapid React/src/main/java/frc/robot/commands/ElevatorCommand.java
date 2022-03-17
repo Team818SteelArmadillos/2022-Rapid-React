@@ -39,54 +39,54 @@ public class ElevatorCommand extends CommandBase {
   @Override
   public void execute() {
 
-    if (Robot.m_oi.getElevatorUp() && Robot.m_ElevatorSubsystem.getEncoderPosition() < (582063 - 10000)){
+    if (Robot.m_oi.getDPadUp() && Robot.m_ElevatorSubsystem.getEncoderPosition() < (582063 - 10000)){
         Robot.m_ElevatorSubsystem.setStaticPistons(1);
-        if (Robot.m_oi.getElevatorUp() && !PreviousUp){
+        if (Robot.m_oi.getDPadUp() && !PreviousUp){
           Robot.m_ElevatorSubsystem.setRatchetPiston(1);
           PreviousUp = true;
           timer.start();
         } else if (PreviousUp) {
-            if (timer.hasElapsed(0.1) && Robot.m_oi.getElevatorUp()) {
+            if (timer.hasElapsed(0.1) && Robot.m_oi.getDPadUp()) {
               Robot.m_ElevatorSubsystem.setElevatorMotor(1);
-            } else if (!Robot.m_oi.getElevatorUp()) {
+            } else if (!Robot.m_oi.getDPadUp()) {
               PreviousUp = false;
               timer.stop();
               timer.reset();
             }
         }
-    } else if (Robot.m_oi.getElevatorUp()) {
+    } else if (Robot.m_oi.getDPadUp()) {
       Robot.m_ElevatorSubsystem.setElevatorMotor(0);
       Robot.m_ElevatorSubsystem.setRatchetPiston(-1);
     }
 
-    else if (Robot.m_oi.getElevatorRight() && Robot.m_ElevatorSubsystem.getEncoderPosition() > (94713)){
+    else if (Robot.m_oi.getDPadRight() && Robot.m_ElevatorSubsystem.getEncoderPosition() > (94713)){
       Robot.m_ElevatorSubsystem.setElevatorMotor(-1);
 
     }    
-    else if (Robot.m_oi.getElevatorDown() && Robot.m_ElevatorSubsystem.getEncoderPosition() < (582063 - 10000)){
+    else if (Robot.m_oi.getDPadDown() && Robot.m_ElevatorSubsystem.getEncoderPosition() < (582063 - 10000)){
       Robot.m_ElevatorSubsystem.setStaticPistons(1);
-      if (Robot.m_oi.getElevatorUp() && !PreviousUp){
+      if (Robot.m_oi.getDPadUp() && !PreviousUp){
         Robot.m_ElevatorSubsystem.setRatchetPiston(1);
         PreviousUp = true;
         timer.start();
       } else if (PreviousUp) {
-          if (timer.hasElapsed(0.1) && Robot.m_oi.getElevatorUp()) {
+          if (timer.hasElapsed(0.1) && Robot.m_oi.getDPadUp()) {
             Robot.m_ElevatorSubsystem.setElevatorMotor(1);
-          } else if (!Robot.m_oi.getElevatorUp()) {
+          } else if (!Robot.m_oi.getDPadUp()) {
             PreviousUp = false;
             timer.stop();
             timer.reset();
           }
       }
-  } else if (Robot.m_oi.getElevatorDown()) {
+  } else if (Robot.m_oi.getDPadDown()) {
     Robot.m_ElevatorSubsystem.setElevatorMotor(0);
     Robot.m_ElevatorSubsystem.setDynamicPistons(-1);
     Robot.m_ElevatorSubsystem.setRatchetPiston(-1);
   }
 
-else if (Robot.m_oi.getElevatorLeft() && Robot.m_ElevatorSubsystem.getEncoderPosition() > (479736))
+else if (Robot.m_oi.getDpadLeft() && Robot.m_ElevatorSubsystem.getEncoderPosition() > (479736))
   Robot.m_ElevatorSubsystem.setElevatorMotor(-1);
-  else if (Robot.m_oi.getElevatorLeft() && Robot.m_ElevatorSubsystem.getEncoderPosition() > (310268)) {
+  else if (Robot.m_oi.getDpadLeft() && Robot.m_ElevatorSubsystem.getEncoderPosition() > (310268)) {
     Robot.m_ElevatorSubsystem.setDynamicPistons(1);
     Robot.m_ElevatorSubsystem.setElevatorMotor(-1);
   } else {
@@ -95,8 +95,8 @@ else if (Robot.m_oi.getElevatorLeft() && Robot.m_ElevatorSubsystem.getEncoderPos
   }
 
 
-    PreviousUp = Robot.m_oi.getElevatorUp();
-    PreviousDown = Robot.m_oi.getElevatorDown();
+    PreviousUp = Robot.m_oi.getDPadUp();
+    PreviousDown = Robot.m_oi.getDPadDown();
 
 
     // from my understanidn in constants set values of encoders from testing 1. for height of bar 2 to climb 2. for height to have lifted and have static bars be above bar 3. to go all the wya up/secure static bars 4. to climb up all the way

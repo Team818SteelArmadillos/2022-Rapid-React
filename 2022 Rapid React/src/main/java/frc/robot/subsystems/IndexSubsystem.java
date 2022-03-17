@@ -5,7 +5,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.I2C;
+// import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.Constants.SensorPorts.*;
@@ -18,11 +18,11 @@ public class IndexSubsystem extends SubsystemBase {
   public TalonSRX conveyorMotor;
 
   //ColorSensorV3 colorSensor1;
-  I2C.Port i2cPort;
+  // I2C.Port i2cPort;
 
   public IndexSubsystem() {
 
-    i2cPort  = I2C.Port.kOnboard;
+    // i2cPort  = I2C.Port.kOnboard;
     //colorSensor1 = new ColorSensorV3(i2cPort);
 
     indexMotor = new TalonFX(indexMotorPortUpper);
@@ -35,10 +35,10 @@ public class IndexSubsystem extends SubsystemBase {
     Sensor2 = new DigitalInput(indexSensorBack);
 
   }
-/*
-  public Color getBallColor() {
-    return colorSensor1.getColor();
-  } */
+
+  // public Color getBallColor() {
+  //   return colorSensor1.getColor();
+  // } 
 
 
   public void setConveyor(double Speed) {

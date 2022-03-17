@@ -41,12 +41,7 @@ public class AutoShootCommand extends CommandBase {
     dist[5][0] = 110;
     dist[5][1] = 3550;
 
-
-    // dist[6][0] = 169;
-    // dist[6][1] = 3000;
-
-    // dist[7][0] = 175;
-    // dist[7][1] = 5000;
+    // 2500, 2700, 2900, 3100, 3300, 3500, 3700, 3900, 4100
 
     ShootPID = new PIDController(p, i, d);
 
@@ -63,9 +58,7 @@ public class AutoShootCommand extends CommandBase {
 
   @Override
   public void initialize() {
-    // if(Robot.m_oi.getLeftTrigger()) {
-    //   Robot.m_ElevatorSubsystem.setDynamicPistons(1);
-    // } else Robot.m_ElevatorSubsystem.setDynamicPistons(-1);
+
     Robot.m_IndexSubsystem.setConveyor(0);
     Robot.m_IndexSubsystem.setIndex(0);
     Robot.m_ShooterSubsystem.setPower(0);
@@ -73,7 +66,6 @@ public class AutoShootCommand extends CommandBase {
 
   
   }
-// tmrw finsih table array and uncomment out one line comment out other
 
   @Override
   public void execute() {
@@ -103,7 +95,7 @@ public class AutoShootCommand extends CommandBase {
           Robot.m_IndexSubsystem.setConveyor(0.5);
           Robot.m_IndexSubsystem.setIndex(0.3);
         }
-    } else Robot.m_TurretSubsystem.setTurretSpeed(-Robot.m_oi.getgamepadleftXAxis());
+    } else Robot.m_TurretSubsystem.setTurretSpeed(-Robot.m_oi.getgamepadleftXAxis()*0.25);
 
   }
 
@@ -115,7 +107,6 @@ public class AutoShootCommand extends CommandBase {
     Robot.m_ShooterSubsystem.setPower(0);
     Robot.m_TurretSubsystem.setTurretSpeed(0);
     Robot.m_driveSubsystem.shift(true);
-    //Robot.m_ElevatorSubsystem.setDynamicPistons(-1);
 
   }
 

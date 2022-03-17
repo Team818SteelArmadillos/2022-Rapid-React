@@ -25,14 +25,14 @@ public class TankDriveCommand extends CommandBase {
   @Override
   public void execute() {
     Robot.m_driveSubsystem.setBothMotors(Robot.m_oi.getleftYAxis(), Robot.m_oi.getrightYAxis());
-    if(Robot.m_oi.shiftGears() && !prevGearButton){
+    if(Robot.m_oi.getRightJoystick2() && !prevGearButton){
       Robot.m_driveSubsystem.shift(!Robot.m_driveSubsystem.currentGear());
     }
-    prevGearButton = Robot.m_oi.shiftGears();
+    prevGearButton = Robot.m_oi.getRightJoystick2();
     
     SmartDashboard.putNumber("Angle", Robot.m_driveSubsystem.getAngle());
 
-    if(Robot.m_oi.dynamicBreaking()){
+    if(Robot.m_oi.getRightJoystick5()){
       if(!dynambreak){
         dynambreak=true;
         Robot.m_driveSubsystem.resetEncoders();

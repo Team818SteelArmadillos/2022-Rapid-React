@@ -16,7 +16,7 @@ public class FiveBallAutonCommand extends SequentialCommandGroup {
       new AutonAutoIntakeCommand(157.5, 4),
       new IntakeForTimeCommand(2),
       new TurnDrive(145),
-      new driveDistance(100),
+      new DriveDistance(100),
       new AutonAutoShootCommand(0)
 
     );

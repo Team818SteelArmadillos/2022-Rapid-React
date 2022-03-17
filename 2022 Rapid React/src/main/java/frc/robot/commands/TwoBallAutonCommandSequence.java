@@ -9,7 +9,7 @@ public class TwoBallAutonCommandSequence extends SequentialCommandGroup {
       new ResetGyroCommand(),
       new AutonAutoIntakeCommand(33, 2),
       new TurnDrive(180),
-      new driveDistance(24),
+      new DriveDistance(24),
       new AutonAutoShootCommand(0)
     );
   }

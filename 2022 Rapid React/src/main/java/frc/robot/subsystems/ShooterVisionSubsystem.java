@@ -14,6 +14,7 @@ public class ShooterVisionSubsystem extends SubsystemBase {
 
   }
 
+  // physcial x is LL y and physical y is LL -x because of limelight orientation
   public double getX() {
     return table.getEntry("ty").getDouble(0.0);
   }

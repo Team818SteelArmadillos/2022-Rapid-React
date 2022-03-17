@@ -8,7 +8,7 @@ public class AutonAutoIntakeCommand extends ParallelCommandGroup {
 
     addCommands(
      new IntakeForTimeCommand(time),
-      new driveDistance(dist)
+      new DriveDistance(dist)
     );
   }
 }

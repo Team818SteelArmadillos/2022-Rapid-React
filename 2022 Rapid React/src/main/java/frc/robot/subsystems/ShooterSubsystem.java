@@ -17,8 +17,6 @@ public class ShooterSubsystem extends SubsystemBase {
     talon1.configFactoryDefault();
     talon2.configFactoryDefault();
 
-    //talon2.follow(talon1);
-
     talon1.setInverted(SHOOTER_INVERTED);
     talon2.setInverted(!SHOOTER_INVERTED);
 

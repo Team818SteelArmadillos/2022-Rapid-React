@@ -37,9 +37,9 @@ public class ElevatorCommandTesting extends CommandBase {
   @Override
   public void execute() {
   
-    if (Robot.m_oi.getElevatorRight()){
+    if (Robot.m_oi.getDPadRight()){
       Robot.m_ElevatorSubsystem.setDynamicPistons(1);
-    } else if (Robot.m_oi.getElevatorLeft()){
+    } else if (Robot.m_oi.getDpadLeft()){
       Robot.m_ElevatorSubsystem.setDynamicPistons(-1);
     }
     
@@ -47,20 +47,20 @@ public class ElevatorCommandTesting extends CommandBase {
       Robot.m_ElevatorSubsystem.setStaticPistons(1);
     } 
 
-    if (Robot.m_oi.getElevatorUp() && !PreviousUp){
+    if (Robot.m_oi.getDPadUp() && !PreviousUp){
       Robot.m_ElevatorSubsystem.setRatchetPiston(1);
       PreviousUp = true;
       timer.start();
     } else if (PreviousUp) {
-        if (timer.hasElapsed(0.1) && Robot.m_oi.getElevatorUp()) {
+        if (timer.hasElapsed(0.1) && Robot.m_oi.getDPadUp()) {
           Robot.m_ElevatorSubsystem.setElevatorMotor(0.5);
-        } else if (!Robot.m_oi.getElevatorUp()) {
+        } else if (!Robot.m_oi.getDPadUp()) {
           PreviousUp = false;
           timer.stop();
           timer.reset();
         }
     }
-    else if (Robot.m_oi.getElevatorDown()){
+    else if (Robot.m_oi.getDPadDown()){
       Robot.m_ElevatorSubsystem.setRatchetPiston(-1);
       Robot.m_ElevatorSubsystem.setElevatorMotor(-0.5);
     } else {

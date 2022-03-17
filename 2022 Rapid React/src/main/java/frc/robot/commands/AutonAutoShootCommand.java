@@ -26,6 +26,7 @@ public class AutonAutoShootCommand extends CommandBase {
     this.turret = turret;
     rpm = 3000;
     dist = new double[6][2];
+
 //distance to rmp pairs lookup table
 
     dist[0][0] = 52;
@@ -47,30 +48,15 @@ public class AutonAutoShootCommand extends CommandBase {
     dist[5][1] = 3550;
 
 
-    // dist[6][0] = 169;
-    // dist[6][1] = 3000;
-
-    // dist[7][0] = 175;
-    // dist[7][1] = 5000;
-
     ShootPID = new PIDController(p, i, d);
 
     ShootPID.setTolerance(10);
 
-    SmartDashboard.putNumber("speed", 3000);
-    // SmartDashboard.putNumber("Rpm", 3000);
-
-    // SmartDashboard.putNumber("P", 0);
-    // SmartDashboard.putNumber("I", 0);
-    // SmartDashboard.putNumber("D", 0);
 
   }
 
   @Override
   public void initialize() {
-    // if(Robot.m_oi.getLeftTrigger()) {
-    //   Robot.m_ElevatorSubsystem.setDynamicPistons(1);
-    // } else Robot.m_ElevatorSubsystem.setDynamicPistons(-1);
     Robot.m_IndexSubsystem.setConveyor(0);
     Robot.m_IndexSubsystem.setIndex(0);
     Robot.m_ShooterSubsystem.setPower(0);
@@ -79,24 +65,16 @@ public class AutonAutoShootCommand extends CommandBase {
     timer.start();
   
   }
-// tmrw finsih table array and uncomment out one line comment out other
 
   @Override
   public void execute() {
-
-  // ShootPID.setP(SmartDashboard.getNumber("P", 0));
-  // ShootPID.setI(SmartDashboard.getNumber("I", 0));
-  // ShootPID.setD(SmartDashboard.getNumber("D", 0));
-
-  // SmartDashboard.putNumber("Distance", 69.3142/Math.tan((Robot.m_shootervision.getY()+39.78)*Math.PI/180));
   
- rpm = shooterSpeed(69.3142/Math.tan((Robot.m_shootervision.getY()+39.78)*Math.PI/180));
-
-  // rpm = SmartDashboard.getNumber("Rpm", 0);
+    rpm = shooterSpeed(69.3142/Math.tan((Robot.m_shootervision.getY()+39.78)*Math.PI/180));
 
     if(Robot.m_shootervision.getTarget()) {
       Robot.m_TurretSubsystem.setTurretSpeed(-(Robot.m_shootervision.getX() + 5) / 40);
-    if (Math.abs(Robot.m_shootervision.getX()+ 5) < 3) {
+    // The 5 is an offset so the shooter shoots slightly offcenter 
+    if (Math.abs(Robot.m_shootervision.getX() + 5) < 3) {
        reachedTarget = true;
     }
       power = -ShootPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeed());
@@ -122,7 +100,6 @@ public class AutonAutoShootCommand extends CommandBase {
     Robot.m_ShooterSubsystem.setPower(0);
     Robot.m_TurretSubsystem.setTurretSpeed(0);
     Robot.m_driveSubsystem.shift(true);
-    //Robot.m_ElevatorSubsystem.setDynamicPistons(-1);
 
   }
 

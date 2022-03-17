@@ -5,13 +5,10 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
 public class AutoIntakeCommand extends CommandBase {
-  boolean toggle;
 
   public AutoIntakeCommand() {
     addRequirements(Robot.m_IntakeSubsystem);
     addRequirements(Robot.m_IndexSubsystem);
-    toggle = false;
-
   }
 
   @Override
@@ -25,9 +22,6 @@ public class AutoIntakeCommand extends CommandBase {
   @Override
   public void execute() {
     
-    // if(toggle){
-    //   toggle = !Robot.m_IndexSubsystem.SensorBack();
-
   if (!Robot.m_IndexSubsystem.SensorFront() && !Robot.m_IndexSubsystem.SensorBack()) {
     Robot.m_IntakeSubsystem.setIntakePosition(0.5);
     Robot.m_IntakeSubsystem.setIntakeMotor(1);
@@ -47,8 +41,6 @@ public class AutoIntakeCommand extends CommandBase {
     Robot.m_IntakeSubsystem.setIntakeMotor(1);
     Robot.m_IndexSubsystem.setIndex(0.3);
     Robot.m_IndexSubsystem.setConveyor(1);
-    toggle = true;
-
     } 
   }
 

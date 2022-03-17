@@ -24,19 +24,19 @@ public class OI {
 
 }
 
-      public boolean getElevatorUp() {
+      public boolean getDPadUp() {
         return (gamePad.getPOV() == 0);
       }
 
-      public boolean getElevatorDown() {
+      public boolean getDPadDown() {
         return (gamePad.getPOV() == 180);
       }
 
-      public boolean getElevatorRight(){
+      public boolean getDPadRight(){
         return (gamePad.getPOV() == 270);
       }
 
-      public boolean getElevatorLeft(){
+      public boolean getDpadLeft(){
         return (gamePad.getPOV() == 90);
       }
 
@@ -81,36 +81,40 @@ public class OI {
       }
 
       public double getleftYAxis() {
-        // return Math.pow(-leftJoyStick.getY(), 3.0);
-        return leftJoyStick.getY();
-        // // return Math.pow(-gamePadDriver.getLeftY(), 3.0);
-        //return gamePadDriver.getLeftY();
+        if (Math.abs(leftJoyStick.getY()) > 0.05){
+          return leftJoyStick.getY();
+        } else {
+          return 0;
+        }
       }
     
       public double getrightYAxis() {
-        // return Math.pow(rightJoyStick.getY(), 3.0);
-        return rightJoyStick.getY();
-        // // return Math.pow(gamePadDriver.getRightY(), 3.0);
-        // return gamePadDriver.getRightY();
+        if (Math.abs(rightJoyStick.getY()) > 0.05){
+          return rightJoyStick.getY();
+        } else {
+          return 0;
+        }
       }
     
       public double getleftXAxis() {
-        // return Math.pow(-rightJoyStick.getX(), 3.0);
-        return leftJoyStick.getX();
-        // // return Math.pow(-gamePadDriver.getLeftX(), 3.0);
-        // return gamePadDriver.getLeftX();
+        if (Math.abs(leftJoyStick.getX()) > 0.05){
+          return leftJoyStick.getX();
+        } else {
+          return 0;
+        }
       }
       
       public double getrightXAxis() {
-        // return Math.pow(-rightJoyStick.getX(), 3.0);
-        return rightJoyStick.getX();
-        // // return Math.pow(-gamePadDriver.getRightX(), 3.0);
-        // return gamePadDriver.getRightX();
+        if (Math.abs(rightJoyStick.getX()) > 0.05){
+          return rightJoyStick.getX();
+        } else {
+          return 0;
+        }
       }
 
       public double getgamepadleftXAxis() {
         if (Math.abs(gamePad.getLeftX()) > 0.05){
-          return 0.25 * gamePad.getLeftX();
+          return gamePad.getLeftX();
         } else {
           return 0;
         }
@@ -123,21 +127,23 @@ public class OI {
         }
       }
 
-      public boolean shiftGears(){
+      public boolean getRightJoystick2(){
       return (rightJoyStick.getRawButton(2));
       }
-      public boolean elevatorUp(){
+
+      public boolean getRightJoystick8(){
         return (rightJoyStick.getRawButton(8));
       }
-      public boolean elevatorZero(){
+
+      public boolean getRightJoystick7(){
         return (rightJoyStick.getRawButton(7));
       }
 
-      public boolean dynamicBreaking(){
+      public boolean getRightJoystick5(){
         return (rightJoyStick.getRawButton(5));
       }
 
-      public boolean get11(){
+      public boolean getRightJoystick11(){
         return (rightJoyStick.getRawButton(11));
       }
 
