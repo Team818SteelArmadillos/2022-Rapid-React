@@ -1,18 +1,13 @@
 package frc.robot;
 
-import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.MjpegServer;
 import edu.wpi.first.cscore.UsbCamera;
-import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.RobotBase;
-import edu.wpi.first.wpilibj.RobotState;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.AutoShootCommand;
-import frc.robot.commands.AutonAutoShootCommand;
 import frc.robot.commands.DynamicBraking;
 import frc.robot.commands.ElevatorCommand;
 import frc.robot.commands.ElevatorCommandTesting;
@@ -24,10 +19,8 @@ import frc.robot.commands.LowShootManualCommand;
 import frc.robot.commands.SpoolShooterCommand;
 import frc.robot.commands.TankDriveCommand;
 import frc.robot.commands.ThreeBallAutonCommand;
-import frc.robot.commands.TurnDrive;
 import frc.robot.commands.TurretCommand;
 import frc.robot.commands.TwoBallAutonCommandSequence;
-import frc.robot.commands.driveDistance;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.IndexSubsystem;
@@ -75,7 +68,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
 
-
+    
     m_TurretSubsystem = new TurretSubsystem();
     m_oi = new OI();
     m_IndexSubsystem = new IndexSubsystem();
@@ -103,6 +96,8 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("ThreeBallAuton", m_ThreeBallAuton);
     m_chooser.addOption("FiveBallAuton", m_FiveBallAuton);
     SmartDashboard.putData(m_chooser);
+
+    Robot.m_driveSubsystem.resetGyro();
   }
 
   @Override

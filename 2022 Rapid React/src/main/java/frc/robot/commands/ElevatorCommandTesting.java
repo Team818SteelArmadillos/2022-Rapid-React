@@ -1,7 +1,5 @@
 package frc.robot.commands;
 
-import java.sql.Time;
-
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -39,9 +37,9 @@ public class ElevatorCommandTesting extends CommandBase {
   @Override
   public void execute() {
   
-    if (Robot.m_oi.getElevatorOut()){
+    if (Robot.m_oi.getElevatorRight()){
       Robot.m_ElevatorSubsystem.setDynamicPistons(1);
-    } else if (Robot.m_oi.getElevatorIn()){
+    } else if (Robot.m_oi.getElevatorLeft()){
       Robot.m_ElevatorSubsystem.setDynamicPistons(-1);
     }
     

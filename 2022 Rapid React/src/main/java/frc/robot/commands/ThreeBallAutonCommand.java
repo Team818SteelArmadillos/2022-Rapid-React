@@ -6,13 +6,14 @@ public class ThreeBallAutonCommand extends SequentialCommandGroup {
   public ThreeBallAutonCommand() {
 
     addCommands(
-      new AutonAutoIntakeCommand(25, 1.5),
+      new ResetGyroCommand(),
+      new AutonAutoIntakeCommand(33, 1.5),
       new TurnDrive(112.25),
-      new AutonAutoShootCommand(-0.2),
+      //new AutonAutoShootCommand(-0.2),
       new AutonAutoIntakeCommand(70, 2.5),
-      new TurnDrive(90),
-      new driveDistance(25),
-      new AutonAutoShootCommand(-0.2)
+      new TurnDrive(112.25 + 90),
+      new driveDistance(25)
+     // new AutonAutoShootCommand(-0.2)
 
 
     );

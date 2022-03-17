@@ -8,9 +8,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class TurnDrive extends CommandBase {
   
-  double p = 0.02;
-  double i = 0.002;
-  double d = 0;
   double power;
   PIDController anglePID;
   double turnAngle;
@@ -20,11 +17,8 @@ public class TurnDrive extends CommandBase {
 
   @Override
   public void initialize() {
-  //SmartDashboard.putNumber("p", 0.1);
-  //p = SmartDashboard.getNumber("p", 0);
     Robot.m_driveSubsystem.setBothMotors(0);
-    Robot.m_driveSubsystem.resetGyro();
-    anglePID = new PIDController(p, i, d);
+    anglePID = new PIDController(0.0185, 0.0009, 0.0046);
     anglePID.setTolerance(2);
   }
 
@@ -32,7 +26,8 @@ public class TurnDrive extends CommandBase {
 
   public void execute() {
     SmartDashboard.putNumber( "Angle" , Robot.m_driveSubsystem.getAngle());
-    power = MathUtil.clamp(anglePID.calculate(turnAngle - Robot.m_driveSubsystem.getAngle()), -0.2, 0.2);
+    power = MathUtil.clamp(anglePID.calculate(turnAngle - Robot.m_driveSubsystem.getAngle()), -0.6, 0.6);
+    
     Robot.m_driveSubsystem.setLeftMotors(power);
     Robot.m_driveSubsystem.setRightMotors(-power);
     SmartDashboard.putNumber( "Power" , power);
@@ -42,12 +37,11 @@ public class TurnDrive extends CommandBase {
 
   public void end(boolean interrupted) {
     Robot.m_driveSubsystem.setBothMotors(0);
-    Robot.m_driveSubsystem.resetGyro();
   }
 
   @Override
   public boolean isFinished() {
-    return anglePID.atSetpoint();
-   // return false;
+    return (anglePID.atSetpoint() && Math.abs(Robot.m_driveSubsystem.getLeftVelocity()) < 0.05);
+  
   }
 }

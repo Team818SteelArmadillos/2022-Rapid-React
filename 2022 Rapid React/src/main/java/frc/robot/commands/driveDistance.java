@@ -7,7 +7,12 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class driveDistance extends CommandBase {
 
-  double distance;
+  double p = 0.02;
+  double i = 0.002;
+  double d = 0;
+
+  double distance, power;
+
 
   public driveDistance(double dist){
     addRequirements(Robot.m_driveSubsystem);
@@ -26,7 +31,7 @@ public class driveDistance extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-   Robot.m_driveSubsystem.setDriveMotorPostion(distance);
+   power = Robot.m_driveSubsystem.setDriveMotorPostion(distance);
    SmartDashboard.putNumber("Right Distance Travled (in)", Robot.m_driveSubsystem.getRightPosition());
    SmartDashboard.putNumber("Left Distance Travled (in)", Robot.m_driveSubsystem.getLeftPosition());
   }
@@ -39,6 +44,7 @@ public class driveDistance extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return Robot.m_driveSubsystem.DrivePIDLeft.atSetpoint() && Robot.m_driveSubsystem.DrivePIDRight.atSetpoint();
+    return (Robot.m_driveSubsystem.DrivePIDLeft.atSetpoint() && Math.abs(Robot.m_driveSubsystem.getLeftVelocity()) < 0.1);
+    
   }
 }

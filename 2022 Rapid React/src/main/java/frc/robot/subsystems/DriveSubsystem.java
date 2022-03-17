@@ -3,10 +3,8 @@ package frc.robot.subsystems;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Robot;
 
@@ -15,7 +13,6 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.sensors.PigeonIMU;
 
 import static frc.robot.Constants.DriveConstants.*;
-import static frc.robot.Constants.motorports.*;
 
 public class DriveSubsystem extends SubsystemBase {
 
@@ -129,10 +126,11 @@ public void setBothMotors(double speed) {
   setRightMotors(speed);
 }
 
-public void setDriveMotorPostion(double distance){
-
-  setLeftMotors(MathUtil.clamp(DrivePIDLeft.calculate(distance - getLeftPosition()), -0.5, 0.5));
-  setRightMotors(MathUtil.clamp(DrivePIDRight.calculate(distance - getRightPosition()), -0.5, 0.5));
+public double setDriveMotorPostion(double distance){
+  double power = MathUtil.clamp(DrivePIDLeft.calculate(distance - getLeftPosition()), -0.5, 0.5);  
+  setBothMotors(power);
+  return power;
+  //setRightMotors(MathUtil.clamp(DrivePIDRight.calculate(distance - getRightPosition()), -0.5, 0.5));
  
 }
 
@@ -144,7 +142,7 @@ public void setBreak(){
 }
 
 public double getLeftPosition() {
-  if (isHighGear){
+  if (!isHighGear){
     return -(talonLeft1.getSelectedSensorPosition() - leftOffset) * distancePerPulse / high;
   } else {
     return -(talonLeft1.getSelectedSensorPosition() - leftOffset) * distancePerPulse / low;
@@ -153,7 +151,7 @@ public double getLeftPosition() {
 }
 
 public double getRightPosition() {
-  if (isHighGear){
+  if (!isHighGear){
     return -(talonRight1.getSelectedSensorPosition() - rightOffset) * distancePerPulse / high;
   } else {
     return -(talonRight1.getSelectedSensorPosition() - rightOffset) * distancePerPulse / low;
