@@ -1,4 +1,4 @@
-/*package frc.robot.subsystems;
+package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.Constants.LEDNumbers.*;
@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.util.Color;
 
 public class LEDS extends SubsystemBase {
 
-    CANdle candle;
+    public CANdle candle;
     Color ballColor1;
     Color ballColor2;
     ColorSensorV3 colorSensor;
@@ -39,7 +39,7 @@ public class LEDS extends SubsystemBase {
         candle.configAllSettings(config);
 
         //sets the leds on the canfle itself to lime green
-       candle.setLEDs(50, 205, 50, 255, 0, LED_CANdle);
+       //candle.setLEDs(50, 205, 50, 255, 0, LED_CANdle);
 
+    }
 }
-}*/
