@@ -48,11 +48,11 @@ public class AutoShootCommand extends CommandBase {
     ShootPID.setTolerance(10);
 
     SmartDashboard.putNumber("speed", 3000);
-    // SmartDashboard.putNumber("Rpm", 3000);
+    SmartDashboard.putNumber("Rpm", 1000);
 
-    // SmartDashboard.putNumber("P", 0);
-    // SmartDashboard.putNumber("I", 0);
-    // SmartDashboard.putNumber("D", 0);
+    SmartDashboard.putNumber("P", 0);
+    SmartDashboard.putNumber("I", 0);
+    SmartDashboard.putNumber("D", 0);
 
   }
 
@@ -70,26 +70,32 @@ public class AutoShootCommand extends CommandBase {
   @Override
   public void execute() {
 
-  // ShootPID.setP(SmartDashboard.getNumber("P", 0));
-  // ShootPID.setI(SmartDashboard.getNumber("I", 0));
-  // ShootPID.setD(SmartDashboard.getNumber("D", 0));
+    // SET PID values from Smart Dash
+  ShootPID.setP(SmartDashboard.getNumber("P", 0));
+  ShootPID.setI(SmartDashboard.getNumber("I", 0));
+  ShootPID.setD(SmartDashboard.getNumber("D", 0));
 
   SmartDashboard.putNumber("Distance", 69.3142/Math.tan((Robot.m_shootervision.getY()+39.78)*Math.PI/180));
   
- rpm = shooterSpeed(69.3142/Math.tan((Robot.m_shootervision.getY()+39.78)*Math.PI/180));
+  // SET TARGET RPM
+ //rpm = shooterSpeed(69.3142/Math.tan((Robot.m_shootervision.getY()+39.78)*Math.PI/180)) // Calc from vision
+  rpm = SmartDashboard.getNumber("Rpm", 0); // from Smart Dash
 
-  // rpm = SmartDashboard.getNumber("Rpm", 0);
+  // DISPLAY Shooter Speed
+  SmartDashboard.putNumber("actualrpm", Robot.m_ShooterSubsystem.getCurrentShooterSpeed());
+  SmartDashboard.putNumber("actualrpmback", Robot.m_ShooterSubsystem.getCurrentShooterSpeedOne());
+
 
     if(Robot.m_shootervision.getTarget()) {
       Robot.m_TurretSubsystem.setTurretSpeed(-Robot.m_shootervision.getX() / 40);
     if (Math.abs(Robot.m_shootervision.getX()) < 5) {
        reachedTarget = true;
     }
-      power = -ShootPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeed());
+      power = -ShootPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeedOne());
         Robot.m_ShooterSubsystem.setPower(power);
         
         SmartDashboard.putNumber("power", power);
-        SmartDashboard.putNumber("Shooter Speed", Robot.m_ShooterSubsystem.getCurrentShooterSpeed());
+        SmartDashboard.putNumber("Shooter Speed", Robot.m_ShooterSubsystem.getCurrentShooterSpeedOne());
     
         if(ShootPID.atSetpoint()){
           Robot.m_IndexSubsystem.setConveyor(0.5);
