@@ -15,7 +15,7 @@ public class AutonAutoShootCommand extends CommandBase {
 
   double turret;
 
-  PIDController ShootPID;
+  PIDController ShootFrontPID;
 
   private double dist[][];
 
@@ -48,9 +48,9 @@ public class AutonAutoShootCommand extends CommandBase {
     dist[5][1] = 3550;
 
 
-    ShootPID = new PIDController(shooterP, shooterI, shooterD);
+    ShootFrontPID = new PIDController(shooterFrontP, shooterFrontI, shooterFrontD);
 
-    ShootPID.setTolerance(10);
+    ShootFrontPID.setTolerance(10);
 
 
   }
@@ -59,7 +59,7 @@ public class AutonAutoShootCommand extends CommandBase {
   public void initialize() {
     Robot.m_IndexSubsystem.setConveyor(0);
     Robot.m_IndexSubsystem.setIndex(0);
-    Robot.m_ShooterSubsystem.setPower(0);
+    Robot.m_ShooterSubsystem.setPowerFront(0);
     Robot.m_TurretSubsystem.setTurretSpeed(0);
     timer = new Timer();
     timer.start();
@@ -77,13 +77,13 @@ public class AutonAutoShootCommand extends CommandBase {
     if (Math.abs(Robot.m_shootervision.getX() + 5) < 3) {
        reachedTarget = true;
     }
-      power = -ShootPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeed());
-        Robot.m_ShooterSubsystem.setPower(power);
+      power = -ShootFrontPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeedTalonTwo());
+        Robot.m_ShooterSubsystem.setPowerFront(power);
         
         SmartDashboard.putNumber("power", power);
-        SmartDashboard.putNumber("Shooter Speed", Robot.m_ShooterSubsystem.getCurrentShooterSpeed());
+        SmartDashboard.putNumber("Shooter Speed", Robot.m_ShooterSubsystem.getCurrentShooterSpeedTalonTwo());
     
-        if(ShootPID.atSetpoint()){
+        if(ShootFrontPID.atSetpoint()){
           Robot.m_IndexSubsystem.setConveyor(0.5);
           Robot.m_IndexSubsystem.setIndex(0.3);
         }
@@ -97,7 +97,7 @@ public class AutonAutoShootCommand extends CommandBase {
     timer.reset();
     Robot.m_IndexSubsystem.setConveyor(0);
     Robot.m_IndexSubsystem.setIndex(0);
-    Robot.m_ShooterSubsystem.setPower(0);
+    Robot.m_ShooterSubsystem.setPowerFront(0);
     Robot.m_TurretSubsystem.setTurretSpeed(0);
     Robot.m_driveSubsystem.shift(true);
 

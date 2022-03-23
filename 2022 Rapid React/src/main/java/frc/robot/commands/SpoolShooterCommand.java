@@ -19,7 +19,7 @@ public class SpoolShooterCommand extends CommandBase {
 
   public SpoolShooterCommand() {
     rpm = 0;
-    ShootPID = new PIDController( shooterP, shooterI, shooterD);
+    ShootPID = new PIDController( shooterFrontP, shooterFrontI, shooterFrontD);
     ShootPID.setTolerance(10);
     
   }
@@ -27,15 +27,18 @@ public class SpoolShooterCommand extends CommandBase {
   @Override
   public void initialize() {
     SmartDashboard.putNumber("Set Shooter speed", 0);
-    Robot.m_ShooterSubsystem.setPower(0);
+    Robot.m_ShooterSubsystem.setPowerFront(0);
+    //Robot.m_ShooterSubsystem.setPowerBack(0);
   }
 
   @Override
   public void execute() {
     if( Robot.m_oi.getLeftBumper()  ||  Robot.m_oi.getRightBumper()){
-      Robot.m_ShooterSubsystem.setPower(1);
+      Robot.m_ShooterSubsystem.setPowerFront(1);
+      //Robot.m_ShooterSubsystem.setPowerBack(1);
     }else{
-      Robot.m_ShooterSubsystem.setPower(0);
+      Robot.m_ShooterSubsystem.setPowerFront(0);
+      //Robot.m_ShooterSubsystem.setPowerBack(0);
     }
     
     if(Robot.m_oi.getBackButton()){
@@ -47,7 +50,8 @@ public class SpoolShooterCommand extends CommandBase {
 
   @Override
   public void end(boolean interrupted) {
-    Robot.m_ShooterSubsystem.setPower(0);
+    Robot.m_ShooterSubsystem.setPowerFront(0);
+    //Robot.m_ShooterSubsystem.setPowerBack(0);
   }
 
   @Override

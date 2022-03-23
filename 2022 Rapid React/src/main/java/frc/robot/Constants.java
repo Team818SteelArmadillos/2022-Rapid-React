@@ -45,9 +45,13 @@ public static class DriveConstants {
 
     public static final int[] hoodPistonPort = {4, 5, 0};
 
-    public static final double shooterP = 0.00042;
-    public static final double shooterI = 0.00323077;
-    public static final double shooterD = 0.00001365;
+    public static final double shooterFrontP = 0.00075;
+    public static final double shooterFrontI = 0.003;
+    public static final double shooterFrontD = 0.00001;
+
+    public static final double shooterBackP = 0.00039882;
+    public static final double shooterBackI = 0.00377562;
+    public static final double shooterBackD = 0.000005;
 
     public static final double turretGearRatio = 55;
 

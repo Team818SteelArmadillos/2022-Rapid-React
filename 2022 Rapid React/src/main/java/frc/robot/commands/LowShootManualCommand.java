@@ -13,12 +13,12 @@ import static frc.robot.Constants.ShooterConstants.*;
 
 public class LowShootManualCommand extends CommandBase {
   double rpm;
-  PIDController ShootPID;
+  PIDController ShootFrontPID;
   double ShooterMotorspeed;
 
   public LowShootManualCommand() {
-    ShootPID = new PIDController(shooterP, shooterI, shooterD);
-    ShootPID.setTolerance(10);
+    ShootFrontPID = new PIDController(shooterFrontP, shooterFrontI, shooterFrontD);
+    ShootFrontPID.setTolerance(10);
     SmartDashboard.putNumber("low Shooter speed", 1000);
 
   }
@@ -26,7 +26,7 @@ public class LowShootManualCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.m_ShooterSubsystem.setPower(0);
+    Robot.m_ShooterSubsystem.setPowerFront(0);
     Robot.m_IndexSubsystem.setConveyor(0);
     Robot.m_IndexSubsystem.setIndex(0);
   }
@@ -37,12 +37,12 @@ public class LowShootManualCommand extends CommandBase {
 
     //change value once redetemined
     rpm = 1300;
-      double shooterPower = ShootPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeed());
+      double shooterPower = ShootFrontPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeedTalonTwo());
       SmartDashboard.putNumber("Shooter Power", shooterPower);
-      Robot.m_ShooterSubsystem.setPower(-shooterPower);
+      Robot.m_ShooterSubsystem.setPowerFront(-shooterPower);
 
 
-      if(ShootPID.atSetpoint()){
+      if(ShootFrontPID.atSetpoint()){
 
         Robot.m_IndexSubsystem.setConveyor(0.5);
         Robot.m_IndexSubsystem.setIndex(0.3);
@@ -55,7 +55,7 @@ public class LowShootManualCommand extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Robot.m_ShooterSubsystem.setPower(0);
+    Robot.m_ShooterSubsystem.setPowerFront(0);
     Robot.m_IndexSubsystem.setConveyor(0);
     Robot.m_IndexSubsystem.setIndex(0);
   }

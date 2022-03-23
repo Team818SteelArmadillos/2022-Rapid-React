@@ -21,22 +21,26 @@ public class ShooterSubsystem extends SubsystemBase {
     talon2.setInverted(!SHOOTER_INVERTED);
 
   }
-  public double getCurrentShooterSpeed(){
+  public double getCurrentShooterSpeedTalonTwo(){
 
     return talon2.getSelectedSensorVelocity() * velocityCalculationsPerSecond * 60 / encoderPulsesPerRevolution;
   }
 
-  public double getCurrentShooterSpeedOne(){
+  public double getCurrentShooterSpeedTalonOne(){
 
-    return talon1.getSelectedSensorVelocity() * velocityCalculationsPerSecond * 60 / encoderPulsesPerRevolution;
+    return ((talon1.getSelectedSensorVelocity() * velocityCalculationsPerSecond * 60 / encoderPulsesPerRevolution)/1.5);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
   }
-  public void setPower(double power) {
-    //talon2.set(ControlMode.PercentOutput, power);
-    talon1.set(ControlMode.PercentOutput, power);
+  public void setPowerFront(double powerFront) {
+    talon2.set(ControlMode.PercentOutput, powerFront);
+    
+  }
+
+  public void setPowerBack(double powerBack){
+     talon1.set(ControlMode.PercentOutput, powerBack);
   }
 }

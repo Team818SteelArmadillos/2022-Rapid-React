@@ -13,20 +13,20 @@ import static frc.robot.Constants.ShooterConstants.*;
 
 public class HighShootManualCommand extends CommandBase {
   double rpm;
-  PIDController ShootPID;
+  PIDController ShootFrontPID;
 
   double ShooterMotorspeed;
 
   public HighShootManualCommand() {
-    ShootPID = new PIDController( shooterP, shooterI, shooterD);
-    ShootPID.setTolerance(10);
+    ShootFrontPID = new PIDController( shooterFrontP, shooterFrontI, shooterFrontD);
+    ShootFrontPID.setTolerance(10);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
     SmartDashboard.putNumber("Set Shooter speed", 0);
-    Robot.m_ShooterSubsystem.setPower(0);
+    Robot.m_ShooterSubsystem.setPowerFront(0);
     Robot.m_IndexSubsystem.setConveyor(0);
     Robot.m_IndexSubsystem.setIndex(0);
   }
@@ -37,11 +37,11 @@ public class HighShootManualCommand extends CommandBase {
   public void execute() {
     //change value once redetemined
     rpm = 2650;
-    double shooterPower = ShootPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeed());
+    double shooterPower = ShootFrontPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeedTalonTwo());
     SmartDashboard.putNumber("Shooter Power", shooterPower);
-    Robot.m_ShooterSubsystem.setPower(-shooterPower);
+    Robot.m_ShooterSubsystem.setPowerFront(-shooterPower);
 
-    if(ShootPID.atSetpoint()){
+    if(ShootFrontPID.atSetpoint()){
 
       Robot.m_IndexSubsystem.setConveyor(0.5);
       Robot.m_IndexSubsystem.setIndex(0.3);
@@ -53,7 +53,7 @@ public class HighShootManualCommand extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Robot.m_ShooterSubsystem.setPower(0);
+    Robot.m_ShooterSubsystem.setPowerFront(0);
     Robot.m_IndexSubsystem.setConveyor(0);
     Robot.m_IndexSubsystem.setIndex(0);
   }
