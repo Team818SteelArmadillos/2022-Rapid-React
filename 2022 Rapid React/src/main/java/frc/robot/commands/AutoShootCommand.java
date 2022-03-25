@@ -22,15 +22,34 @@ public class AutoShootCommand extends CommandBase {
 
   private double rpm, powerFront, powerBack;
 
- // Timer timer;
+ Timer timer;
 
   public AutoShootCommand() {
     addRequirements(Robot.m_ShooterSubsystem, Robot.m_shootervision, Robot.m_TurretSubsystem, Robot.m_IntakeSubsystem, Robot.m_IndexSubsystem);
 
-    //timer = new Timer();
+    timer = new Timer();
 
     rpm = 3000;
     dist = new double[6][2];
+
+
+    dist[0][0] = 42;
+    dist[0][1] = 1500;
+
+    dist[1][0] = 57;
+    dist[1][1] = 1600;
+
+    dist[2][0] = 81;
+    dist[2][1] = 1700;
+
+    dist[3][0] = 98;
+    dist[3][1] = 1800;
+
+    dist[4][0] = 102;
+    dist[4][1] = 1900;
+
+
+
 
   /* old distance to rmp pairs lookup table for just one wheel
 
@@ -131,8 +150,12 @@ public class AutoShootCommand extends CommandBase {
         
     
         if(ShootFrontPID.atSetpoint() ){ //&& ShootBackPID.atSetpoint()){
-          Robot.m_IndexSubsystem.setConveyor(0.5);
           Robot.m_IndexSubsystem.setIndex(0.3);
+          Robot.m_IndexSubsystem.setConveyor(-1);
+           timer.start();
+          if (timer.hasElapsed(0.2)){
+            Robot.m_IndexSubsystem.setConveyor(1);
+          }
         }
     } else Robot.m_TurretSubsystem.setTurretSpeed(-Robot.m_oi.getgamepadleftXAxis()*0.25);
 
@@ -147,6 +170,7 @@ public class AutoShootCommand extends CommandBase {
     Robot.m_ShooterSubsystem.setPowerBack(0);
     Robot.m_TurretSubsystem.setTurretSpeed(0);
     Robot.m_driveSubsystem.shift(true);
+    timer.reset();
 
   }
 
