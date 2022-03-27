@@ -21,7 +21,6 @@ import frc.robot.commands.TankDriveCommand;
 import frc.robot.commands.ThreeBallAutonCommand;
 import frc.robot.commands.TurretCommand;
 import frc.robot.commands.TwoBallAutonCommandSequence;
-import frc.robot.commands.TwoBallOneDefensive;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.IndexSubsystem;
@@ -61,7 +60,6 @@ public class Robot extends TimedRobot {
   public static Command m_EnterClimb;
 
   public static Command m_TwoBallAuton;
-  public static Command m_TwoBallDefensive;
   public static Command m_ThreeBallAuton;
   public static Command m_FiveBallAuton;
   
@@ -100,14 +98,12 @@ public class Robot extends TimedRobot {
 
     //initialize auton commands
     m_TwoBallAuton = new TwoBallAutonCommandSequence();
-    m_TwoBallDefensive = new TwoBallOneDefensive();
     m_ThreeBallAuton = new ThreeBallAutonCommand();
     m_FiveBallAuton = new FiveBallAutonCommand();
 
     //initalize auton chooser
     m_chooser = new SendableChooser<Command>();
     m_chooser.setDefaultOption("TwoBallAuton", m_TwoBallAuton);
-    m_chooser.addOption("TwoBallDefensive", m_TwoBallDefensive);
     m_chooser.addOption("ThreeBallAuton", m_ThreeBallAuton);
     m_chooser.addOption("FiveBallAuton", m_FiveBallAuton);
     SmartDashboard.putData(m_chooser);
