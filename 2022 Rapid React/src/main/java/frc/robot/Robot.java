@@ -25,7 +25,7 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.IndexSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
-import frc.robot.subsystems.LEDS;
+// import frc.robot.subsystems.LEDS;
 import frc.robot.subsystems.ShooterVisionSubsystem;
 import frc.robot.subsystems.TurretSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
@@ -45,7 +45,7 @@ public class Robot extends TimedRobot {
   public static IntakeSubsystem m_IntakeSubsystem;
   public static ElevatorSubsystem m_ElevatorSubsystem;
   public static TurretSubsystem m_TurretSubsystem;
-  public static LEDS m_LEDS;
+  // public static LEDS m_LEDS;
 
   public static HighShootManualCommand m_HighShootManualCommand;
   public static LowShootManualCommand m_LowShootManualCommand;
@@ -82,7 +82,7 @@ public class Robot extends TimedRobot {
     m_ShooterSubsystem = new ShooterSubsystem();
     m_ElevatorSubsystem = new ElevatorSubsystem();
     m_IntakeSubsystem = new IntakeSubsystem();
-    m_LEDS = new LEDS();
+    // m_LEDS = new LEDS();
 
     //initialize commands
     m_HighShootManualCommand = new HighShootManualCommand();
@@ -141,13 +141,13 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
 
-    if (Robot.m_IndexSubsystem.SensorFront() && Robot.m_IndexSubsystem.SensorBack()){
-      Robot.m_LEDS.candle.setLEDs(0, 0, 148, 0, 0, 108);
-    } else if(!Robot.m_IndexSubsystem.SensorFront() && Robot.m_IndexSubsystem.SensorBack()){
-      Robot.m_LEDS.candle.setLEDs(0, 0, 148, 0, 0, 54);
-    } else {
-      Robot.m_LEDS.candle.setLEDs(0, 0, 0, 0, 0, 108);
-    }
+    // if (Robot.m_IndexSubsystem.SensorFront() && Robot.m_IndexSubsystem.SensorBack()){
+    //   Robot.m_LEDS.candle.setLEDs(0, 0, 148, 0, 0, 108);
+    // } else if(!Robot.m_IndexSubsystem.SensorFront() && Robot.m_IndexSubsystem.SensorBack()){
+    //   Robot.m_LEDS.candle.setLEDs(0, 0, 148, 0, 0, 54);
+    // } else {
+    //   Robot.m_LEDS.candle.setLEDs(0, 0, 0, 0, 0, 108);
+    // }
     
     
     //commands are run in groups, using a state machine format

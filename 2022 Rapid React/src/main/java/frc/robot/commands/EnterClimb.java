@@ -8,8 +8,9 @@ public class EnterClimb extends SequentialCommandGroup {
 
     addCommands(
       new ZeroTurretCommand(), 
-      new ElevatorCommand()
+      new ElevatorCommandTesting()
 
     );
   }
+  
 }

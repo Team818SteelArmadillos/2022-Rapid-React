@@ -23,11 +23,13 @@ public class ElevatorCommandTesting extends CommandBase {
 
   @Override
   public void initialize() {
-    Robot.m_ElevatorSubsystem.setDynamicPistons(-1);
+    // Robot.m_ElevatorSubsystem.setDynamicPistons(-1);
     Robot.m_ElevatorSubsystem.setRatchetPiston(-1);
-    Robot.m_ElevatorSubsystem.setStaticPistons(-1);
+    // Robot.m_ElevatorSubsystem.setStaticPistons(-1);
     Robot.m_ElevatorSubsystem.setElevatorMotor(0);
     timer.reset();
+
+    // Robot.m_ElevatorSubsystem.elevatorMotorOne.setSelectedSensorPosition(0);
 
 
   }
@@ -36,15 +38,15 @@ public class ElevatorCommandTesting extends CommandBase {
   @Override
   public void execute() {
   
-    if (Robot.m_oi.getDPadRight()){
-      Robot.m_ElevatorSubsystem.setDynamicPistons(1);
-    } else if (Robot.m_oi.getDpadLeft()){
-      Robot.m_ElevatorSubsystem.setDynamicPistons(-1);
-    }
+    // if (Robot.m_oi.getDPadRight()){
+    //   Robot.m_ElevatorSubsystem.setDynamicPistons(1);
+    // } else if (Robot.m_oi.getDpadLeft()){
+    //   Robot.m_ElevatorSubsystem.setDynamicPistons(-1);
+    // }
     
-    if (Robot.m_oi.getYButton()){
-      Robot.m_ElevatorSubsystem.setStaticPistons(1);
-    } 
+    // if (Robot.m_oi.getYButton()){
+    //   Robot.m_ElevatorSubsystem.setStaticPistons(1);
+    // } 
 
     if (Robot.m_oi.getDPadUp() && !PreviousUp){
       Robot.m_ElevatorSubsystem.setRatchetPiston(1);
@@ -52,7 +54,7 @@ public class ElevatorCommandTesting extends CommandBase {
       timer.start();
     } else if (PreviousUp) {
         if (timer.hasElapsed(0.1) && Robot.m_oi.getDPadUp()) {
-          Robot.m_ElevatorSubsystem.setElevatorMotor(0.5);
+          Robot.m_ElevatorSubsystem.setElevatorMotor(0.25);
         } else if (!Robot.m_oi.getDPadUp()) {
           PreviousUp = false;
           timer.stop();
@@ -60,10 +62,11 @@ public class ElevatorCommandTesting extends CommandBase {
         }
     }
     else if (Robot.m_oi.getDPadDown()){
-      Robot.m_ElevatorSubsystem.setRatchetPiston(-1);
-      Robot.m_ElevatorSubsystem.setElevatorMotor(-0.5);
+      Robot.m_ElevatorSubsystem.setRatchetPiston(1);
+      Robot.m_ElevatorSubsystem.setElevatorMotor(-0.25);
     } else {
       Robot.m_ElevatorSubsystem.setElevatorMotor(0);
+      Robot.m_ElevatorSubsystem.setRatchetPiston(-1);
     }
 
     SmartDashboard.putNumber("Elevator Position", Robot.m_ElevatorSubsystem.getEncoderPosition());

@@ -30,7 +30,7 @@ public class AutoShootCommand extends CommandBase {
     timer = new Timer();
 
     rpm = 3000;
-    dist = new double[6][2];
+    dist = new double[10][2];
 
 
     dist[0][0] = 42;
@@ -48,6 +48,18 @@ public class AutoShootCommand extends CommandBase {
     dist[4][0] = 102;
     dist[4][1] = 1900;
 
+    dist[5][0] = 105.5;
+    dist[5][1] = 2000;
+
+    dist[6][0] = 110;
+    dist[6][1] = 2200;
+
+    dist[7][0] = 121;
+    dist[7][1] = 2450;
+
+    dist[7][0] = 128.5;
+    dist[7][1] = 2850;
+    
 
 
 
@@ -151,10 +163,10 @@ public class AutoShootCommand extends CommandBase {
     
         if(ShootFrontPID.atSetpoint() ){ //&& ShootBackPID.atSetpoint()){
           Robot.m_IndexSubsystem.setIndex(0.3);
-          Robot.m_IndexSubsystem.setConveyor(-1);
+          Robot.m_IndexSubsystem.setConveyor(-0.5);
            timer.start();
           if (timer.hasElapsed(0.2)){
-            Robot.m_IndexSubsystem.setConveyor(1);
+            Robot.m_IndexSubsystem.setConveyor(0.5);
           }
         }
     } else Robot.m_TurretSubsystem.setTurretSpeed(-Robot.m_oi.getgamepadleftXAxis()*0.25);

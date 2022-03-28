@@ -11,7 +11,7 @@ import static frc.robot.Constants.ElevatorConstants.*;
 
 
 public class ElevatorSubsystem extends SubsystemBase {
-  static TalonFX elevatorMotorOne;
+  public TalonFX elevatorMotorOne;
   static DoubleSolenoid ratchetPiston, anglePiston1, hookPiston1;
   
   public ElevatorSubsystem() {
@@ -76,6 +76,6 @@ public class ElevatorSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-
+  
   }
 }
