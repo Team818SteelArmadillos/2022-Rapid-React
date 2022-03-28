@@ -29,8 +29,8 @@ public class AutoShootCommand extends CommandBase {
 
     timer = new Timer();
 
-    rpm = 3000;
-    dist = new double[10][2];
+    // rpm = 3000;
+    dist = new double[11][2];
 
 
     dist[0][0] = 42;
@@ -57,10 +57,14 @@ public class AutoShootCommand extends CommandBase {
     dist[7][0] = 121;
     dist[7][1] = 2450;
 
-    dist[7][0] = 128.5;
-    dist[7][1] = 2850;
+    dist[8][0] = 128.5;
+    dist[8][1] = 2850;
     
+    dist[9][0] = 140;
+    dist[9][1] = 3175;
 
+    dist[10][0] = 160;
+    dist[10][1] = 3400;
 
 
   /* old distance to rmp pairs lookup table for just one wheel
@@ -85,10 +89,6 @@ public class AutoShootCommand extends CommandBase {
 
     */
 
-    //new distance to rpm array table with front and back wheels
-
-    // 2500, 2700, 2900, 3100, 3300, 3500, 3700, 3900, 4100
-
     ShootFrontPID = new PIDController(shooterFrontP, shooterFrontI, shooterFrontD);
     ShootFrontPID.setTolerance(10);
 
@@ -96,7 +96,7 @@ public class AutoShootCommand extends CommandBase {
     ShootBackPID.setTolerance(100);
 
     SmartDashboard.putNumber("speed", 3000);
-    SmartDashboard.putNumber("Rpm", 1000);
+    // SmartDashboard.putNumber("Rpm", 1000);
 
     // SmartDashboard.putNumber("P", 0);
     // SmartDashboard.putNumber("I", 0);
@@ -138,8 +138,8 @@ public class AutoShootCommand extends CommandBase {
   SmartDashboard.putNumber("Distance", 69.3142/Math.tan((Robot.m_shootervision.getY()+39.78)*Math.PI/180));
   
   // SET TARGET RPM
- //rpm = shooterSpeed(69.3142/Math.tan((Robot.m_shootervision.getY()+39.78)*Math.PI/180)) // Calc from vision
-  rpm = SmartDashboard.getNumber("Rpm", 0); // from Smart Dash
+ rpm = shooterSpeed(69.3142/Math.tan((Robot.m_shootervision.getY()+39.78)*Math.PI/180));// Calc from vision
+  // rpm = SmartDashboard.getNumber("Rpm", 0); // from Smart Dash
 
   // DISPLAY Shooter Speed
   SmartDashboard.putNumber("actualrpm", Robot.m_ShooterSubsystem.getCurrentShooterSpeedTalonTwo());
@@ -163,10 +163,10 @@ public class AutoShootCommand extends CommandBase {
     
         if(ShootFrontPID.atSetpoint() ){ //&& ShootBackPID.atSetpoint()){
           Robot.m_IndexSubsystem.setIndex(0.3);
-          Robot.m_IndexSubsystem.setConveyor(-0.5);
+          Robot.m_IndexSubsystem.setConveyor(-1);
            timer.start();
           if (timer.hasElapsed(0.2)){
-            Robot.m_IndexSubsystem.setConveyor(0.5);
+            Robot.m_IndexSubsystem.setConveyor(1);
           }
         }
     } else Robot.m_TurretSubsystem.setTurretSpeed(-Robot.m_oi.getgamepadleftXAxis()*0.25);
@@ -192,8 +192,8 @@ public class AutoShootCommand extends CommandBase {
   }
 
   private double shooterSpeed(double distance) {
-    if (distance <= dist[0][0] || distance > dist[5][0]) {
-      return 2650;
+    if (distance <= dist[0][0] || distance > dist[10][0]) {
+      return 1650;
     }
     int i = 0;
     while (dist[i][0] < distance) i++;

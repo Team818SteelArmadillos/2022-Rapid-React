@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -13,6 +14,7 @@ import static frc.robot.Constants.ElevatorConstants.*;
 public class ElevatorSubsystem extends SubsystemBase {
   public TalonFX elevatorMotorOne;
   static DoubleSolenoid ratchetPiston, anglePiston1, hookPiston1;
+  public DigitalInput limitSwitch;
   
   public ElevatorSubsystem() {
     elevatorMotorOne = new TalonFX(elevatorMotorPort);
@@ -36,12 +38,7 @@ public class ElevatorSubsystem extends SubsystemBase {
   public void setElevatorMotor(double Speed) {
     elevatorMotorOne.set(ControlMode.PercentOutput, Speed);
     
-    if (Speed > 0){
-      setRatchetPiston(1);
-    } else{
-      setRatchetPiston(-1);
-    }
-  
+ 
   }
 
   public void setRatchetPiston(int pistonVal) {
@@ -72,6 +69,14 @@ public class ElevatorSubsystem extends SubsystemBase {
     } else if (pistonVal == -1) {
       hookPiston1.set(DoubleSolenoid.Value.kForward);
     }
+  }
+
+  public boolean getlimitSwitch(){
+    return limitSwitch.get();
+  }
+
+  public void resetEncoders(){
+    elevatorMotorOne.setSelectedSensorPosition(0);
   }
 
   @Override
