@@ -18,6 +18,7 @@ import frc.robot.commands.HighShootManualCommand;
 import frc.robot.commands.LowShootManualCommand;
 import frc.robot.commands.SpoolShooterCommand;
 import frc.robot.commands.TankDriveCommand;
+import frc.robot.commands.ThreeBallAutoDefensive;
 import frc.robot.commands.ThreeBallAutonCommand;
 import frc.robot.commands.TurretCommand;
 import frc.robot.commands.TwoBallAutonCommandSequence;
@@ -62,6 +63,7 @@ public class Robot extends TimedRobot {
   public static Command m_TwoBallAuton;
   public static Command m_ThreeBallAuton;
   public static Command m_FiveBallAuton;
+  public static Command m_ThreeBallDefensiveAuton;
   
   SendableChooser<Command> m_chooser;
   
@@ -100,10 +102,12 @@ public class Robot extends TimedRobot {
     m_TwoBallAuton = new TwoBallAutonCommandSequence();
     m_ThreeBallAuton = new ThreeBallAutonCommand();
     m_FiveBallAuton = new FiveBallAutonCommand();
+    m_ThreeBallDefensiveAuton = new ThreeBallAutoDefensive();
 
     //initalize auton chooser
     m_chooser = new SendableChooser<Command>();
     m_chooser.setDefaultOption("TwoBallAuton", m_TwoBallAuton);
+    m_chooser.addOption("ThreeBallDefensive", m_ThreeBallDefensiveAuton);
     m_chooser.addOption("ThreeBallAuton", m_ThreeBallAuton);
     m_chooser.addOption("FiveBallAuton", m_FiveBallAuton);
     SmartDashboard.putData(m_chooser);
