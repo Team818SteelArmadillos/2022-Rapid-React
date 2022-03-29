@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
@@ -13,19 +14,29 @@ import static frc.robot.Constants.ShooterConstants.*;
 
 public class HighShootManualCommand extends CommandBase {
   double rpm;
-  PIDController ShootFrontPID;
+  PIDController ShootFrontPID, ShootBackPID;
 
-  double ShooterMotorspeed;
+  Timer timer;
+  
+  double powerFront, powerBack;
 
   public HighShootManualCommand() {
     ShootFrontPID = new PIDController( shooterFrontP, shooterFrontI, shooterFrontD);
     ShootFrontPID.setTolerance(10);
+
+    ShootBackPID = new PIDController(shooterBackP, shooterBackI, shooterBackD);
+    ShootBackPID.setTolerance(100);
+
+    SmartDashboard.putNumber("Rpm", 1000);
+
+    timer = new Timer();
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
     SmartDashboard.putNumber("Set Shooter speed", 0);
+
     Robot.m_ShooterSubsystem.setPowerFront(0);
     Robot.m_IndexSubsystem.setConveyor(0);
     Robot.m_IndexSubsystem.setIndex(0);
@@ -36,17 +47,23 @@ public class HighShootManualCommand extends CommandBase {
   @Override
   public void execute() {
     //change value once redetemined
-    rpm = 2650;
-    double shooterPower = ShootFrontPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeedTalonTwo());
-    SmartDashboard.putNumber("Shooter Power", shooterPower);
-    Robot.m_ShooterSubsystem.setPowerFront(-shooterPower);
+
+    rpm = SmartDashboard.getNumber("Rpm", 0);
+    // rpm = 2650;
+    
+      powerFront = -ShootFrontPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeedTalonTwo());
+      Robot.m_ShooterSubsystem.setPowerFront(powerFront);
+
+      powerBack = -ShootBackPID.calculate((rpm * 1.15) - Robot.m_ShooterSubsystem.getCurrentShooterSpeedTalonOne());
+      Robot.m_ShooterSubsystem.setPowerBack(powerBack);
 
     if(ShootFrontPID.atSetpoint()){
-
       Robot.m_IndexSubsystem.setConveyor(0.5);
       Robot.m_IndexSubsystem.setIndex(0.3);
-
-
+      timer.start();
+      if (timer.hasElapsed(0.2)){
+        Robot.m_IndexSubsystem.setConveyor(1);
+      }
     }
   }
 
@@ -56,6 +73,7 @@ public class HighShootManualCommand extends CommandBase {
     Robot.m_ShooterSubsystem.setPowerFront(0);
     Robot.m_IndexSubsystem.setConveyor(0);
     Robot.m_IndexSubsystem.setIndex(0);
+    timer.reset();
   }
 
   // Returns true when the command should end.
