@@ -19,7 +19,7 @@ public class TurnDrive extends CommandBase {
   public void initialize() {
     Robot.m_driveSubsystem.setBothMotors(0);
     anglePID = new PIDController(0.0185, 0.0009, 0.0046);
-    anglePID.setTolerance(2);
+    anglePID.setTolerance(4);
   }
 
   @Override
