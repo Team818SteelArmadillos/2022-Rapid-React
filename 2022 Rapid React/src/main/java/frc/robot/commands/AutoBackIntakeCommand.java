@@ -21,13 +21,10 @@ public class AutoBackIntakeCommand extends CommandBase {
 
   @Override
   public void execute() {
-
-    if(Robot.m_IndexSubsystem.SensorFront() || Robot.m_IndexSubsystem.SensorBack()){
       Robot.m_IntakeSubsystem.setIntakePosition(0.5);
       Robot.m_IntakeSubsystem.setIntakeMotor(-1);
-      Robot.m_IndexSubsystem.setConveyor(-1);
+      Robot.m_IndexSubsystem.setConveyor(-0.6);
       Robot.m_IndexSubsystem.setIndex(-0.3);
-    }
   }
 
   @Override

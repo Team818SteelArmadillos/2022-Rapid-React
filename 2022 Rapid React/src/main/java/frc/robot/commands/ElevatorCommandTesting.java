@@ -63,14 +63,15 @@ public class ElevatorCommandTesting extends CommandBase {
           timer.reset();
         }
     }
-    else if (Robot.m_oi.getDPadDown()){
-      // Robot.m_ElevatorSubsystem.setRatchetPiston(1);
-      Robot.m_ElevatorSubsystem.setElevatorMotor(-1);
-    } 
     else if(Robot.m_ElevatorSubsystem.getlimitSwitch()){
       Robot.m_ElevatorSubsystem.resetEncoders();
       Robot.m_ElevatorSubsystem.setElevatorMotor(0);
     }
+    else if (Robot.m_oi.getDPadDown()){
+      // Robot.m_ElevatorSubsystem.setRatchetPiston(1);
+      Robot.m_ElevatorSubsystem.setElevatorMotor(-0.75);
+    } 
+    
     else {
       Robot.m_ElevatorSubsystem.setElevatorMotor(0);
       // Robot.m_ElevatorSubsystem.setRatchetPiston(-1);

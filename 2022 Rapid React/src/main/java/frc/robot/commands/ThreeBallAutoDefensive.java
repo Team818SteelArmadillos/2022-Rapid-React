@@ -9,11 +9,11 @@ public class ThreeBallAutoDefensive extends SequentialCommandGroup {
       new ResetGyroCommand(),
       new AutonAutoIntakeCommand(33, 2),
       new TurnDrive(180),
-      new DriveDistance(24),
+      // new DriveDistance(24),
       new AutonAutoShootCommand(0),
-      new TurnDrive(180 - 45),
-      new AutonAutoIntakeCommand(33, 2),
-      new TurnDrive(0),
+      new TurnDrive(180 - 115),
+      new AutonAutoIntakeCommand(43, 2),
+      new TurnDrive(-40),
       new ExpelIntakeCommand(3)
 
     );

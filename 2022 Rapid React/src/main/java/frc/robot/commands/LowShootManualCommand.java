@@ -69,6 +69,7 @@ public class LowShootManualCommand extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     Robot.m_ShooterSubsystem.setPowerFront(0);
+    Robot.m_ShooterSubsystem.setPowerBack(0);
     Robot.m_IndexSubsystem.setConveyor(0);
     Robot.m_IndexSubsystem.setIndex(0);
     timer.reset();
