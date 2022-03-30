@@ -29,7 +29,7 @@ public class IntakeCommand extends CommandBase {
       Robot.m_IntakeSubsystem.setIntakePosition(0.5);
       Robot.m_IntakeSubsystem.setIntakeMotor(-1);
       Robot.m_IndexSubsystem.setConveyor(-1);
-      Robot.m_IndexSubsystem.setIndex(-0.3);
+      Robot.m_IndexSubsystem.setIndex(-0.4);
     }
 
     //if both sensors are sensed or if neither op button is held, set everything to closed/not running
@@ -46,7 +46,7 @@ public class IntakeCommand extends CommandBase {
       Robot.m_IntakeSubsystem.setIntakePosition(0.5);
       Robot.m_IntakeSubsystem.setIntakeMotor(1);
       Robot.m_IndexSubsystem.setConveyor(1);
-      Robot.m_IndexSubsystem.setIndex(0.3);
+      Robot.m_IndexSubsystem.setIndex(0.4);
 
     }
     
@@ -63,7 +63,7 @@ public class IntakeCommand extends CommandBase {
     else if (Robot.m_oi.getXButton() && Robot.m_IndexSubsystem.SensorFront() && !Robot.m_IndexSubsystem.SensorBack()) {
       Robot.m_IntakeSubsystem.setIntakePosition(0.5);
       Robot.m_IntakeSubsystem.setIntakeMotor(1);
-      Robot.m_IndexSubsystem.setIndex(0.3);
+      Robot.m_IndexSubsystem.setIndex(0.4);
       Robot.m_IndexSubsystem.setConveyor(1);
 
     } 

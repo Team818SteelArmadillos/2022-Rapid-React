@@ -30,7 +30,7 @@ public class AutoShootCommand extends CommandBase {
     timer = new Timer();
 
     // rpm = 3000;
-    dist = new double[12][2];
+    dist = new double[13][2];
 
 
     dist[0][0] = 42;
@@ -42,32 +42,35 @@ public class AutoShootCommand extends CommandBase {
     dist[2][0] = 81;
     dist[2][1] = 1750;
 
-    dist[3][0] = 94;
-    dist[3][1] = 1825;
+    dist[3][0] = 84;
+    dist[3][1] = 1800;
 
-    dist[4][0] = 98;
-    dist[4][1] = 1850;
+    dist[4][0] = 94;
+    dist[4][1] = 1825;
 
-    dist[5][0] = 102;
-    dist[5][1] = 1950;
+    dist[5][0] = 98;
+    dist[5][1] = 1850;
 
-    dist[6][0] = 105.5;
-    dist[6][1] = 2050;
+    dist[6][0] = 102;
+    dist[6][1] = 1950;
 
-    dist[7][0] = 110;
-    dist[7][1] = 2250;
+    dist[7][0] = 105.5;
+    dist[7][1] = 2050;
 
-    dist[8][0] = 121;
-    dist[8][1] = 2500;
+    dist[8][0] = 110;
+    dist[8][1] = 2250;
 
-    dist[9][0] = 128.5;
-    dist[9][1] = 2900;
+    dist[9][0] = 121;
+    dist[9][1] = 2500;
+
+    dist[10][0] = 128.5;
+    dist[10][1] = 2850;
     
-    dist[10][0] = 140;
-    dist[10][1] = 3225;
+    dist[11][0] = 140;
+    dist[11][1] = 3225;
 
-    dist[11][0] = 160;
-    dist[11][1] = 3450;
+    dist[12][0] = 160;
+    dist[12][1] = 3450;
 
 
   /* old distance to rmp pairs lookup table for just one wheel
@@ -165,7 +168,7 @@ public class AutoShootCommand extends CommandBase {
         
     
         if(ShootFrontPID.atSetpoint() ){ //&& ShootBackPID.atSetpoint()){
-          Robot.m_IndexSubsystem.setIndex(0.3);
+          Robot.m_IndexSubsystem.setIndex(0.32);
           Robot.m_IndexSubsystem.setConveyor(-1);
            timer.start();
           if (timer.hasElapsed(0.2)){
@@ -195,7 +198,7 @@ public class AutoShootCommand extends CommandBase {
   }
 
   private double shooterSpeed(double distance) {
-    if (distance <= dist[0][0] || distance > dist[11][0]) {
+    if (distance <= dist[0][0] || distance > dist[12][0]) {
       return 1650;
     }
     int i = 0;

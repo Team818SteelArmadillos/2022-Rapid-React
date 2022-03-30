@@ -8,12 +8,12 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 
 public class DoubleTurnCommand extends ParallelCommandGroup {
   /** Creates a new DoubleTurnCommand. */
-  public DoubleTurnCommand( double angle) {
+  public DoubleTurnCommand( double angle, double speed) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
       new TurnDrive(angle),
-      new AutonTurnTurret(0.1)
+      new AutonTurnTurret(speed)
       );
   }
 }

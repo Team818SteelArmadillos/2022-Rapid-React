@@ -48,8 +48,8 @@ public class HighShootManualCommand extends CommandBase {
   public void execute() {
     //change value once redetemined
 
-    rpm = SmartDashboard.getNumber("Rpm", 0);
-    // rpm = 2650;
+   rpm = SmartDashboard.getNumber("Rpm", 0);
+     //rpm = 1650;
     
       powerFront = -ShootFrontPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeedTalonTwo());
       Robot.m_ShooterSubsystem.setPowerFront(powerFront);
@@ -58,10 +58,11 @@ public class HighShootManualCommand extends CommandBase {
       Robot.m_ShooterSubsystem.setPowerBack(powerBack);
 
     if(ShootFrontPID.atSetpoint()){
-      Robot.m_IndexSubsystem.setConveyor(0.5);
-      Robot.m_IndexSubsystem.setIndex(0.3);
+      Robot.m_IndexSubsystem.setConveyor(-1);
+      Robot.m_IndexSubsystem.setIndex(0.32);
       timer.start();
       if (timer.hasElapsed(0.2)){
+
         Robot.m_IndexSubsystem.setConveyor(1);
       }
     }

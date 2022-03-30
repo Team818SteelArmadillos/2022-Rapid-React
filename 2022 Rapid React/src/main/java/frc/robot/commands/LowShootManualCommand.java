@@ -45,7 +45,7 @@ public class LowShootManualCommand extends CommandBase {
   public void execute() {
 
     //change value once redetemined
-    rpm = 1200;
+    rpm = 950;
 
       powerFront = -ShootFrontPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeedTalonTwo());
       Robot.m_ShooterSubsystem.setPowerFront(powerFront);
