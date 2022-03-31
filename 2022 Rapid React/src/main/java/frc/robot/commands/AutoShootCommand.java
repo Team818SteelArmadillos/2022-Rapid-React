@@ -46,7 +46,7 @@ public class AutoShootCommand extends CommandBase {
     dist[3][1] = 1800;
 
     dist[4][0] = 94;
-    dist[4][1] = 1825;
+    dist[4][1] = 1850;
 
     dist[5][0] = 98;
     dist[5][1] = 1850;
