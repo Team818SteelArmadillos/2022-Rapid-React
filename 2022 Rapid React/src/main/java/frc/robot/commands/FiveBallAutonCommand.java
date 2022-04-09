@@ -7,20 +7,19 @@ public class FiveBallAutonCommand extends SequentialCommandGroup {
 
     addCommands(
       new ResetGyroCommand(),
-      new AutonAutoIntakeCommand(34, 1.5),
-      new TurnDrive(110.25),
+      new AutonAutoIntakeCommand(33, 1.5),
+      new DoubleTurnCommand(110.25, -0.15, 1400),
+      new AutonAutoShootCommand(0),
+      new AutonZeroDrive(113, 2.5),
+      new DoubleTurnCommand(112.25 + 45, -0.2, 1300),
       new AutonAutoShootCommand(-0.2),
-      new AutonAutoIntakeCommand(83, 2.5),
-      new TurnDrive(112.25 + 90),
-      // new DriveDistance(28),
-      new AutonAutoShootCommand(0.2),
       // grab the two balls, no time to shoot
-      new TurnDrive(112.25 + 90 -62.85),
-      new AutonAutoIntakeCommand(157.5, 4),
-      new IntakeForTimeCommand(1),
-      new TurnDrive(145),
-      new DriveDistance(100),
-      new AutonAutoShootCommand(0)
+      new TurnDrive(112.25 + 90 -123),
+      new AutonZeroDrive(120, 4),
+      // new IntakeForTimeCommand(1),
+      new TurnDrive(112.25 + 90 -127 + 180),
+      new AutonDriveSpool(100, 1800),
+      new AutonAutoShootCommand(-0.2)
 
     );
   }

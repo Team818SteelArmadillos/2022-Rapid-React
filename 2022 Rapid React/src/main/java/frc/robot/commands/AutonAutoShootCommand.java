@@ -26,47 +26,50 @@ public class AutonAutoShootCommand extends CommandBase {
     addRequirements(Robot.m_ShooterSubsystem, Robot.m_shootervision, Robot.m_TurretSubsystem, Robot.m_IntakeSubsystem, Robot.m_IndexSubsystem);
     this.turret = turret;
     rpm = 3000;
-    dist = new double[13][2];
+    dist = new double[14][2];
 
 
     dist[0][0] = 42;
-    dist[0][1] = 1500;
+    dist[0][1] = 1430;
 
     dist[1][0] = 57;
-    dist[1][1] = 1600;
+    dist[1][1] = 1550;
 
-    dist[2][0] = 81;
-    dist[2][1] = 1750;
+    dist[2][0] = 70;
+    dist[2][1] = 1625;
 
-    dist[3][0] = 84;
-    dist[3][1] = 1800;
+    dist[3][0] = 81;
+    dist[3][1] = 1750;
 
-    dist[4][0] = 94;
-    dist[4][1] = 1825;
+    dist[4][0] = 84;
+    dist[4][1] = 1780;
 
-    dist[5][0] = 98;
-    dist[5][1] = 1850;
+    dist[5][0] = 94;
+    dist[5][1] = 1820;
 
-    dist[6][0] = 102;
-    dist[6][1] = 1950;
+    dist[6][0] = 98;
+    dist[6][1] = 1830;
 
-    dist[7][0] = 105.5;
-    dist[7][1] = 2050;
+    dist[7][0] = 102;
+    dist[7][1] = 1950;
 
-    dist[8][0] = 110;
-    dist[8][1] = 2250;
+    dist[8][0] = 105.5;
+    dist[8][1] = 2050;
 
-    dist[9][0] = 121;
-    dist[9][1] = 2500;
+    dist[9][0] = 110;
+    dist[9][1] = 2250;
 
-    dist[10][0] = 128.5;
-    dist[10][1] = 2900;
+    dist[10][0] = 121;
+    dist[10][1] = 2500;
+
+    dist[11][0] = 128.5;
+    dist[11][1] = 2850;
     
-    dist[11][0] = 140;
-    dist[11][1] = 3225;
+    dist[12][0] = 140;
+    dist[12][1] = 3225;
 
-    dist[12][0] = 160;
-    dist[12][1] = 3450;
+    dist[13][0] = 160;
+    dist[13][1] = 3450;
 
 
     ShootFrontPID = new PIDController(shooterFrontP, shooterFrontI, shooterFrontD);
@@ -136,11 +139,11 @@ public class AutonAutoShootCommand extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return timer.hasElapsed(3);
+    return timer.hasElapsed(1.8);
   }
 
   private double shooterSpeed(double distance) {
-    if (distance <= dist[0][0] || distance > dist[12][0]) {
+    if (distance <= dist[0][0] || distance > dist[13][0]) {
       return 1650;
     }
     int i = 0;

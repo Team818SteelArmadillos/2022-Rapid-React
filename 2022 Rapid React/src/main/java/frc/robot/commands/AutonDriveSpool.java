@@ -4,16 +4,15 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 
-public class DoubleTurnCommand extends ParallelRaceGroup {
+public class AutonDriveSpool extends ParallelCommandGroup {
   /** Creates a new DoubleTurnCommand. */
-  public DoubleTurnCommand( double angle, double speed, double rpm) {
+  public AutonDriveSpool(double dist, double rpm) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new TurnDrive(angle),
-      new AutonTurnTurret(speed),
+      new DriveDistance(dist),
       new AutonSpollCommmand(rpm)
       );
   }
