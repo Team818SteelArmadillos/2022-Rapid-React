@@ -22,6 +22,8 @@ public class AutoShootCommand extends CommandBase {
 
   private double rpm, powerFront, powerBack;
 
+  private boolean dataLogged;
+
  Timer timer;
 
   public AutoShootCommand() {
@@ -105,6 +107,7 @@ public class AutoShootCommand extends CommandBase {
     ShootBackPID.setTolerance(100);
 
     SmartDashboard.putNumber("speed", 3000);
+
     // SmartDashboard.putNumber("Rpm", 1000);
 
     // SmartDashboard.putNumber("P", 0);
@@ -124,7 +127,7 @@ public class AutoShootCommand extends CommandBase {
     // timer.start();
     // previousrpm = 0;
 
-  
+    dataLogged = false;
   }
 
   @Override
@@ -171,6 +174,10 @@ public class AutoShootCommand extends CommandBase {
         
     
         if(ShootFrontPID.atSetpoint() ){ //&& ShootBackPID.atSetpoint()){
+          if (!dataLogged) {
+            dataLogged = true;
+            System.out.println(String.format("Distance, %.2f, rpm, %d", 69.3142/Math.tan((Robot.m_shootervision.getY()+39.78)*Math.PI/180), (int)rpm));
+          }
           Robot.m_IndexSubsystem.setIndex(0.30);
           Robot.m_IndexSubsystem.setConveyor(-1);
            timer.start();

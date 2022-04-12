@@ -20,6 +20,9 @@ public static class DriveConstants {
     public static final double driveP = 0.05;
     public static final double driveI = 0.0004;
     public static final double driveD = 0.006;
+    public static final double brakeP = 0.2;
+    public static final double brakeI = 0;
+    public static final double brakeD = 0;
 
 
 

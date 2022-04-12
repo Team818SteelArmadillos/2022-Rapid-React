@@ -8,6 +8,7 @@ public class TankDriveCommand extends CommandBase {
 
   boolean prevGearButton;
   boolean dynambreak;
+  boolean prevGear;
 
  public TankDriveCommand() {
     addRequirements(Robot.m_driveSubsystem);
@@ -16,7 +17,7 @@ public class TankDriveCommand extends CommandBase {
   @Override
   public void initialize() {
     prevGearButton = false;
-    dynambreak=false;
+    dynambreak = false;
     Robot.m_driveSubsystem.shift(false);
     Robot.m_driveSubsystem.setBothMotors(0);
   }
@@ -24,10 +25,21 @@ public class TankDriveCommand extends CommandBase {
   @Override
   public void execute() {
     Robot.m_driveSubsystem.setBothMotors(Robot.m_oi.getleftYAxis(), Robot.m_oi.getrightYAxis());
+    
     if(Robot.m_oi.getRightJoystick2() && !prevGearButton){
       Robot.m_driveSubsystem.shift(!Robot.m_driveSubsystem.currentGear());
     }
+
     prevGearButton = Robot.m_oi.getRightJoystick2();
+
+  //   if(Robot.m_oi.getRightJoystick2()){
+  //     if(!prevGearButton){
+  //       prevGearButton = Robot.m_oi.getRightJoystick2();
+  //       Robot.m_driveSubsystem.shift(Robot.m_driveSubsystem.currentGear());
+  //     }else{
+  //     Robot.m_driveSubsystem.shift(!Robot.m_driveSubsystem.currentGear());
+  //   }
+  // }
     
     SmartDashboard.putNumber("Angle", Robot.m_driveSubsystem.getAngle());
 
@@ -35,26 +47,23 @@ public class TankDriveCommand extends CommandBase {
       if(!dynambreak){
         dynambreak=true;
         Robot.m_driveSubsystem.resetEncoders();
+        prevGear = Robot.m_driveSubsystem.currentGear();
         Robot.m_driveSubsystem.shift(true);
-        Robot.m_driveSubsystem.DrivePIDLeft.setD(0.05);
-        Robot.m_driveSubsystem.DrivePIDRight.setD(0.05);
       }
 
       SmartDashboard.putNumber("shift low", 2);
       Robot.m_driveSubsystem.setBreak();
     }else{
-      dynambreak=false;
-      Robot.m_driveSubsystem.DrivePIDLeft.setD(0);
-      Robot.m_driveSubsystem.DrivePIDRight.setD(0);
-      Robot.m_driveSubsystem.shift(false);
+      if (dynambreak) {
+        dynambreak = false;
+        Robot.m_driveSubsystem.shift(prevGear);
+      }
     }
   }
 
   @Override
   public void end(boolean interrupted) {
     Robot.m_driveSubsystem.setBothMotors(0);
-    Robot.m_driveSubsystem.DrivePIDLeft.setD(0);
-    Robot.m_driveSubsystem.DrivePIDRight.setD(0);
   }
 
   @Override

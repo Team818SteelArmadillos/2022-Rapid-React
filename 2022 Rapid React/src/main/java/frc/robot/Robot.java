@@ -1,7 +1,7 @@
 package frc.robot;
 
-import edu.wpi.first.cscore.MjpegServer;
-import edu.wpi.first.cscore.UsbCamera;
+//import edu.wpi.first.cscore.MjpegServer;
+//import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -13,6 +13,7 @@ import frc.robot.commands.ElevatorCommand;
 import frc.robot.commands.ElevatorCommandTesting;
 import frc.robot.commands.EnterClimb;
 import frc.robot.commands.FiveBallAutonCommand;
+import frc.robot.commands.FourBallAuton;
 import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.HighShootManualCommand;
 import frc.robot.commands.LowShootManualCommand;
@@ -64,11 +65,12 @@ public class Robot extends TimedRobot {
   public static Command m_ThreeBallAuton;
   public static Command m_FiveBallAuton;
   public static Command m_ThreeBallDefensiveAuton;
+  public static Command m_FourBallAuton;
   
   SendableChooser<Command> m_chooser;
   
-  UsbCamera usbCamera = new UsbCamera("USB Camera 0", 0);
-  MjpegServer mjpegServer1 = new MjpegServer("serve_USB Camera 0", 1181);
+  //UsbCamera usbCamera = new UsbCamera("USB Camera 0", 0);
+  //MjpegServer mjpegServer1 = new MjpegServer("serve_USB Camera 0", 1181);
 
   static RobotState Rstate = RobotState.DEFAULT;
 
@@ -103,6 +105,7 @@ public class Robot extends TimedRobot {
     m_ThreeBallAuton = new ThreeBallAutonCommand();
     m_FiveBallAuton = new FiveBallAutonCommand();
     m_ThreeBallDefensiveAuton = new ThreeBallAutoDefensive();
+    m_FourBallAuton = new FourBallAuton();
 
     //initalize auton chooser
     m_chooser = new SendableChooser<Command>();
@@ -110,6 +113,7 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("ThreeBallDefensive", m_ThreeBallDefensiveAuton);
     m_chooser.addOption("ThreeBallAuton", m_ThreeBallAuton);
     m_chooser.addOption("FiveBallAuton", m_FiveBallAuton);
+    m_chooser.addOption("FOurBallAuton", m_FourBallAuton);
     SmartDashboard.putData(m_chooser);
   }
 

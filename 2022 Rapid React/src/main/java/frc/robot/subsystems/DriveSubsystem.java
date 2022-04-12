@@ -24,10 +24,10 @@ public class DriveSubsystem extends SubsystemBase {
   private int rightOffset = 0;
 
   boolean brake = false;
-  boolean highGear = false;
-  boolean isHighGear = false;
+  //boolean highGear = false;
+  boolean isLowGear = false;
   
-  public PIDController DrivePIDLeft, DrivePIDRight;
+  public PIDController BrakePIDLeft, BrakePIDRight, DistancePID;
 
   public DriveSubsystem() {
 
@@ -52,10 +52,13 @@ public class DriveSubsystem extends SubsystemBase {
     talonRight2.setInverted(!LEFT_INVERTED);
     talonRight2.follow(talonRight1);
 
-    DrivePIDLeft = new PIDController(driveP, driveI, driveD);
-    DrivePIDLeft.setTolerance(3.1);
-    DrivePIDRight = new PIDController(driveP, driveI, driveD);
-    DrivePIDRight.setTolerance(3.1);
+    DistancePID = new PIDController(driveP, driveI, driveD);
+    DistancePID.setTolerance(2);
+
+    BrakePIDLeft = new PIDController(brakeP, brakeI, brakeD);
+    BrakePIDRight = new PIDController(brakeP, brakeI, brakeD);
+
+
 
     shiftPistonLeft = new DoubleSolenoid(shiftPistonPorts[2], PneumaticsModuleType.CTREPCM, shiftPistonPorts[0], shiftPistonPorts[1]);
 
@@ -79,9 +82,9 @@ public class DriveSubsystem extends SubsystemBase {
 
   }
 
-  public void shift(boolean highGear){
-    isHighGear = highGear;
-    if(highGear){
+  public void shift(boolean lowGear){
+    isLowGear = lowGear;
+    if(lowGear){
       shiftPistonLeft.set(DoubleSolenoid.Value.kForward);
     }else{
       shiftPistonLeft.set(DoubleSolenoid.Value.kReverse);
@@ -89,7 +92,7 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public boolean currentGear(){
-    return isHighGear;
+    return isLowGear;
   }
 
   public void setBothMotors(double speedLeft, double speedRight) {
@@ -112,15 +115,15 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public double setDriveMotorPostion(double distance){
-    double power = MathUtil.clamp(DrivePIDLeft.calculate(distance - getLeftPosition()), -0.5, 0.5);  
+    double power = MathUtil.clamp(DistancePID.calculate(distance - getLeftPosition()), -0.5, 0.5);  
     setBothMotors(power);
     return power;
   }
 
   public void setBreak(){
 
-    setLeftMotors(MathUtil.clamp(DrivePIDLeft.calculate(0 - getLeftPosition()), -1, 1));
-    setRightMotors(MathUtil.clamp(DrivePIDRight.calculate(0 - getRightPosition()), -1, 1));
+    setLeftMotors(MathUtil.clamp(BrakePIDLeft.calculate(0 - getLeftPosition()), -1, 1));
+    setRightMotors(MathUtil.clamp(BrakePIDRight.calculate(0 - getRightPosition()), -1, 1));
   
   }
 
@@ -132,7 +135,7 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public double getLeftPosition() {
-    if (!isHighGear){
+    if (!isLowGear){
       return -(talonLeft1.getSelectedSensorPosition() - leftOffset) * distancePerPulse / high;
     } else {
       return -(talonLeft1.getSelectedSensorPosition() - leftOffset) * distancePerPulse / low;
@@ -141,7 +144,7 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public double getRightPosition() {
-    if (!isHighGear){
+    if (!isLowGear){
       return -(talonRight1.getSelectedSensorPosition() - rightOffset) * distancePerPulse / high;
     } else {
       return -(talonRight1.getSelectedSensorPosition() - rightOffset) * distancePerPulse / low;
@@ -150,7 +153,7 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public double getLeftVelocity() {
-    if(isHighGear){
+    if(isLowGear){
     return talonLeft1.getSelectedSensorVelocity() * distancePerPulse * VELOCITY_CALCULATION_PER_SECOND * Math.PI / (12 * high);
     } else {
       return talonLeft1.getSelectedSensorVelocity() * distancePerPulse * VELOCITY_CALCULATION_PER_SECOND * Math.PI / (12 * low);
@@ -158,7 +161,7 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public double getRightVelocity() {
-    if(isHighGear){
+    if(isLowGear){
     return talonRight1.getSelectedSensorVelocity() * distancePerPulse * VELOCITY_CALCULATION_PER_SECOND * Math.PI / (12 * high);
     } else {
     return talonRight1.getSelectedSensorVelocity() * distancePerPulse * VELOCITY_CALCULATION_PER_SECOND * Math.PI / (12 * low);

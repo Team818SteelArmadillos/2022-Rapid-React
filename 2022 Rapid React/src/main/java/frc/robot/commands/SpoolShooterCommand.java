@@ -33,7 +33,7 @@ public class SpoolShooterCommand extends CommandBase {
 
   @Override
   public void execute() {
-    if( Robot.m_oi.getLeftBumper()  ||  Robot.m_oi.getRightBumper()){
+    if(Robot.m_oi.getRightBumper()){
       Robot.m_ShooterSubsystem.setPowerFront(1);
       //Robot.m_ShooterSubsystem.setPowerBack(1);
     }else{
