@@ -15,7 +15,7 @@ public class AutoShootCommand extends CommandBase {
 
   //int dumb;
 
-  PIDController ShootFrontPID;
+  //PIDController ShootFrontPID;
   PIDController ShootBackPID;
 
   private double dist[][];
@@ -36,10 +36,10 @@ public class AutoShootCommand extends CommandBase {
 
 
     dist[0][0] = 42;
-    dist[0][1] = 1430;
+    dist[0][1] = 1500 /*1430*/;
 
     dist[1][0] = 57;
-    dist[1][1] = 1550;
+    dist[1][1] = 1600 /*1550*/;
 
     dist[2][0] = 70;
     dist[2][1] = 1625;
@@ -48,13 +48,13 @@ public class AutoShootCommand extends CommandBase {
     dist[3][1] = 1750;
 
     dist[4][0] = 84;
-    dist[4][1] = 1780;
+    dist[4][1] = 1800 /*1780*/;
 
     dist[5][0] = 94;
-    dist[5][1] = 1820;
+    dist[5][1] = 1850 /*1820*/;
 
     dist[6][0] = 98;
-    dist[6][1] = 1830;
+    dist[6][1] = 1850 /*1830*/;
 
     dist[7][0] = 102;
     dist[7][1] = 1950;
@@ -100,8 +100,8 @@ public class AutoShootCommand extends CommandBase {
 
     */
 
-    ShootFrontPID = new PIDController(shooterFrontP, shooterFrontI, shooterFrontD);
-    ShootFrontPID.setTolerance(10);
+    //ShootFrontPID = new PIDController(shooterFrontP, shooterFrontI, shooterFrontD);
+    //ShootFrontPID.setTolerance(15);
 
     ShootBackPID = new PIDController(shooterBackP, shooterBackI, shooterBackD);
     ShootBackPID.setTolerance(100);
@@ -110,9 +110,9 @@ public class AutoShootCommand extends CommandBase {
 
     // SmartDashboard.putNumber("Rpm", 1000);
 
-    // SmartDashboard.putNumber("P", 0);
-    // SmartDashboard.putNumber("I", 0);
-    // SmartDashboard.putNumber("D", 0);
+    SmartDashboard.putNumber("P", 0);
+    SmartDashboard.putNumber("I", 0);
+    SmartDashboard.putNumber("D", 0);
 
   }
 
@@ -143,9 +143,9 @@ public class AutoShootCommand extends CommandBase {
   //   dumb =0;
   // }
     // SET PID values from Smart Dash
-  // ShootFrontPID.setP(SmartDashboard.getNumber("P", 0));
-  // ShootFrontPID.setI(SmartDashboard.getNumber("I", 0));
-  // ShootFrontPID.setD(SmartDashboard.getNumber("D", 0));
+  //ShootFrontPID.setP(SmartDashboard.getNumber("P", 0));
+  //ShootFrontPID.setI(SmartDashboard.getNumber("I", 0));
+  //ShootFrontPID.setD(SmartDashboard.getNumber("D", 0));
 
   SmartDashboard.putNumber("Distance", 69.3142/Math.tan((Robot.m_shootervision.getY()+39.78)*Math.PI/180));
   
@@ -162,8 +162,10 @@ public class AutoShootCommand extends CommandBase {
     if (Math.abs(Robot.m_shootervision.getX()) < 5) {
        reachedTarget = true;
     }
-      powerFront = -ShootFrontPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeedTalonTwo());
-      Robot.m_ShooterSubsystem.setPowerFront(powerFront);
+    
+      Robot.m_ShooterSubsystem.setVelocityFront(rpm);
+      //powerFront = -ShootFrontPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeedTalonTwo());
+      //Robot.m_ShooterSubsystem.setPowerFront(powerFront);
 
       powerBack = -ShootBackPID.calculate((rpm * 1.15) - Robot.m_ShooterSubsystem.getCurrentShooterSpeedTalonOne());
       Robot.m_ShooterSubsystem.setPowerBack(powerBack);
@@ -173,7 +175,7 @@ public class AutoShootCommand extends CommandBase {
         SmartDashboard.putNumber("Shooter Speed", Robot.m_ShooterSubsystem.getCurrentShooterSpeedTalonOne());
         
     
-        if(ShootFrontPID.atSetpoint() ){ //&& ShootBackPID.atSetpoint()){
+        if(Robot.m_ShooterSubsystem.atSetpoint(rpm, 65)){ //&& ShootBackPID.atSetpoint()){
           if (!dataLogged) {
             dataLogged = true;
             System.out.println(String.format("Distance, %.2f, rpm, %d", 69.3142/Math.tan((Robot.m_shootervision.getY()+39.78)*Math.PI/180), (int)rpm));

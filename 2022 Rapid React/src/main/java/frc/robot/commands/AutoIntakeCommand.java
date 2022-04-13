@@ -49,6 +49,7 @@ public class AutoIntakeCommand extends CommandBase {
 
     Robot.m_IntakeSubsystem.setIntakeMotor(0);
     Robot.m_IndexSubsystem.setConveyor(0);
+    Robot.m_IndexSubsystem.setIndex(0);
     Robot.m_IntakeSubsystem.setIntakePosition(1);
     
   }

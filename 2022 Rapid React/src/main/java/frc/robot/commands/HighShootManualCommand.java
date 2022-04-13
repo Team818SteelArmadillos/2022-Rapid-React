@@ -48,8 +48,8 @@ public class HighShootManualCommand extends CommandBase {
   public void execute() {
     //change value once redetemined
 
-   rpm = SmartDashboard.getNumber("Rpm", 0);
-     //rpm = 1650;
+  // rpm = SmartDashboard.getNumber("Rpm", 0);
+     rpm = 1650;
     
       powerFront = -ShootFrontPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeedTalonTwo());
       Robot.m_ShooterSubsystem.setPowerFront(powerFront);

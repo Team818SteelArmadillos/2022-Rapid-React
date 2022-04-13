@@ -102,8 +102,9 @@ public class AutonAutoShootCommand extends CommandBase {
     if (Math.abs(Robot.m_shootervision.getX()) < 5) {
        reachedTarget = true;
     }
-      powerFront = -ShootFrontPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeedTalonTwo());
-      Robot.m_ShooterSubsystem.setPowerFront(powerFront);
+      // powerFront = -ShootFrontPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeedTalonTwo());
+      // Robot.m_ShooterSubsystem.setPowerFront(powerFront);
+      Robot.m_ShooterSubsystem.setVelocityFront(rpm);
 
       powerBack = -ShootBackPID.calculate((rpm * 1.15) - Robot.m_ShooterSubsystem.getCurrentShooterSpeedTalonOne());
       Robot.m_ShooterSubsystem.setPowerBack(powerBack);
@@ -113,7 +114,7 @@ public class AutonAutoShootCommand extends CommandBase {
         SmartDashboard.putNumber("Shooter Speed", Robot.m_ShooterSubsystem.getCurrentShooterSpeedTalonOne());
         
     
-        if(ShootFrontPID.atSetpoint() ){ //&& ShootBackPID.atSetpoint()){
+        if(Robot.m_ShooterSubsystem.atSetpoint(rpm, 65)){ //&& ShootBackPID.atSetpoint()){
           Robot.m_IndexSubsystem.setIndex(0.3);
           Robot.m_IndexSubsystem.setConveyor(-1);
            timer.start();
@@ -139,7 +140,7 @@ public class AutonAutoShootCommand extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return timer.hasElapsed(1.8);
+    return timer.hasElapsed(1.2);
   }
 
   private double shooterSpeed(double distance) {

@@ -31,6 +31,7 @@ public class TankDriveCommand extends CommandBase {
     }
 
     prevGearButton = Robot.m_oi.getRightJoystick2();
+  
 
   //   if(Robot.m_oi.getRightJoystick2()){
   //     if(!prevGearButton){
@@ -40,7 +41,7 @@ public class TankDriveCommand extends CommandBase {
   //     Robot.m_driveSubsystem.shift(!Robot.m_driveSubsystem.currentGear());
   //   }
   // }
-    
+    SmartDashboard.putBoolean("Shift", Robot.m_driveSubsystem.currentGear());
     SmartDashboard.putNumber("Angle", Robot.m_driveSubsystem.getAngle());
 
     if(Robot.m_oi.getRightJoystick5()){

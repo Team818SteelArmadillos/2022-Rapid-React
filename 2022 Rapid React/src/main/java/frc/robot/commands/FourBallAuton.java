@@ -8,14 +8,14 @@ public class FourBallAuton extends SequentialCommandGroup {
     addCommands(
       new ResetGyroCommand(),
       new AutonAutoIntakeCommand(44, 1.5),
-      new TurnDrive(160),
+      new DoubleTurnCommand(160, -0.05, 1400),
       new AutonAutoShootCommand(-0.2),
-      new TurnDrive(20),
-      new AutonAutoIntakeCommand(150, 3.5),
-      new IntakeForTimeCommand(1),
-      new TurnDrive(180),
-      new DriveDistance(70),
-      new AutonAutoShootCommand(0)
+      new TurnDrive(16),
+      new AutonAutoIntakeCommand(145, 4),
+      // new IntakeForTimeCommand(1),
+      new TurnDrive(200),
+      new DriveDistance(125),
+      new AutonAutoShootCommand(0.2)
 
     );
   }
