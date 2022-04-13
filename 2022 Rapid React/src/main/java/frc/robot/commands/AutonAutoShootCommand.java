@@ -29,47 +29,47 @@ public class AutonAutoShootCommand extends CommandBase {
     dist = new double[14][2];
 
 
-    dist[0][0] = 42;
-    dist[0][1] = 1430;
+    dist[0][0] = 44; /*42*/
+    dist[0][1] = 1550; /* FIELD 1500 MACOMB 1430*/
 
     dist[1][0] = 57;
-    dist[1][1] = 1550;
+    dist[1][1] = 1650; /* 1600 MACOMB 1550*/
 
     dist[2][0] = 70;
-    dist[2][1] = 1625;
+    dist[2][1] = 1700; /*FIELD 1625 */
 
     dist[3][0] = 81;
-    dist[3][1] = 1750;
+    dist[3][1] = 1850; /*FIELD 1725 */
 
-    dist[4][0] = 84;
-    dist[4][1] = 1780;
+    dist[4][0] = 85;  /*84 */
+    dist[4][1] = 1880; /*MACOMB 1780*/
 
-    dist[5][0] = 94;
-    dist[5][1] = 1820;
+    dist[5][0] = 92;
+    dist[5][1] = 1995; /* FIELD MACOMB 1820*/
 
     dist[6][0] = 98;
-    dist[6][1] = 1830;
+    dist[6][1] = 2005; /*MACOMB 1830*/
 
     dist[7][0] = 102;
-    dist[7][1] = 1950;
+    dist[7][1] = 2020; /*FIELD 1950 */
 
     dist[8][0] = 105.5;
-    dist[8][1] = 2050;
+    dist[8][1] = 2080; /*FIELD 2050*/
 
     dist[9][0] = 110;
-    dist[9][1] = 2250;
+    dist[9][1] = 2250; /*FIELD  */
 
     dist[10][0] = 121;
-    dist[10][1] = 2500;
+    dist[10][1] = 2600; /*FIELD 2500 */
 
     dist[11][0] = 128.5;
-    dist[11][1] = 2850;
+    dist[11][1] = 2900; /*FIELD 2850 */
     
     dist[12][0] = 140;
-    dist[12][1] = 3225;
+    dist[12][1] = 3200;  /*FIELD 3225 */
 
     dist[13][0] = 160;
-    dist[13][1] = 3450;
+    dist[13][1] = 3450; /*FIELD 3450 */
 
 
     ShootFrontPID = new PIDController(shooterFrontP, shooterFrontI, shooterFrontD);

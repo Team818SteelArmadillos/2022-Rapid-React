@@ -23,7 +23,7 @@ public class TurnDrive extends CommandBase {
   public void initialize() {
     Robot.m_driveSubsystem.setBothMotors(0);
     anglePID = new PIDController(0.01, 0, 0.0001);
-    anglePID.setTolerance(2.6);
+    anglePID.setTolerance(2.5);
 
     // turnAngle = SmartDashboard.getNumber("Target Angle", 0);
     // Robot.m_driveSubsystem.resetGyro();

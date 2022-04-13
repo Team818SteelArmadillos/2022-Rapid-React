@@ -40,7 +40,7 @@ public class DriveDistanceHigh extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (Robot.m_driveSubsystem.DistancePID.atSetpoint() && Math.abs(Robot.m_driveSubsystem.getLeftVelocity()) < 0.1);
+    return (Robot.m_driveSubsystem.DistancePIDHigh.atSetpoint() && Math.abs(Robot.m_driveSubsystem.getLeftVelocity()) < 0.1);
     
   }
 }

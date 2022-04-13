@@ -11,10 +11,10 @@ public class FiveBallAutonCommand extends SequentialCommandGroup {
       new DoubleTurnCommand(110.25, -0.15, 1400),
       new AutonAutoShootCommand(0),
       new AutonZeroDrive(113, 2.5),
-      new DoubleTurnCommand(112.25 + 45, -0.2, 1300),
+      new DoubleTurnCommand(157.25, -0.2, 1300),
       new AutonAutoShootCommand(-0.2),
       // grab the two balls, no time to shoot
-      new TurnDrive(112.25 + 90 -123),
+      new TurnDrive(112.25 + 90 -120),
       new AutonZeroDrive(120, 4),
       // new IntakeForTimeCommand(1),
       new TurnDrive(112.25 + 90 -127 + 180),

@@ -8,7 +8,7 @@ public class AutonZeroDrive extends ParallelCommandGroup {
 
     addCommands(
       new IntakeForTimeCommand(time),
-      new DriveDistance(dist),
+      new DriveDistanceHigh(dist),
       new ZeroTurretCommand()
     );
   }
