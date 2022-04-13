@@ -27,7 +27,7 @@ public class DriveSubsystem extends SubsystemBase {
   //boolean highGear = false;
   boolean isLowGear = false;
   
-  public PIDController BrakePIDLeft, BrakePIDRight, DistancePID;
+  public PIDController BrakePIDLeft, BrakePIDRight, DistancePID, DistancePIDHigh;
 
   public DriveSubsystem() {
 
@@ -53,7 +53,10 @@ public class DriveSubsystem extends SubsystemBase {
     talonRight2.follow(talonRight1);
 
     DistancePID = new PIDController(driveP, driveI, driveD);
-    DistancePID.setTolerance(3.5);
+    DistancePID.setTolerance(2);
+
+    DistancePIDHigh = new PIDController(driveP, driveI, driveD);
+    DistancePIDHigh.setTolerance(10);
 
     BrakePIDLeft = new PIDController(brakeP, brakeI, brakeD);
     BrakePIDRight = new PIDController(brakeP, brakeI, brakeD);
@@ -116,6 +119,12 @@ public class DriveSubsystem extends SubsystemBase {
 
   public double setDriveMotorPostion(double distance){
     double power = MathUtil.clamp(DistancePID.calculate(distance - getLeftPosition()), -0.7, 0.7);  
+    setBothMotors(power);
+    return power;
+  }
+
+  public double setDriveMotorPostionHigherTolerance(double distance){
+    double power = MathUtil.clamp(DistancePIDHigh.calculate(distance - getLeftPosition()), -0.7, 0.7);  
     setBothMotors(power);
     return power;
   }

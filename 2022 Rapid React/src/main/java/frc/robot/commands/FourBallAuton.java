@@ -14,7 +14,7 @@ public class FourBallAuton extends SequentialCommandGroup {
       new AutonAutoIntakeCommand(145, 4),
       // new IntakeForTimeCommand(1),
       new TurnDrive(200),
-      new DriveDistance(125),
+      new DriveDistanceHigh(125),
       new AutonAutoShootCommand(0.2)
 
     );

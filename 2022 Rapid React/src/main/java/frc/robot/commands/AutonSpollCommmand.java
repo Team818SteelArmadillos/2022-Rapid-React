@@ -38,8 +38,9 @@ public class AutonSpollCommmand extends CommandBase {
   @Override
   public void execute() {
     
-      powerFront = -ShootFrontPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeedTalonTwo());
-      Robot.m_ShooterSubsystem.setPowerFront(powerFront);
+      // powerFront = -ShootFrontPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeedTalonTwo());
+      // Robot.m_ShooterSubsystem.setPowerFront(powerFront);
+      Robot.m_ShooterSubsystem.setVelocityFront(rpm);
 
       powerBack = -ShootBackPID.calculate((rpm * 1.15) - Robot.m_ShooterSubsystem.getCurrentShooterSpeedTalonOne());
       Robot.m_ShooterSubsystem.setPowerBack(powerBack);

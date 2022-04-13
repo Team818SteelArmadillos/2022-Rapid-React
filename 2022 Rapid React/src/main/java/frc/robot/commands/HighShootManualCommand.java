@@ -49,15 +49,16 @@ public class HighShootManualCommand extends CommandBase {
     //change value once redetemined
 
   // rpm = SmartDashboard.getNumber("Rpm", 0);
-     rpm = 1650;
+     rpm = 1650; 
     
-      powerFront = -ShootFrontPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeedTalonTwo());
-      Robot.m_ShooterSubsystem.setPowerFront(powerFront);
+      // powerFront = -ShootFrontPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeedTalonTwo());
+      // Robot.m_ShooterSubsystem.setPowerFront(powerFront);
+      Robot.m_ShooterSubsystem.setVelocityFront(rpm);
 
       powerBack = -ShootBackPID.calculate((rpm * 1.15) - Robot.m_ShooterSubsystem.getCurrentShooterSpeedTalonOne());
       Robot.m_ShooterSubsystem.setPowerBack(powerBack);
 
-    if(ShootFrontPID.atSetpoint()){
+    if(Robot.m_ShooterSubsystem.atSetpoint(rpm, 65)){
       Robot.m_IndexSubsystem.setConveyor(-1);
       Robot.m_IndexSubsystem.setIndex(0.32);
       timer.start();

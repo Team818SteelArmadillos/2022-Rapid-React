@@ -36,10 +36,10 @@ public class AutoShootCommand extends CommandBase {
 
 
     dist[0][0] = 42;
-    dist[0][1] = 1500 /*1430*/;
+    dist[0][1] = 1500; /*MACOMB 1430*/
 
     dist[1][0] = 57;
-    dist[1][1] = 1600 /*1550*/;
+    dist[1][1] = 1600; /* MACOMB 1550*/
 
     dist[2][0] = 70;
     dist[2][1] = 1625;
@@ -48,13 +48,13 @@ public class AutoShootCommand extends CommandBase {
     dist[3][1] = 1750;
 
     dist[4][0] = 84;
-    dist[4][1] = 1800 /*1780*/;
+    dist[4][1] = 1800; /*MACOMB 1780*/
 
     dist[5][0] = 94;
-    dist[5][1] = 1850 /*1820*/;
+    dist[5][1] = 1850; /*MACOMB 1820*/
 
     dist[6][0] = 98;
-    dist[6][1] = 1850 /*1830*/;
+    dist[6][1] = 1850; /*MACOMB 1830*/
 
     dist[7][0] = 102;
     dist[7][1] = 1950;
@@ -106,13 +106,13 @@ public class AutoShootCommand extends CommandBase {
     ShootBackPID = new PIDController(shooterBackP, shooterBackI, shooterBackD);
     ShootBackPID.setTolerance(100);
 
-    SmartDashboard.putNumber("speed", 3000);
+    // SmartDashboard.putNumber("speed", 3000);
 
-    // SmartDashboard.putNumber("Rpm", 1000);
+    SmartDashboard.putNumber("Rpm", 1000);
 
-    SmartDashboard.putNumber("P", 0);
-    SmartDashboard.putNumber("I", 0);
-    SmartDashboard.putNumber("D", 0);
+    // SmartDashboard.putNumber("P", 0);
+    // SmartDashboard.putNumber("I", 0);
+    // SmartDashboard.putNumber("D", 0);
 
   }
 
@@ -142,6 +142,7 @@ public class AutoShootCommand extends CommandBase {
   //   SmartDashboard.putNumber("frequency", dumb/5.0);
   //   dumb =0;
   // }
+
     // SET PID values from Smart Dash
   //ShootFrontPID.setP(SmartDashboard.getNumber("P", 0));
   //ShootFrontPID.setI(SmartDashboard.getNumber("I", 0));
@@ -150,8 +151,8 @@ public class AutoShootCommand extends CommandBase {
   SmartDashboard.putNumber("Distance", 69.3142/Math.tan((Robot.m_shootervision.getY()+39.78)*Math.PI/180));
   
   // SET TARGET RPM
- rpm = shooterSpeed(69.3142/Math.tan((Robot.m_shootervision.getY()+39.78)*Math.PI/180));// Calc from vision
-  // rpm = SmartDashboard.getNumber("Rpm", 0); // from Smart Dash
+// rpm = shooterSpeed(69.3142/Math.tan((Robot.m_shootervision.getY()+39.78)*Math.PI/180));// Calc from vision
+   rpm = SmartDashboard.getNumber("Rpm", 0); // from Smart Dash
 
   // DISPLAY Shooter Speed
   SmartDashboard.putNumber("actualrpm", Robot.m_ShooterSubsystem.getCurrentShooterSpeedTalonTwo());
