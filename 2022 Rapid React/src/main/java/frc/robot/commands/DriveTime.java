@@ -2,17 +2,19 @@
 package frc.robot.commands;
 
 import frc.robot.Robot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class DriveDistanceHigh extends CommandBase {
+public class DriveTime extends CommandBase {
 
-  double distance, power;
+  double distance, power, time;
+
+  Timer timer;
 
 
-  public DriveDistanceHigh(double dist){
+  public DriveTime(){
     addRequirements(Robot.m_driveSubsystem);
-    distance = dist;
   }
 
 
@@ -27,7 +29,7 @@ public class DriveDistanceHigh extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-   power = Robot.m_driveSubsystem.setDriveMotorPostionHigherTolerance(distance);
+   Robot.m_driveSubsystem.setBothMotors(-0.8);
    SmartDashboard.putNumber("Right Distance Travled (in)", Robot.m_driveSubsystem.getRightPosition());
    SmartDashboard.putNumber("Left Distance Travled (in)", Robot.m_driveSubsystem.getLeftPosition());
   }
@@ -40,7 +42,7 @@ public class DriveDistanceHigh extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (Robot.m_driveSubsystem.DistancePIDHigh.atSetpoint() && Math.abs(Robot.m_driveSubsystem.getLeftVelocity()) < 0.2);
+    return false;
     
   }
 }

@@ -140,7 +140,7 @@ public class AutonAutoShootCommand extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return timer.hasElapsed(1.2);
+    return timer.hasElapsed(1.25);
   }
 
   private double shooterSpeed(double distance) {
