@@ -16,7 +16,7 @@ public class LowShootManualCommand extends CommandBase {
   double rpm;
   PIDController ShootFrontPID, ShootBackPID;
   double powerFront, powerBack;
-
+  boolean dataLogged;
   Timer timer;
 
   public LowShootManualCommand() {
@@ -30,6 +30,8 @@ public class LowShootManualCommand extends CommandBase {
 
     timer = new Timer();
 
+    dataLogged = false;
+
   }
 
   // Called when the command is initially scheduled.
@@ -38,6 +40,7 @@ public class LowShootManualCommand extends CommandBase {
     Robot.m_ShooterSubsystem.setPowerFront(0);
     Robot.m_IndexSubsystem.setConveyor(0);
     Robot.m_IndexSubsystem.setIndex(0);
+    timer.start();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -45,25 +48,27 @@ public class LowShootManualCommand extends CommandBase {
   public void execute() {
 
     //change value once redetemined
-    rpm = 800; 
+    rpm = 900; 
 
       // powerFront = -ShootFrontPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeedTalonTwo());
       // Robot.m_ShooterSubsystem.setPowerFront(powerFront);
       Robot.m_ShooterSubsystem.setVelocityFront(rpm);
 
-      powerBack = -ShootBackPID.calculate((rpm * 1.15) - Robot.m_ShooterSubsystem.getCurrentShooterSpeedTalonOne());
-      Robot.m_ShooterSubsystem.setPowerBack(powerBack);
+      // powerBack = -ShootBackPID.calculate((rpm * 1.15) - Robot.m_ShooterSubsystem.getCurrentShooterSpeedTalonOne());
+      // Robot.m_ShooterSubsystem.setPowerBack(powerBack);
+      Robot.m_ShooterSubsystem.setVelocityBack(rpm);
 
-
-      if(Robot.m_ShooterSubsystem.atSetpoint(rpm, 65)){
+      if(timer.hasElapsed(0.3)){ //&& ShootBackPID.atSetpoint()){
+        if (!dataLogged) {
+          dataLogged = true;
+          System.out.println(String.format("Distance, %.2f, rpm, %d", 69.3142/Math.tan((Robot.m_shootervision.getY()+39.78)*Math.PI/180), (int)rpm));
+        }
+        Robot.m_IndexSubsystem.setIndex(0.30);
         Robot.m_IndexSubsystem.setConveyor(-1);
-        Robot.m_IndexSubsystem.setIndex(0.3);
-        timer.start();
-        if (timer.hasElapsed(0.2)){
-          Robot.m_IndexSubsystem.setConveyor(1);
+        if (timer.hasElapsed(1)){
+          Robot.m_IndexSubsystem.setConveyor(0);
         }
       }
-    
   }
 
   // Called once the command ends or is interrupted.

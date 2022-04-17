@@ -30,6 +30,13 @@ public class ShooterSubsystem extends SubsystemBase {
     talon2.config_IntegralZone(0, 500);
     talon2.configPeakOutputForward(1);
     talon2.configPeakOutputReverse(0);
+
+    talon1.config_kP(0, 0.0499999523);
+    talon1.config_kI(0, 0.00049996376);
+    talon1.config_kF(0, 0.04799986);
+    talon1.config_kD(0, 1.5);
+    talon1.configPeakOutputForward(1);
+    talon1.configPeakOutputReverse(0);
     //talon2.configVelocityMeasurementWindow(1);
 
   }
@@ -53,11 +60,15 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public void setVelocityFront(double rpm){
-    talon2.set(ControlMode.Velocity, rpm * encoderPulsesPerRevolution / 10.0 / 60.0);
+    talon2.set(ControlMode.Velocity, rpm * encoderPulsesPerRevolution / velocityCalculationsPerSecond / 60.0);
   }
 
   public void setPowerBack(double powerBack){
      talon1.set(ControlMode.PercentOutput, powerBack);
+  }
+
+  public void setVelocityBack(double rpm){
+    talon1.set(ControlMode.Velocity, rpm * encoderPulsesPerRevolution / velocityCalculationsPerSecond / 60.0);
   }
 
   public boolean atSetpoint(double target, double tolerance){

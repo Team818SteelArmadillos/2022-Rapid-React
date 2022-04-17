@@ -11,10 +11,10 @@ public class FourBallAuton extends SequentialCommandGroup {
       new DoubleTurnCommand(160, -0.05, 1400),
       new AutonAutoShootCommand(-0.2),
       new TurnDrive(13),
-      new AutonAutoIntakeCommand(147, 3.5),
+      new AutonAutoIntakeCommand(150, 3.5),
       // new IntakeForTimeCommand(1),
       new TurnDriveHigh(200),
-      new DriveForTime(1),
+      new DriveForTime(0.8),
       new AutonAutoShootCommand(0.2)
 
     );

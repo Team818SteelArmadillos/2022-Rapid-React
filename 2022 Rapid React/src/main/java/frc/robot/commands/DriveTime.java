@@ -29,7 +29,7 @@ public class DriveTime extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-   Robot.m_driveSubsystem.setBothMotors(-0.8);
+   Robot.m_driveSubsystem.setBothMotors(-1);
    SmartDashboard.putNumber("Right Distance Travled (in)", Robot.m_driveSubsystem.getRightPosition());
    SmartDashboard.putNumber("Left Distance Travled (in)", Robot.m_driveSubsystem.getLeftPosition());
   }

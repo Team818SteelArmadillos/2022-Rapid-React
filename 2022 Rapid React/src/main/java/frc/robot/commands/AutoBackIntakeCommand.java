@@ -22,8 +22,8 @@ public class AutoBackIntakeCommand extends CommandBase {
   @Override
   public void execute() {
       Robot.m_IntakeSubsystem.setIntakePosition(0.5);
-      Robot.m_IntakeSubsystem.setIntakeMotor(-1);
-      Robot.m_IndexSubsystem.setConveyor(-0.6);
+      Robot.m_IntakeSubsystem.setIntakeMotor(-0.6);
+      Robot.m_IndexSubsystem.setConveyor(-0.4);
       Robot.m_IndexSubsystem.setIndex(-0.3);
   }
 
