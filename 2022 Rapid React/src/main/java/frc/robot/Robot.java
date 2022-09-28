@@ -1,5 +1,12 @@
 package frc.robot;
 
+import java.io.IOException;
+import java.nio.file.Path;
+
+import edu.wpi.first.math.trajectory.Trajectory;
+import edu.wpi.first.math.trajectory.TrajectoryUtil;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Filesystem;
 //import edu.wpi.first.cscore.MjpegServer;
 //import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -74,6 +81,9 @@ public class Robot extends TimedRobot {
 
   static RobotState Rstate = RobotState.DEFAULT;
 
+  String trajectoryJSON = "paths/FirstPath.wpilib.json";
+  Trajectory trajectory = new Trajectory();
+
   @Override
   public void robotInit() {
 
@@ -115,7 +125,15 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("FiveBallAuton", m_FiveBallAuton);
     m_chooser.addOption("FOurBallAuton", m_FourBallAuton);
     SmartDashboard.putData(m_chooser);
-  }
+
+    try {
+      Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);
+      trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
+   } catch (IOException ex) {
+      DriverStation.reportError("Unable to open trajectory: " + trajectoryJSON, ex.getStackTrace());
+   }
+}
+  
 
   @Override
   public void robotPeriodic() {
