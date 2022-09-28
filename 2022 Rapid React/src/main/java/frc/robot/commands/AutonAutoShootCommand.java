@@ -26,55 +26,56 @@ public class AutonAutoShootCommand extends CommandBase {
     dist = new double[17][2];
 
     dist[0][0] = 42; /*42*/
-    dist[0][1] = 1680;
+    dist[0][1] = 1570;
 
     dist[1][0] = 47; /*42*/
-    dist[1][1] = 1720; /* FIELD 1500 MACOMB 1430*/
+    dist[1][1] = 1610; /* FIELD 1500 MACOMB 1430*/
 
     dist[2][0] = 57;
-    dist[2][1] = 1840; /* 1600 MACOMB 1550*/
+    dist[2][1] = 1670; /* 1600 MACOMB 1550*/
 
-    dist[3][0] = 70;
-    dist[3][1] = 1980; /*FIELD 1625 */
+    dist[3][0] = 64;
+    dist[3][1] = 1750;
 
-    dist[4][0] = 73;
-    dist[4][1] = 2030;
+    dist[4][0] = 70;
+    dist[4][1] = 1820; /*FIELD 1625 */
 
-    dist[5][0] = 79;
-    dist[5][1] = 2170;
+    dist[5][0] = 73;
+    dist[5][1] = 1845;
 
-    dist[6][0] = 81;
-    dist[6][1] = 2200; /*FIELD 1725 */
+    dist[6][0] = 79;
+    dist[6][1] = 1910;
 
-    dist[7][0] = 85;  /*84 */
-    dist[7][1] = 2300; /*MACOMB 1780 WE ARE HERE*/
+    dist[7][0] = 84.5;  /*84 */
+    dist[7][1] = 2010; /*MACOMB 1780 WE ARE HERE*/
 
     dist[8][0] = 92;
-    dist[8][1] = 2450; /* FIELD MACOMB 1820*/
+    dist[8][1] = 2110; /* FIELD MACOMB 1820*/
 
     dist[9][0] = 98;
-    dist[9][1] = 2550; /*MACOMB 1830*/
+    dist[9][1] = 2150; /*MACOMB 1830*/
 
     dist[10][0] = 102;
-    dist[10][1] = 2570; /*FIELD 1950 */
+    dist[10][1] = 2170; /*FIELD 1950 */
 
-    dist[11][0] = 105.5;
-    dist[11][1] = 2590; /*FIELD 2050*/
+    dist[11][0] = 106;
+    dist[11][1] = 2220; /*FIELD 2050*/
 
     dist[12][0] = 110;
-    dist[12][1] = 2650; /*FIELD  */
+    dist[12][1] = 2350; /*FIELD  */
 
     dist[13][0] = 121;
-    dist[13][1] = 2750; /*FIELD 2500 */
+    dist[13][1] = 2410; /*FIELD 2500 */
 
     dist[14][0] = 128.5;
-    dist[14][1] = 2850; /*FIELD 2850 */
+    dist[14][1] = 2520; /*FIELD 2850 */
     
     dist[15][0] = 140;
-    dist[15][1] = 3050;  /*FIELD 3225 */
+    dist[15][1] = 2750;  /*FIELD 3225 */
 
     dist[16][0] = 160;
-    dist[16][1] = 3150; /*FIELD 3450 */
+    dist[16][1] = 3050; /*FIELD 3450 */
+
 
 
     // ShootFrontPID = new PIDController(shooterFrontP, shooterFrontI, shooterFrontD);
@@ -93,6 +94,7 @@ public class AutonAutoShootCommand extends CommandBase {
     Robot.m_ShooterSubsystem.setPowerFront(0);
     Robot.m_ShooterSubsystem.setPowerBack(0);
     Robot.m_TurretSubsystem.setTurretSpeed(0);
+    Robot.m_driveSubsystem.setBothMotors(0);
     timer.reset();
     dataLogged = false;
   
@@ -102,6 +104,7 @@ public class AutonAutoShootCommand extends CommandBase {
   public void execute() {
   
     rpm = shooterSpeed(69.3142/Math.tan((Robot.m_shootervision.getY()+39.78)*Math.PI/180));
+
 
     if(Robot.m_shootervision.getTarget()) {
       Robot.m_TurretSubsystem.setTurretSpeed(-Robot.m_shootervision.getX() / 40);
@@ -115,7 +118,7 @@ public class AutonAutoShootCommand extends CommandBase {
 
       // powerBack = -ShootBackPID.calculate((rpm * 1.15) - Robot.m_ShooterSubsystem.getCurrentShooterSpeedTalonOne());
       // Robot.m_ShooterSubsystem.setPowerBack(powerBack);
-      Robot.m_ShooterSubsystem.setVelocityBack(rpm);
+      Robot.m_ShooterSubsystem.setVelocityBack(rpm * 1.5);
 
         
         SmartDashboard.putNumber("powerBack", powerFront);
@@ -145,12 +148,14 @@ public class AutonAutoShootCommand extends CommandBase {
     Robot.m_ShooterSubsystem.setPowerFront(0);
     Robot.m_ShooterSubsystem.setPowerBack(0);
     Robot.m_TurretSubsystem.setTurretSpeed(0);
+    Robot.m_driveSubsystem.setBothMotors(0);
 
   }
 
   @Override
   public boolean isFinished() {
-    return timer.hasElapsed(2.5);
+    return timer.hasElapsed(1.5);
+    //return timer.hasElapsed(2.5);
   }
 
   private double shooterSpeed(double distance) {

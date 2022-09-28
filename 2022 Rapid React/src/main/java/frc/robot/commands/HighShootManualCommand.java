@@ -18,6 +18,8 @@ public class HighShootManualCommand extends CommandBase {
 
   boolean dataLogged;
   Timer timer;
+  private double wait1;
+  private double wait2;
   
   double powerFront, powerBack;
 
@@ -51,8 +53,8 @@ public class HighShootManualCommand extends CommandBase {
   public void execute() {
     //change value once redetemined
 
-  // rpm = SmartDashboard.getNumber("Rpm", 0);
-      rpm = 1900; 
+  rpm = SmartDashboard.getNumber("Rpm", 0);
+      // rpm = 1900; 
     
       // powerFront = -ShootFrontPID.calculate(rpm - Robot.m_ShooterSubsystem.getCurrentShooterSpeedTalonTwo());
       // Robot.m_ShooterSubsystem.setPowerFront(powerFront);
@@ -60,16 +62,24 @@ public class HighShootManualCommand extends CommandBase {
 
       // powerBack = -ShootBackPID.calculate((rpm * 1.15) - Robot.m_ShooterSubsystem.getCurrentShooterSpeedTalonOne());
       // Robot.m_ShooterSubsystem.setPowerBack(powerBack);
-      Robot.m_ShooterSubsystem.setVelocityBack(rpm * 1.15);
+      Robot.m_ShooterSubsystem.setVelocityBack(rpm * 1.5);
 
-      if(timer.hasElapsed(0.3)){ //&& ShootBackPID.atSetpoint()){
+      if (rpm > 2400) {
+        wait1 = 0.6;
+        wait2 = 1.5;
+      }
+      else {
+        wait1 = 0.3;
+        wait2 = 1.0;
+      }
+      if(timer.hasElapsed(wait1)){ //&& ShootBackPID.atSetpoint()){
         if (!dataLogged) {
           dataLogged = true;
           System.out.println(String.format("Distance, %.2f, rpm, %d", 69.3142/Math.tan((Robot.m_shootervision.getY()+39.78)*Math.PI/180), (int)rpm));
         }
         Robot.m_IndexSubsystem.setIndex(0.30);
         Robot.m_IndexSubsystem.setConveyor(-1);
-        if (timer.hasElapsed(1)){
+        if (timer.hasElapsed(wait2)){
           Robot.m_IndexSubsystem.setConveyor(0);
         }
     }

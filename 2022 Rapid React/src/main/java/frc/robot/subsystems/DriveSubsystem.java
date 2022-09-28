@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.sensors.PigeonIMU;
 
@@ -35,22 +36,27 @@ public class DriveSubsystem extends SubsystemBase {
     talonRight1 = new TalonFX(MOTOR_PORTS_RIGHT[0]);
     talonLeft2 = new TalonFX(MOTOR_PORTS_LEFT[1]);
     talonRight2 = new TalonFX(MOTOR_PORTS_RIGHT[1]);
+
     
     talonLeft1.configFactoryDefault();
     talonLeft1.setInverted(LEFT_INVERTED);
     talonLeft1.configOpenloopRamp(RAMP_RATE);
+    talonLeft1.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, 10, 15, 0.5));
 
     talonRight1.configFactoryDefault();
     talonRight1.setInverted(!LEFT_INVERTED);
     talonRight1.configOpenloopRamp(RAMP_RATE);
+    talonRight1.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, 40, 80, 1));
 
     talonLeft2.configFactoryDefault();
     talonLeft2.setInverted(LEFT_INVERTED);
     talonLeft2.follow(talonLeft1);
+    talonLeft2.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, 40, 80, 1));
       
     talonRight2.configFactoryDefault();
     talonRight2.setInverted(!LEFT_INVERTED);
     talonRight2.follow(talonRight1);
+    talonRight2.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, 40, 80, 1));
 
     DistancePID = new PIDController(driveP, driveI, driveD);
     DistancePID.setTolerance(2);

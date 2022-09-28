@@ -7,6 +7,7 @@ public class DriveForTime extends ParallelRaceGroup {
 
     addCommands(
       new DriveTime(),
+      new AutonSpollCommmand(2400),
       new WaitCommand(time)
     );
   }
