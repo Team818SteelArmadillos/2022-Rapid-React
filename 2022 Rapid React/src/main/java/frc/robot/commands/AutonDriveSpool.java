@@ -12,7 +12,7 @@ public class AutonDriveSpool extends ParallelCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new DriveDistance(dist),
+      new driveDistance(dist),
       new AutonSpollCommmand(rpm)
       );
   }
