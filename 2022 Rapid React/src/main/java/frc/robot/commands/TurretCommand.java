@@ -1,6 +1,3 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.commands;
 
@@ -9,32 +6,32 @@ import frc.robot.Robot;
 
 
 public class TurretCommand extends CommandBase {
-  /** Creates a new TurretCommand. */
+ 
   public TurretCommand() {
-    // Use addRequirements() here to declare subsystem dependencies.
+    
   }
 
-  // Called when the command is initially scheduled.
+
   @Override
   public void initialize() {
     Robot.m_TurretSubsystem.setTurretSpeed(0);
-    Robot.m_TurretSubsystem.resetEncoderPosition();
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
+ 
   @Override
   public void execute() {
-    Robot.m_TurretSubsystem.setTurretSpeed(Robot.m_oi.getleftXAxis());
-
+    if (Robot.m_shootervision.getTarget())  {
+      Robot.m_TurretSubsystem.setTurretSpeed(-Robot.m_shootervision.getX() / 40);
+    } else {
+      Robot.m_TurretSubsystem.setTurretSpeed(-Robot.m_oi.getgamepadleftXAxis()* 0.25);
+    }
   } 
 
-  // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     Robot.m_TurretSubsystem.setTurretSpeed(0);
   }
 
-  // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     return false;

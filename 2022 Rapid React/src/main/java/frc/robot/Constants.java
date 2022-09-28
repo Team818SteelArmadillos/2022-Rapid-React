@@ -11,22 +11,30 @@ public static class oi {
 
 public static class DriveConstants {
     //Drive Motors
-    public static final int[] MOTOR_PORTS_LEFT = {1, 2};
+    public static final int[] MOTOR_PORTS_LEFT = {14, 2};
     public static final int[] MOTOR_PORTS_RIGHT = {3, 4};
     public static final boolean LEFT_INVERTED = true;
     public static final double RAMP_RATE = 0.5;
-    public static final double wheelCircumference = 6*Math.PI;
-    public static final int[] shiftPistonPorts = {2, 3, 0};
+    public static final double wheelCircumference = 4 * Math.PI;
+    public static final int[] shiftPistonPorts = {2, 3, 1};
+    public static final double driveP = 0.05;
+    public static final double driveI = 0.0004;
+    public static final double driveD = 0.006;
+    public static final double brakeP = 0.2;
+    public static final double brakeI = 0;
+    public static final double brakeD = 0;
+
+
 
     //Drive Constants
-    public static final double WHEEL_DIAMETER = 6;
-    public static final double ENCODER_GEAR_RATIO = 1;
     public static final int ENCODER_PULSES_PER_REVOLUTION = 2048;
     public static final int VELOCITY_CALCULATION_PER_SECOND = 10;
     public static final double distancePerPulse = wheelCircumference/(double) ENCODER_PULSES_PER_REVOLUTION;
 
-    public static final double low = 21.67;
-    public static final double high = 8.41;
+    public static final double low = 14.44;
+    public static final double high = 7.74;
+
+    public static final int GYRO_PORTS = 0;
 
     }   
 
@@ -35,14 +43,20 @@ public static class DriveConstants {
     public static final int[] SHOOTER_PORTS = {5, 6};
     public static final boolean SHOOTER_INVERTED = true; 
     public static final double velocityCalculationsPerSecond = 10;
-    public static final double encoderPulsesPerRevolution = 4096; 
+    public static final double encoderPulsesPerRevolution = 2048; 
     public static final int TURRET_MOTOR = 7;
 
-    public static final int[] hoodPistonPort = {4, 5, 1};
+    public static final int[] hoodPistonPort = {4, 5, 0};
 
-    public static final double p = 0.0009;
-    public static final double i = 0.00537;
-    public static final double d = 0.00003657;
+    public static final double shooterFrontP = 0.00075;
+    public static final double shooterFrontI = 0.003;
+    public static final double shooterFrontD = 0.00001;
+
+    public static final double shooterBackP = 0.00039882;
+    public static final double shooterBackI = 0.00377562;
+    public static final double shooterBackD = 0.000005;
+
+    public static final double turretGearRatio = 55;
 
     }
 
@@ -51,19 +65,15 @@ public static class DriveConstants {
     public static final int intakeMotorPort = 8;
     public static final int indexMotorPortConveyor = 9;
     public static final int indexMotorPortUpper = 10;
-
+    public static final boolean INDEX_INVERTED = true;
     }
 
     public static class ElevatorConstants {
 
     public static final int elevatorMotorPort = 11;    
-    public static final int[] ratchetPistonPort = {2, 3, 1};
-    public static final int[] AnglePistonPort1 = {0, 1, 1};
-    public static final int[] flipUpHookPort1 = {4, 5, 0};
-    public static final double P = 0.01;
-    public static final double I = 0;
-    public static final double D = 0;
-    public static final double[] ElevatorHeights = {0, 100, 200, 300};
+    public static final int[] ratchetPistonPort = {2, 3, 0};
+    public static final int[] AnglePistonPort1 = {0, 1, 0};
+    public static final int[] flipUpHookPort1 = {4, 5, 1};
     }
 
     public static class LEDNumbers {
@@ -81,15 +91,15 @@ public static class DriveConstants {
 
     public static class Pistons {
 
-    public static final int[] intakePistonPortOne = {0, 1, 0};
+    public static final int[] intakePistonPortOne = {0, 1, 1};
 
 
     }
 
     public static class SensorPorts {
 
-    public static final int indexSensorFront = 0;
-    public static final int indexSensorBack = 1;  
+    public static final int indexSensorFront = 9;
+    public static final int indexSensorBack = 8;  
 
     }
 

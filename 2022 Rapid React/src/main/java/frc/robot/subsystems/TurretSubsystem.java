@@ -1,42 +1,39 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
-import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.Constants.ShooterConstants.*;
 
 public class TurretSubsystem extends SubsystemBase {
-  public TalonFX talon1;
-  public DigitalInput toplimitSwitch = new DigitalInput(0);
-  public DigitalInput bottomlimitSwitch = new DigitalInput(1);
-
-  private double turretoffset = 0;
-
-  /** Creates a new TurretSubsystem. */
+  public TalonFX turretTalon;
+  
   public TurretSubsystem() {
-    talon1 = new TalonFX(TURRET_MOTOR);
+    turretTalon = new TalonFX(TURRET_MOTOR);
 
-    talon1.configFactoryDefault();
+    turretTalon.configFactoryDefault();
+    turretTalon.setNeutralMode(NeutralMode.Brake);
+    resetEncoderPosition();
   }
 
   public void setTurretSpeed(double speed) {
-    talon1.set(ControlMode.PercentOutput, speed);
-    
-    if ((speed > 0) && (getCurrentTurretPosition()) > encoderPulsesPerRevolution * 0.75 * 55){
-      talon1.set(ControlMode.PercentOutput, 0);
+    turretTalon.set(ControlMode.PercentOutput, MathUtil.clamp(speed, -0.22, 0.22));
+    if ((speed > 0) && (getCurrentTurretPosition()) > encoderPulsesPerRevolution * 0.22 * turretGearRatio){
+      turretTalon.set(ControlMode.PercentOutput, 0);
     }
-    if ((-1 * (speed) > 0) && (getCurrentTurretPosition()) > encoderPulsesPerRevolution * 0.75 * 55){
-      talon1.set(ControlMode.PercentOutput, 0);
+    if ((speed < 0) && (getCurrentTurretPosition()) < encoderPulsesPerRevolution * -0.22 * turretGearRatio){
+      turretTalon.set(ControlMode.PercentOutput, 0);
       }
   }
 
-  public void resetEncoderPosition(){
-    turretoffset = talon1.getSelectedSensorPosition();
+  private void resetEncoderPosition(){
+    turretTalon.setSelectedSensorPosition(0);
   }
   public double getCurrentTurretPosition(){
-    return (talon1.getSelectedSensorPosition() - turretoffset) * encoderPulsesPerRevolution;
+    return turretTalon.getSelectedSensorPosition();
   }
 
 

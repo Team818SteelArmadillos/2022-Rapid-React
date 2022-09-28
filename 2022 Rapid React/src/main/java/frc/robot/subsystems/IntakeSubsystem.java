@@ -1,6 +1,3 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.subsystems;
 
@@ -14,16 +11,15 @@ import static frc.robot.Constants.motorports.*;
 import static frc.robot.Constants.Pistons.*;
 
 public class IntakeSubsystem extends SubsystemBase {
-  /** Creates a new IntakeSubsystem. */ 
   private TalonFX MotorIntake;
   static DoubleSolenoid intakePiston;
   double intakePistonVal;
-  public boolean isPistonOut = false;
+
   
   public IntakeSubsystem() {
     MotorIntake = new TalonFX(intakeMotorPort);
     intakePiston = new DoubleSolenoid(intakePistonPortOne[2], PneumaticsModuleType.CTREPCM, intakePistonPortOne[0], intakePistonPortOne[1]);
-
+    MotorIntake.setInverted(true);
   }
 
   public void setIntakeMotor(double Speed) {
@@ -33,10 +29,8 @@ public class IntakeSubsystem extends SubsystemBase {
   public void setIntakePosition(double intakePistonVal) {
     if(intakePistonVal == 0.5) {
       intakePiston.set(DoubleSolenoid.Value.kReverse);
-      isPistonOut = false;
     } else if (intakePistonVal == 1) {
       intakePiston.set(DoubleSolenoid.Value.kForward);
-      isPistonOut = true;
     }
 
     }

@@ -24,19 +24,19 @@ public class OI {
 
 }
 
-      public boolean getElevatorUp() {
+      public boolean getDPadUp() {
         return (gamePad.getPOV() == 0);
       }
 
-      public boolean getElevatorDown() {
+      public boolean getDPadDown() {
         return (gamePad.getPOV() == 180);
       }
 
-      public boolean getElevatorOut(){
+      public boolean getDPadRight(){
         return (gamePad.getPOV() == 270);
       }
 
-      public boolean getElevatorIn(){
+      public boolean getDpadLeft(){
         return (gamePad.getPOV() == 90);
       }
 
@@ -57,50 +57,94 @@ public class OI {
       }
 
       public boolean getLeftBumper() {
-        return gamePad.getRawButtonPressed(5);
+        return gamePad.getLeftBumperPressed();
       }
 
       public boolean getRightBumper() {
-        return gamePad.getRawButtonPressed(6);
+        return gamePad.getRightBumper();
       }
 
       public boolean getRightTrigger() {
-        return gamePad.getRawButtonPressed(3);
+        return gamePad.getRightTriggerAxis() > 0.5;
       }
 
       public boolean getLeftTrigger() {
-        return gamePad.getRawButtonPressed(2);
+        return gamePad.getLeftTriggerAxis() > 0.5;
+      }
+
+      public boolean getBackButton() {
+        return gamePad.getBackButton();
+      }
+      
+      public boolean getStartButton(){
+        return gamePad.getStartButton();
       }
 
       public double getleftYAxis() {
-        // return Math.pow(-leftJoyStick.getY(), 3.0);
-        return leftJoyStick.getY();
-        // // return Math.pow(-gamePadDriver.getLeftY(), 3.0);
-        //return gamePadDriver.getLeftY();
+        if (Math.abs(leftJoyStick.getY()) > 0.05){
+          return leftJoyStick.getY();
+        } else {
+          return 0;
+        }
       }
     
       public double getrightYAxis() {
-        // return Math.pow(rightJoyStick.getY(), 3.0);
-        return rightJoyStick.getY();
-        // // return Math.pow(gamePadDriver.getRightY(), 3.0);
-        // return gamePadDriver.getRightY();
+        if (Math.abs(rightJoyStick.getY()) > 0.05){
+          return rightJoyStick.getY();
+        } else {
+          return 0;
+        }
       }
     
       public double getleftXAxis() {
-        // return Math.pow(-rightJoyStick.getX(), 3.0);
-        return leftJoyStick.getX();
-        // // return Math.pow(-gamePadDriver.getLeftX(), 3.0);
-        // return gamePadDriver.getLeftX();
+        if (Math.abs(leftJoyStick.getX()) > 0.05){
+          return leftJoyStick.getX();
+        } else {
+          return 0;
+        }
       }
       
       public double getrightXAxis() {
-        // return Math.pow(-rightJoyStick.getX(), 3.0);
-        return rightJoyStick.getX();
-        // // return Math.pow(-gamePadDriver.getRightX(), 3.0);
-        // return gamePadDriver.getRightX();
+        if (Math.abs(rightJoyStick.getX()) > 0.05){
+          return rightJoyStick.getX();
+        } else {
+          return 0;
+        }
       }
 
-      public boolean shiftGears(){
+      public double getgamepadleftXAxis() {
+        if (Math.abs(gamePad.getLeftX()) > 0.05){
+          return gamePad.getLeftX();
+        } else {
+          return 0;
+        }
+      }
+      public double getgamepadrightXAxis() {
+        if (Math.abs(gamePad.getRightX()) > 0.05){
+          return  gamePad.getRightX();
+        } else {
+          return 0;
+        }
+      }
+
+      public boolean getRightJoystick2(){
       return (rightJoyStick.getRawButton(2));
       }
+
+      public boolean getRightJoystick8(){
+        return (rightJoyStick.getRawButton(8));
+      }
+
+      public boolean getRightJoystick7(){
+        return (rightJoyStick.getRawButton(7));
+      }
+
+      public boolean getRightJoystick5(){
+        return (rightJoyStick.getRawButton(5));
+      }
+
+      public boolean getRightJoystick11(){
+        return (rightJoyStick.getRawButton(11));
+      }
+
     }
