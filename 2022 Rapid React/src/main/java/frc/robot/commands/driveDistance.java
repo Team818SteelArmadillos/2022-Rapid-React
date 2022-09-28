@@ -5,12 +5,12 @@ import frc.robot.Robot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class DriveDistance extends CommandBase {
+public class driveDistance extends CommandBase {
 
   double distance, power;
 
 
-  public DriveDistance(double dist){
+  public driveDistance(double dist){
     addRequirements(Robot.m_driveSubsystem);
     distance = dist;
   }
