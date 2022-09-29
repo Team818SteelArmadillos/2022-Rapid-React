@@ -18,7 +18,8 @@ public class OdometrySubsystem extends SubsystemBase{
     int robotRY;
     int robotLX;
     int robotLY;
-
+    public FINAL ROBOTWIDTH;
+    
 
     public void mapChange(){
         double angle = Robot.m_driveSubsystem.getAngle();
@@ -45,6 +46,9 @@ public class OdometrySubsystem extends SubsystemBase{
         SmartDashboard.putNumber("LeftWheelCoordinateY", robotLY);
         SmartDashboard.putNumber("RightWheelCoordinateX", robotRX);
         SmartDashboard.putNumber("RightWheelCoordinateY", robotRY);
+    }
+    public void setPositon(robotX, robotY){
+
     }
 
 }
