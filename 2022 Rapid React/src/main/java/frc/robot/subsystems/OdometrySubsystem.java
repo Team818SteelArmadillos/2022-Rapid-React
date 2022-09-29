@@ -12,13 +12,11 @@ import frc.robot.Robot;
 
 /** Add your docs here. */
 public class OdometrySubsystem extends SubsystemBase{
-    int initialX;
-    int initialY;
-    int robotRX;
-    int robotRY;
-    int robotLX;
-    int robotLY;
-    public FINAL ROBOTWIDTH;
+    public double robotRX;
+    public double robotRY;
+    public double robotLX;
+    public double robotLY;
+    public FINAL ROBOTWIDTH = 1.25;
     
 
     public void mapChange(){
@@ -48,7 +46,18 @@ public class OdometrySubsystem extends SubsystemBase{
         SmartDashboard.putNumber("RightWheelCoordinateY", robotRY);
     }
     public void setPositon(robotX, robotY){
+        double angle = Robot.m_driveSubsystem.getAngle();
+        
+        double roboAngle = angle - 90;
+        double peakAngle = 180 - (robotAngle + 90);
+        
+        double setX = Math.sin(peakAngle)/Math.sin(90)/0.625;
+        double setY = Math.sin(roboAngle)/Math.sin(90)/0.625;
 
+        robotRX = robotX + setX;
+        robotRY = robotY + setY;
+        robotLX = robotX + setX;
+        robotLY = robotY + setY;
     }
 
 }
