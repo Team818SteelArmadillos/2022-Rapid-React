@@ -18,7 +18,8 @@ public class OdometrySubsystem extends SubsystemBase{
     public double robotLY;
     public FINAL ROBOTWIDTH = 1.25;
     
-
+    //Seperation between wheels physcially throughout the program will allow for better correction programming later. Ie: if distance between left wheel and right wheel > 1.25, average points and recalibrate with gyro to re-establish points.
+    //Allows for more accuracy and redundancy, necessary becuase accuracy of left and right velocity could vary independently.
     public void mapChange(){
         double angle = Robot.m_driveSubsystem.getAngle();
         double leftVlo = Robot.m_driveSubsystem.getLeftVelocity();
@@ -46,6 +47,7 @@ public class OdometrySubsystem extends SubsystemBase{
         SmartDashboard.putNumber("RightWheelCoordinateY", robotRY);
     }
     public void setPositon(robotX, robotY){
+        //can be used to set position for the start of the match, for recalibration purposes if distance between wheels is greater than 1.25, or if requested by the limelight.
         double angle = Robot.m_driveSubsystem.getAngle();
         
         double roboAngle = angle - 90;
