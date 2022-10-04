@@ -1,4 +1,7 @@
 package frc.robot;
+
+import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
+
 public class Constants {
 
 public static class oi {
@@ -108,5 +111,26 @@ public static class DriveConstants {
     public static final int LEDLight = 6;
 
     }  
+
+    public static class Autonpath {
+    //get from system identification 
+    public static final double ksVolts = 0.22;
+    public static final double kvVoltSecondsPerMeter = 1.98;
+    public static final double kaVoltSecondsSquaredPerMeter = 0.2;
+
+    public static final double kPDriveVel = 8.5;
+
+    public static final double kTrackwidthMeters = 0.69;
+    public static final DifferentialDriveKinematics kDriveKinematics =
+        new DifferentialDriveKinematics(kTrackwidthMeters);
+
+    public static final double kMaxSpeedMetersPerSecond = 3;
+    public static final double kMaxAccelerationMetersPerSecondSquared = 3;
+
+    //noise ratios for the model and for the robot
+    public static final double kRamseteB = 2;
+    public static final double kRamseteZeta = 0.7;
+
+    }
 
 }
