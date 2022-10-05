@@ -34,6 +34,7 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.IndexSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.OdometrySubsystem;
 // import frc.robot.subsystems.LEDS;
 import frc.robot.subsystems.ShooterVisionSubsystem;
 import frc.robot.subsystems.TurretSubsystem;
@@ -54,6 +55,7 @@ public class Robot extends TimedRobot {
   public static IntakeSubsystem m_IntakeSubsystem;
   public static ElevatorSubsystem m_ElevatorSubsystem;
   public static TurretSubsystem m_TurretSubsystem;
+  public static OdometrySubsystem m_OdometrySubsystem;
   // public static LEDS m_LEDS;
 
   public static HighShootManualCommand m_HighShootManualCommand;
@@ -96,6 +98,7 @@ public class Robot extends TimedRobot {
     m_ShooterSubsystem = new ShooterSubsystem();
     m_ElevatorSubsystem = new ElevatorSubsystem();
     m_IntakeSubsystem = new IntakeSubsystem();
+    m_OdometrySubsystem = new OdometrySubsystem();
     // m_LEDS = new LEDS();
 
     //initialize commands

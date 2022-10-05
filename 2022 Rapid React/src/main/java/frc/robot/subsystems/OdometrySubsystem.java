@@ -45,7 +45,7 @@ public class OdometrySubsystem extends SubsystemBase{
         SmartDashboard.putNumber("RightWheelCoordinateX", robotRX);
         SmartDashboard.putNumber("RightWheelCoordinateY", robotRY);
     }
-    public void setPositon(double robotX, double robotY){
+    public void setPosition(double robotX, double robotY){
         //can be used to set position for the start of the match, for recalibration purposes if distance between wheels is greater than 1.25, or if requested by the limelight.
         double angle = Robot.m_driveSubsystem.getAngle();
         
@@ -63,7 +63,34 @@ public class OdometrySubsystem extends SubsystemBase{
     public void limelightCalibration(){
         double limelightAngle = Robot.m_TurretSubsystem.getCurrentTurretPosition() + Robot.m_driveSubsystem.getAngle();
         double limelightDistance = 69.3142/Math.tan((Robot.m_shootervision.getY()+39.78)*Math.PI/180);
+
+        double RobotX = (robotRX + robotLX)/2;
+        double RobotY = (robotRY + robotLY)/2;
         
+        double positiveX = (-Math.pow(Math.tan(limelightAngle), 2)*RobotX + Math.tan(limelightAngle) * RobotY + Math.sqrt(16 * Math.pow(Math.tan(limelightAngle),2)
+        + 8 * Math.pow(Math.tan(limelightAngle), 2) * limelightDistance + Math.pow(Math.tan(limelightAngle), 2) * Math.pow(limelightDistance, 2)
+        - Math.pow(Math.tan(limelightAngle), 2) * Math.pow(RobotX, 2) - Math.pow(RobotY, 2) + 2 * Math.tan(limelightAngle) * RobotX * RobotY + 16 + 8
+        * limelightDistance + Math.pow(limelightDistance, 2)))/(Math.pow(Math.tan(limelightAngle), 2) + 1);
+
+        double negativeX = (-Math.pow(Math.tan(limelightAngle), 2)*RobotX + Math.tan(limelightAngle) * RobotY - Math.sqrt(16 * Math.pow(Math.tan(limelightAngle),2)
+        + 8 * Math.pow(Math.tan(limelightAngle), 2) * limelightDistance + Math.pow(Math.tan(limelightAngle), 2) * Math.pow(limelightDistance, 2)
+        - Math.pow(Math.tan(limelightAngle), 2) * Math.pow(RobotX, 2) - Math.pow(RobotY, 2) + 2 * Math.tan(limelightAngle) * RobotX * RobotY + 16 + 8
+        * limelightDistance + Math.pow(limelightDistance, 2)))/(Math.pow(Math.tan(limelightAngle), 2) + 1);
+
+        double positiveY = Math.sqrt(Math.pow(-positiveX, 2) + Math.pow(4 + limelightDistance, 2));
+        double negativeY = Math.sqrt(Math.pow(-negativeX, 2) + Math.pow(4 + limelightDistance, 2));
+
+        double deltaPositive = ((RobotX - positiveX) + (RobotY - positiveY));
+        double deltaNegative = ((RobotX - negativeX) + (RobotY - negativeY));
+
+        if(deltaPositive > 5 || deltaNegative > 5){
+            if(deltaPositive < deltaNegative){
+                setPosition(positiveX, positiveY);
+            }else{
+                setPosition(negativeX, negativeY);
+            }
+        }
+
     }
 
 }
