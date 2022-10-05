@@ -8,6 +8,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 import frc.robot.Robot;
 
 /** Add your docs here. */
@@ -52,8 +53,8 @@ public class OdometrySubsystem extends SubsystemBase{
         double roboAngle = angle - 90;
         double peakAngle = 180 - (angle + 90);
         
-        double setX = Math.sin(peakAngle)/Math.sin(90)/0.625;
-        double setY = Math.sin(roboAngle)/Math.sin(90)/0.625;
+        double setX = Math.sin(peakAngle)/Math.sin(90)/(Constants.DriveConstants.ROBOTWIDTH/2);
+        double setY = Math.sin(roboAngle)/Math.sin(90)/(Constants.DriveConstants.ROBOTWIDTH/2);
 
         robotRX = robotX + setX;
         robotRY = robotY + setY;

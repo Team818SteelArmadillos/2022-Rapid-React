@@ -39,6 +39,7 @@ public class ElevatorCommand extends CommandBase {
 
     if (Robot.m_oi.getDPadUp() && Robot.m_ElevatorSubsystem.getEncoderPosition() < (582063 - 10000)){
         Robot.m_ElevatorSubsystem.setStaticPistons(1);
+        Robot.m_OdometrySubsystem.limelightCalibration();
         if (Robot.m_oi.getDPadUp() && !PreviousUp){
           Robot.m_ElevatorSubsystem.setRatchetPiston(1);
           PreviousUp = true;

@@ -16,7 +16,7 @@ public class OdometryCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.m_OdometrySubsystem.setPosition(-4.5, -3.0);
+    Robot.m_OdometrySubsystem.setPosition(0.0, 0.0);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
