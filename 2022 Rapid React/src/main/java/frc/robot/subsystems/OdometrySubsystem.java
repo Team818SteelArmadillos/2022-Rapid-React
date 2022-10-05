@@ -16,7 +16,6 @@ public class OdometrySubsystem extends SubsystemBase{
     public double robotRY;
     public double robotLX;
     public double robotLY;
-    public FINAL ROBOTWIDTH = 1.25;
     
     //Seperation between wheels physcially throughout the program will allow for better correction programming later. Ie: if distance between left wheel and right wheel > 1.25, average points and recalibrate with gyro to re-establish points.
     //Allows for more accuracy and redundancy, necessary becuase accuracy of left and right velocity could vary independently.
@@ -46,12 +45,12 @@ public class OdometrySubsystem extends SubsystemBase{
         SmartDashboard.putNumber("RightWheelCoordinateX", robotRX);
         SmartDashboard.putNumber("RightWheelCoordinateY", robotRY);
     }
-    public void setPositon(robotX, robotY){
+    public void setPositon(double robotX, double robotY){
         //can be used to set position for the start of the match, for recalibration purposes if distance between wheels is greater than 1.25, or if requested by the limelight.
         double angle = Robot.m_driveSubsystem.getAngle();
         
         double roboAngle = angle - 90;
-        double peakAngle = 180 - (robotAngle + 90);
+        double peakAngle = 180 - (angle + 90);
         
         double setX = Math.sin(peakAngle)/Math.sin(90)/0.625;
         double setY = Math.sin(roboAngle)/Math.sin(90)/0.625;
@@ -60,6 +59,11 @@ public class OdometrySubsystem extends SubsystemBase{
         robotRY = robotY + setY;
         robotLX = robotX + setX;
         robotLY = robotY + setY;
+    }
+    public void limelightCalibration(){
+        double limelightAngle = Robot.m_TurretSubsystem.getCurrentTurretPosition() + Robot.m_driveSubsystem.getAngle();
+        double limelightDistance = 69.3142/Math.tan((Robot.m_shootervision.getY()+39.78)*Math.PI/180);
+        
     }
 
 }

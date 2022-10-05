@@ -30,6 +30,7 @@ public static class DriveConstants {
     public static final int ENCODER_PULSES_PER_REVOLUTION = 2048;
     public static final int VELOCITY_CALCULATION_PER_SECOND = 10;
     public static final double distancePerPulse = wheelCircumference/(double) ENCODER_PULSES_PER_REVOLUTION;
+    public static final double ROBOTWIDTH = 2.25; //Wheel to wheel
 
     public static final double low = 14.44;
     public static final double high = 7.74;
