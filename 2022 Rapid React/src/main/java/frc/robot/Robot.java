@@ -25,6 +25,7 @@ import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.HighShootManualCommand;
 import frc.robot.commands.LowShootManualCommand;
 import frc.robot.commands.SpoolShooterCommand;
+import frc.robot.commands.OdometryCommand;
 import frc.robot.commands.TankDriveCommand;
 import frc.robot.commands.ThreeBallAutoDefensive;
 import frc.robot.commands.ThreeBallAutonCommand;
@@ -69,6 +70,7 @@ public class Robot extends TimedRobot {
   public static Command m_TankDriveCommand;
   public static Command m_DynamicBraking;
   public static Command m_EnterClimb;
+  public static Command m_OdometryCommand;
 
   public static Command m_TwoBallAuton;
   public static Command m_ThreeBallAuton;
@@ -112,6 +114,7 @@ public class Robot extends TimedRobot {
     m_AutoShootCommand = new AutoShootCommand();
     m_DynamicBraking = new DynamicBraking();
     m_EnterClimb = new EnterClimb();
+    m_OdometryCommand = new OdometryCommand();
 
     //initialize auton commands
     m_TwoBallAuton = new TwoBallAutonCommandSequence();
@@ -265,6 +268,7 @@ private void startDefault() {
   m_TankDriveCommand.schedule();
   m_IntakeCommand.schedule();
   m_TurretCommand.schedule();
+  m_OdometryCommand.schedule();
 
 }
 
@@ -274,6 +278,7 @@ private void endDefault() {
   m_TankDriveCommand.cancel();
   m_IntakeCommand.cancel();
   m_TurretCommand.cancel();
+  m_OdometryCommand.cancel();
 
 }
 

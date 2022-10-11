@@ -28,12 +28,11 @@ public class OdometrySubsystem extends SubsystemBase{
         double leftDistance = leftVlo * .02;
         double rightDistance = rightVlo * .02;
         
-        double deltaLX = Math.sin(90-angle)/Math.sin(90)/leftDistance;
-        double deltaLY = Math.sin(angle)/Math.sin(90)/leftDistance;
+        double deltaLX = leftDistance * Math.cos(angle);
+        double deltaLY = leftDistance * Math.sin(angle);
 
-        double deltaRX = Math.sin(90-angle)/Math.sin(90)/rightDistance;
-        double deltaRY = Math.sin(angle)/Math.sin(90)/rightDistance;
-
+        double deltaRX = rightDistance * Math.cos(angle);
+        double deltaRY = rightDistance* Math..sin(angle);
         robotLX += deltaLX;
         robotLY += deltaLY;
         robotRX += deltaRX;
