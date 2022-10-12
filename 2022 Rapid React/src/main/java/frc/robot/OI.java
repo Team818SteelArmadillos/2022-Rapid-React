@@ -80,6 +80,9 @@ public class OI {
         return gamePad.getStartButton();
       }
 
+
+
+      /*
       public double getleftYAxis() {
         if (Math.abs(leftJoyStick.getY()) > 0.05){
           return leftJoyStick.getY();
@@ -110,7 +113,44 @@ public class OI {
         } else {
           return 0;
         }
+      } 
+      */
+
+
+      public double getleftYAxis() {
+        if (Math.abs(gamePadDriver.getLeftY()) > 0.05){
+          return gamePadDriver.getLeftY();
+        } else {
+          return 0;
+        }
       }
+    
+      public double getrightYAxis() {
+        if (Math.abs(gamePadDriver.getRightY()) > 0.05){
+          return gamePadDriver.getRightY();
+        } else {
+          return 0;
+        }
+      }
+    
+      public double getleftXAxis() {
+        if (Math.abs(gamePadDriver.getLeftX()) > 0.05){
+          return gamePadDriver.getLeftX();
+        } else {
+          return 0;
+        }
+      }
+      
+      public double getrightXAxis() {
+        if (Math.abs(gamePadDriver.getRightX()) > 0.05){
+          return gamePadDriver.getRightX();
+        } else {
+          return 0;
+        }
+      }
+
+
+
 
       public double getgamepadleftXAxis() {
         if (Math.abs(gamePad.getLeftX()) > 0.05){
