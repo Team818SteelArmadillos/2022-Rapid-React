@@ -15,7 +15,7 @@ public static class DriveConstants {
     public static final int[] MOTOR_PORTS_RIGHT = {3, 4};
     public static final boolean LEFT_INVERTED = true;
     public static final double RAMP_RATE = 0.5;
-    public static final double wheelCircumference = 4 * Math.PI;
+    public static final double wheelCircumference = 4.1 * Math.PI;
     public static final int[] shiftPistonPorts = {2, 3, 1};
     public static final double driveP = 0.05;
     public static final double driveI = 0.0004;

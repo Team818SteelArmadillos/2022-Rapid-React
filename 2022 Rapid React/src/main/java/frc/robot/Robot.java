@@ -85,9 +85,6 @@ public class Robot extends TimedRobot {
 
   static RobotState Rstate = RobotState.DEFAULT;
 
-  String trajectoryJSON = "paths/FirstPath.wpilib.json";
-  Trajectory trajectory = new Trajectory();
-
   @Override
   public void robotInit() {
 
@@ -132,12 +129,6 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("FOurBallAuton", m_FourBallAuton);
     SmartDashboard.putData(m_chooser);
 
-    try {
-      Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);
-      trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
-   } catch (IOException ex) {
-      DriverStation.reportError("Unable to open trajectory: " + trajectoryJSON, ex.getStackTrace());
-   }
 }
   
 
@@ -160,7 +151,9 @@ public class Robot extends TimedRobot {
   }
 
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+    m_OdometryCommand.schedule();
+  }
 
   @Override
   public void teleopInit() {

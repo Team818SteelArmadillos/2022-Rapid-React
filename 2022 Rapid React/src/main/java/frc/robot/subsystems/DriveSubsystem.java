@@ -86,6 +86,10 @@ public class DriveSubsystem extends SubsystemBase {
   
   }
 
+  public double getRotations() {
+    return talonLeft1.getSelectedSensorPosition();
+  }
+
   @Override
   public void periodic() {
 
